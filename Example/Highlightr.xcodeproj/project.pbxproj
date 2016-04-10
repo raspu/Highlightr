@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		8C0B8C341CBB03AF00338143 /* sampleCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B8C331CBB03AF00338143 /* sampleCode.txt */; };
 		C25B26CCF3E5A223CC4B1F9F /* Pods_Highlightr_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7A7D349026B3DBD70E13B6 /* Pods_Highlightr_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		719ED2C056FED45508B76D17 /* Highlightr.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Highlightr.podspec; path = ../Highlightr.podspec; sourceTree = "<group>"; };
 		81B00C74F80645E546387ECF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8C0B8C331CBB03AF00338143 /* sampleCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleCode.txt; sourceTree = "<group>"; };
 		CA6727177ADDFB0846D399B1 /* Pods-Highlightr_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E9955747CECEEED28D898D63 /* Pods-Highlightr_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FACBE1ED06E5718AE417DCC0 /* Pods-Highlightr_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				8C0B8C331CBB03AF00338143 /* sampleCode.txt */,
 			);
 			name = "Example for Highlightr";
 			path = Highlightr;
@@ -249,6 +252,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				8C0B8C341CBB03AF00338143 /* sampleCode.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

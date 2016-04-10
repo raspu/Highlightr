@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         hig = Highlightr()
-        label.attributedText = hig.highlight("swift", code: "class a {\n func a(string:String)->Bool{\n a(string:\"Wiki-Wiki\"\n)\n} \n}", ignoreIllegals: true)
+        let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
+        label.attributedText = hig.highlight("swift", code: code, ignoreIllegals: true)
         
     }
 

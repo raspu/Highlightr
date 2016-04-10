@@ -33,7 +33,7 @@ public class Highlightr
             return nil
         }
         
-        guard let defTheme = bundle.pathForResource("dracula.min", ofType: "css") else
+        guard let defTheme = bundle.pathForResource("pojoaque.min", ofType: "css") else
         {
             return nil
         }
@@ -58,6 +58,8 @@ public class Highlightr
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\n", withString:"\\n");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\r", withString:"");
 
+
+
         let command =  String.init(format: "%@.highlight(\"%@\",\"%@\");", hljs,languageName, fixedCode)
         let res = jsContext.evaluateScript(command.stringByReplacingOccurrencesOfString("!", withString: "'"))
         guard var string = res!.toObject()["value"] as! String? else
@@ -65,13 +67,17 @@ public class Highlightr
             return nil
         }
         
-        string = "<style>"+theme+"</style>"+string
+        string = "<style>"+theme+"</style><code class=\"hljs\">"+string+"</code>"
         let opt = [
             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
             NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
         ]
+        string = string.stringByReplacingOccurrencesOfString("\n", withString:"<br>");
+        string = string.stringByReplacingOccurrencesOfString("  ", withString:"&nbsp;&nbsp;");
+
         
-        let attrString = try! NSAttributedString(data:string.dataUsingEncoding(NSUTF8StringEncoding)!,options:opt as! [String:AnyObject],documentAttributes:nil)
+        let attrString = try! NSMutableAttributedString(data:string.dataUsingEncoding(NSUTF8StringEncoding)!,options:opt as! [String:AnyObject],documentAttributes:nil)
+        attrString.removeAttribute(NSBackgroundColorAttributeName, range: NSMakeRange(0, attrString.length))
         return attrString
     }
     
