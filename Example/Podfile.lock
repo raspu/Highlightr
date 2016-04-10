@@ -1,0 +1,22 @@
+PODS:
+  - Highlightr (0.1.0)
+  - Nimble (3.2.0)
+  - Quick (0.9.1)
+
+DEPENDENCIES:
+  - Highlightr (from `../`)
+  - Nimble (~> 3.0)
+  - Quick (~> 0.8)
+
+EXTERNAL SOURCES:
+  Highlightr:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Highlightr: a3ca3f966ca897d10da1c4c6f326d511373847be
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Quick: a5221fc21788b6aeda934805e68b061839bc3165
+
+PODFILE CHECKSUM: a28b00a13f08bf2a4cc5dcf0d5106b2098bae7cb
+
+COCOAPODS: 1.0.0.beta.6

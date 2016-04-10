@@ -9,32 +9,39 @@
 Pod::Spec.new do |s|
   s.name             = "Highlightr"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Highlightr."
+  s.summary          = "Hightlight your code strings."
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+                Takes a NSString with code and returns NSAttributtedString with highlighted code.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Highlightr"
+  s.homepage         = "https://github.com/raspu/Highlightr"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Illanes, Juan Pablo" => "jpillanes@comscore.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/Highlightr.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Illanes, Juan Pablo" => "jpillaness@gmail.com" }
+  s.source           = { :git => "https://github.com/raspu/Highlightr.git", :tag => s.version.to_s, :submodules => true}
 
-  s.platform     = :ios, '8.0'
+  s.osx.deployment_target = '10.9'
+  s.ios.deployment_target = '8.0'
+
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'Highlightr' => ['Pod/Assets/*.png']
-  }
+  s.source_files = 'Pod/Classes/**/*.{swift}', 
+
+
+  s.resources  = 'Pod/Assets/**/*.{css,js}'
+
+  #s.preserve_paths = 'Pod/Assets/Highlighter/**'
+  #s.resource_bundles = {
+  # 'Highlightr' => ['Pod/Assets/*.png']
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+   s.frameworks = 'UIKit', 'WebKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
+
+
+
+
+
