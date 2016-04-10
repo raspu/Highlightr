@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'Highlightr_Example', :exclusive => true do
+  pod 'Highlightr', :path => '../'
+end
+
+target 'Highlightr_Tests', :exclusive => true do
+  pod 'Highlightr', :path => '../'
+
+  pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+end
