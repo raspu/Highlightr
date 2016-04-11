@@ -53,30 +53,29 @@ public class Highlightr
     
     public func highlight(languageName: String, code: String, ignoreIllegals: Bool) -> NSAttributedString?
     {
-        var fixedCode = code.stringByReplacingOccurrencesOfString("\'",withString: "\\\'");
+        var fixedCode = code.stringByReplacingOccurrencesOfString("\\",withString: "\\\\");
+        fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\'",withString: "\\\'");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\"", withString:"\\\"");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\n", withString:"\\n");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\r", withString:"");
 
 
 
-        let command =  String.init(format: "%@.highlight(\"%@\",\"%@\");", hljs,languageName, fixedCode)
+        let command =  String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs,languageName, fixedCode)
         let res = jsContext.evaluateScript(command.stringByReplacingOccurrencesOfString("!", withString: "'"))
-        guard var string = res!.toObject()["value"] as! String? else
+        guard var string = res!.toString() else
         {
             return nil
         }
         
-        string = "<style>"+theme+"</style><code class=\"hljs\">"+string+"</code>"
+        string = "<style>"+theme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
         let opt = [
             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
             NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
         ]
-        string = string.stringByReplacingOccurrencesOfString("\n", withString:"<br>");
-        string = string.stringByReplacingOccurrencesOfString("  ", withString:"&nbsp;&nbsp;");
 
-        
-        let attrString = try! NSMutableAttributedString(data:string.dataUsingEncoding(NSUTF8StringEncoding)!,options:opt as! [String:AnyObject],documentAttributes:nil)
+        let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
+        let attrString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
         attrString.removeAttribute(NSBackgroundColorAttributeName, range: NSMakeRange(0, attrString.length))
         return attrString
     }

@@ -18,8 +18,22 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         hig = Highlightr()
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
-        label.attributedText = hig.highlight("swift", code: code, ignoreIllegals: true)
-        
+        var text : NSAttributedString
+        text = hig.highlight("swift", code: code, ignoreIllegals: true)!
+        let methodStart = NSDate()
+        for _ in 0 ..< 100
+        {
+            NSLog("INIT")
+            text = hig.highlight("swift", code: code, ignoreIllegals: true)!
+            NSLog("END")
+
+        }
+        let methodFinish = NSDate()
+        let executionTime = Float(methodFinish.timeIntervalSinceDate(methodStart))/100.0;
+        NSLog("AVG:\(executionTime)")
+
+
+        label.attributedText = text
     }
 
     override func didReceiveMemoryWarning() {
