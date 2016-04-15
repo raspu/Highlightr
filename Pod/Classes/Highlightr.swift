@@ -40,6 +40,13 @@ public class Highlightr
         theme = try! String.init(contentsOfFile: defTheme)
     }
     
+    /**
+     Set the theme to use for highlighting.
+     
+     - parameter name: String, theme name.
+     
+     - returns: true if it was posible to set the given theme, false otherwise.
+     */
     public func setTheme(name: String) -> Bool
     {
         guard let defTheme = bundle.pathForResource(name+".min", ofType: "css") else
@@ -51,7 +58,15 @@ public class Highlightr
         return true
     }
     
-    public func highlight(languageName: String, code: String, ignoreIllegals: Bool) -> NSAttributedString?
+    /**
+     Takes a String and returns a NSAttributedString with the given language highlighted.
+     
+     - parameter languageName:   Language name or alias
+     - parameter code:           Code to highlight
+     
+     - returns: NSAttributedString with the detected code highlighted.
+     */
+    public func highlight(languageName: String, code: String) -> NSAttributedString?
     {
         var fixedCode = code.stringByReplacingOccurrencesOfString("\\",withString: "\\\\");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\'",withString: "\\\'");
@@ -59,10 +74,8 @@ public class Highlightr
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\n", withString:"\\n");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\r", withString:"");
 
-
-
         let command =  String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs,languageName, fixedCode)
-        let res = jsContext.evaluateScript(command.stringByReplacingOccurrencesOfString("!", withString: "'"))
+        let res = jsContext.evaluateScript(command)
         guard var string = res!.toString() else
         {
             return nil
@@ -78,6 +91,34 @@ public class Highlightr
         let attrString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
         attrString.removeAttribute(NSBackgroundColorAttributeName, range: NSMakeRange(0, attrString.length))
         return attrString
+    }
+    
+    /**
+     Returns a list of all the themes available.
+     
+     - returns: Array of Strings
+     */
+    public func availableThemes() -> [String]
+    {
+        let paths = bundle.pathsForResourcesOfType("css", inDirectory: nil) as [NSString]
+        var result = [String]()
+        for path in paths {
+            result.append(path.lastPathComponent.stringByReplacingOccurrencesOfString(".min.css", withString: ""))
+        }
+        
+        return result
+    }
+    
+    /**
+     Returns a list of all supported languages.
+     
+     - returns: Array of Strings
+     */
+    public func supportedLanguages() -> [String]
+    {
+        let command =  String.init(format: "%@.listLanguages();", hljs)
+        let res = jsContext.evaluateScript(command)
+        return res.toArray() as! [String]
     }
     
 }

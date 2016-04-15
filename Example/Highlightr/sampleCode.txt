@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         text = hig.highlight("swift", code: code, ignoreIllegals: true)!
         for _ in 0 ..< 100
         {
-            NSLog("INIT")
+            NSLog("INIT \(test)")
             text = hig.highlight("swift", code: code, ignoreIllegals: true)!
             NSLog("END")
 
@@ -526,7 +526,7 @@ class ViewController: UIViewController {
         text = hig.highlight("swift", code: code, ignoreIllegals: true)!
         for _ in 0 ..< 100
         {
-            NSLog("INIT")
+            NSLog("INIT \(test)")
             text = hig.highlight("swift", code: code, ignoreIllegals: true)!
             NSLog("END")
 

@@ -19,18 +19,21 @@ class ViewController: UIViewController {
         hig = Highlightr()
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
         var text : NSAttributedString
-        text = hig.highlight("swift", code: code, ignoreIllegals: true)!
         let methodStart = NSDate()
-        for _ in 0 ..< 100
+        text = hig.highlight("swift", code: code)!
+        /*for _ in 0 ..< 100
         {
             NSLog("INIT")
-            text = hig.highlight("swift", code: code, ignoreIllegals: true)!
+            text = hig.highlight("swift", code: code)!
             NSLog("END")
 
-        }
+        }*/
         let methodFinish = NSDate()
         let executionTime = Float(methodFinish.timeIntervalSinceDate(methodStart))/100.0;
         NSLog("AVG:\(executionTime)")
+        
+        print(hig.availableThemes())
+        print(hig.supportedLanguages())
 
 
         label.attributedText = text
