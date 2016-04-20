@@ -295,6 +295,7 @@
 		8B7D9443DE2015DED643FDB975C590A6 /* darkula.min.css in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA881C486212E5E6E13C7CA9DCBE /* darkula.min.css */; };
 		8BD81B1C4F30FDF768C4DE64FB4460BA /* matlab.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 9263CE7C92B3B6BDF5E8DA716A6D369F /* matlab.min.js */; };
 		8BE576F125BC0D1695CB298497DBC25F /* accesslog.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 407DB43470CAB7E50D202E791223B9C8 /* accesslog.min.js */; };
+		8C2F63C11CC6D94700D428E8 /* CodeAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2F63C01CC6D94700D428E8 /* CodeAttributedString.swift */; };
 		8C8EB858B7B61021081AA7EDCE3D34EF /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 3973F89F7C13EAD4855CFC68BCC8511E /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C9F547245CF936E875B7028EF320F6C /* elixir.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AEFAF17879B0D6B3A54572990B29936F /* elixir.min.js */; };
 		8D0D8CDB7C23673AD5C1FAAED97D564C /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2001C2E0EAC4C5898BF2610F019A171E /* monokai.min.css */; };
@@ -763,6 +764,7 @@
 		89F44CED05783C4D63841D35BC7869FF /* profile.min.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = profile.min.js; sourceTree = "<group>"; };
 		8A562213D0385708961C195D0CF8C45E /* FailureMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FailureMessage.swift; path = Sources/Nimble/FailureMessage.swift; sourceTree = "<group>"; };
 		8A83F0092F039C6F7AFC5D9D1E55E3BE /* NSString+QCKSelectorName.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+QCKSelectorName.m"; path = "Sources/Quick/NSString+QCKSelectorName.m"; sourceTree = "<group>"; };
+		8C2F63C01CC6D94700D428E8 /* CodeAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeAttributedString.swift; sourceTree = "<group>"; };
 		8C3BF6EEB8EBBF58269C5B2DE7E68EBE /* solarized-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = "solarized-light.min.css"; sourceTree = "<group>"; };
 		8D924A98F0691CB7100035FC7C2958D3 /* Async.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Async.swift; path = Sources/Nimble/Utils/Async.swift; sourceTree = "<group>"; };
 		8ED85DFD58F13E73CC6080D18D5C1E10 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
@@ -1005,6 +1007,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2330E1E2E95FE4A5001659D8EFAFE3 /* Highlightr.swift */,
+				8C2F63C01CC6D94700D428E8 /* CodeAttributedString.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2112,6 +2115,7 @@
 				79BF19616CE0223DAF26CB0DE6FE338D /* bash.min.js in Sources */,
 				C31728E844B82873C434FDEEED38BD6F /* basic.min.js in Sources */,
 				7C5C057C0C7FD23DF15256ABB4FB658E /* brainfuck.min.js in Sources */,
+				8C2F63C11CC6D94700D428E8 /* CodeAttributedString.swift in Sources */,
 				45797DA18627C0C8D7D1755288D2E4AD /* brown-paper.min.css in Sources */,
 				714EC06BDB070149AA5CB69DD27335BB /* cal.min.js in Sources */,
 				215D71B108230C9FE4AFD9E50793D826 /* capnproto.min.js in Sources */,

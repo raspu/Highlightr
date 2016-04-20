@@ -10,10 +10,17 @@ import Foundation
 
 public class CodeAttributedString : NSTextStorage
 {
-    let stringStorage = NSMutableAttributedString()
+    let stringStorage = NSMutableAttributedString(string: "")
+    let highlightr = Highlightr()
     
     public var language : String?
-    public var theme : String?
+    public var theme : String? {
+        didSet {
+            if let theme = theme {
+                highlightr?.setTheme(theme)
+            }
+        }
+    }
     
     public override var string: String {
         get {
@@ -41,7 +48,12 @@ public class CodeAttributedString : NSTextStorage
     
     public override func processEditing() {
         super.processEditing()
-        //TODO: DO THE MAGIC HERE!
+        if let language = language {
+            let tmpStrg = highlightr?.highlight(language, code: self.string)
+            var range = NSMakeRange(0, stringStorage.length)
+            self.replaceCharactersInRange(range, withAttributedString: tmpStrg!)
+            //stringStorage.addAttributes(attrs!, range: range)
+        }
     }
     
     
