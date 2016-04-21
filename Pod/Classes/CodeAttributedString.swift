@@ -33,26 +33,34 @@ public class CodeAttributedString : NSTextStorage
     }
     
     public override func replaceCharactersInRange(range: NSRange, withString str: String) {
-        self.beginEditing()
         stringStorage.replaceCharactersInRange(range, withString: str)
-        self.endEditing()
         self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) - range.length)
     }
     
     public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
-        self.beginEditing()
         stringStorage.setAttributes(attrs, range: range)
-        self.endEditing()
         self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
     }
     
     public override func processEditing() {
         super.processEditing()
         if let language = language {
-            let tmpStrg = highlightr?.highlight(language, code: self.string)
-            var range = NSMakeRange(0, stringStorage.length)
-            self.replaceCharactersInRange(range, withAttributedString: tmpStrg!)
-            //stringStorage.addAttributes(attrs!, range: range)
+            if self.editedMask.contains(.EditedCharacters)
+            {
+                var range = (self.string as NSString).lineRangeForRange(self.editedRange)
+                let tmpStrg = highlightr?.highlight(language, code: (self.string as NSString).substringWithRange(range))
+                tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
+                    let fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
+                    if(fixedRange.location + fixedRange.length < self.stringStorage.length)
+                    {
+                        self.addAttributes(attrs, range: fixedRange)
+                    }else
+                    {
+                        print("OUT: \(fixedRange)")
+                    }
+                })
+            }
+            
         }
     }
     

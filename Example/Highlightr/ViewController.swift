@@ -19,8 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         hig = Highlightr()
-        textStorage = CodeAttributedString()
-        textStorage.language = "swift"
+
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
         var text : NSAttributedString
         let methodStart = NSDate()
@@ -39,6 +38,9 @@ class ViewController: UIViewController {
         print(hig.availableThemes())
         print(hig.supportedLanguages())
         
+        textStorage = CodeAttributedString()
+        textStorage.language = "swift"
+        
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         
@@ -46,6 +48,9 @@ class ViewController: UIViewController {
         layoutManager.addTextContainer(textContainer)
         
         textView = UITextView(frame: view.bounds, textContainer: textContainer)
+        textView.backgroundColor = UIColor.darkGrayColor()
+        textView.autocorrectionType = UITextAutocorrectionType.No
+        textView.autocapitalizationType = UITextAutocapitalizationType.None
         self.view.addSubview(textView)
         
         label.attributedText = text
