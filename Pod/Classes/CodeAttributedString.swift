@@ -47,17 +47,17 @@ public class CodeAttributedString : NSTextStorage
         if let language = language {
             if self.editedMask.contains(.EditedCharacters)
             {
-                var range = (self.string as NSString).lineRangeForRange(self.editedRange)
-                let tmpStrg = highlightr?.highlight(language, code: (self.string as NSString).substringWithRange(range))
-                tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
-                    let fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
-                    if(fixedRange.location + fixedRange.length < self.stringStorage.length)
-                    {
-                        self.addAttributes(attrs, range: fixedRange)
-                    }else
-                    {
-                        print("OUT: \(fixedRange)")
-                    }
+                let string = (self.string as NSString)
+                let editedRange = self.editedRange
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    var range = string.paragraphRangeForRange(editedRange)
+                    print(string.substringWithRange(range))
+                    let tmpStrg = self.highlightr?.highlight(language, code: string.substringWithRange(range))
+                    tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
+                        var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
+                        fixedRange.length = (fixedRange.location + fixedRange.length < string.length) ? fixedRange.length : string.length-fixedRange.location
+                        self.stringStorage.addAttributes(attrs, range: fixedRange)
+                    })
                 })
             }
             

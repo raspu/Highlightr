@@ -26,17 +26,14 @@ class ViewController: UIViewController {
         text = hig.highlight("swift", code: code)!
         /*for _ in 0 ..< 100
         {
-            NSLog("INIT")
             text = hig.highlight("swift", code: code)!
-            NSLog("END")
-
         }*/
         let methodFinish = NSDate()
         let executionTime = Float(methodFinish.timeIntervalSinceDate(methodStart))/100.0;
         NSLog("AVG:\(executionTime)")
         
-        print(hig.availableThemes())
-        print(hig.supportedLanguages())
+        //print(hig.availableThemes())
+        //print(hig.supportedLanguages())
         
         textStorage = CodeAttributedString()
         textStorage.language = "swift"
@@ -51,6 +48,7 @@ class ViewController: UIViewController {
         textView.backgroundColor = UIColor.darkGrayColor()
         textView.autocorrectionType = UITextAutocorrectionType.No
         textView.autocapitalizationType = UITextAutocapitalizationType.None
+        textView.textColor = UIColor(white: 0.8, alpha: 1.0)
         self.view.addSubview(textView)
         
         label.attributedText = text

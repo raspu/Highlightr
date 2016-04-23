@@ -9,12 +9,15 @@
 import Foundation
 import JavaScriptCore
 
+
+
 public class Highlightr
 {
     let jsContext : JSContext
     let hljs = "window.hljs"
     let bundle : NSBundle
     var theme : String
+    var strippedTheme : String!
     
     public init?()
     {
@@ -38,6 +41,7 @@ public class Highlightr
             return nil
         }
         theme = try! String.init(contentsOfFile: defTheme)
+        strippedTheme = self.themeDictToString(self.stripTheme(theme))
     }
     
     /**
@@ -81,7 +85,7 @@ public class Highlightr
             return nil
         }
         
-        string = "<style>"+theme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+        string = "<style>"+strippedTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
         let opt = [
             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
             NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
@@ -89,7 +93,6 @@ public class Highlightr
 
         let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
         let attrString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
-        attrString.removeAttribute(NSBackgroundColorAttributeName, range: NSMakeRange(0, attrString.length))
         return attrString
     }
     
@@ -120,5 +123,60 @@ public class Highlightr
         let res = jsContext.evaluateScript(command)
         return res.toArray() as! [String]
     }
+    
+    //Private & Internal
+    private func stripTheme(themeString : String) -> [String:[String:String]]
+    {
+        let objcString = (themeString as NSString)
+        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+)|(?:font-style:[a-zA-Z0-9]+))?[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+|(?:font-style:[a-zA-Z0-9]+)))[^\\}]*?\\})", options:[.CaseInsensitive])
+
+        let results = cssRegex.matchesInString(themeString,
+                                 options: [.ReportCompletion],
+                                 range: NSMakeRange(0, objcString.length))
+        
+        var resultDict = [String:[String:String]]()
+        
+        for result in results {
+            if(result.numberOfRanges > 1)
+            {
+                var attr = [String:String]()
+                for i in 2...result.numberOfRanges-1 {
+                    let range = result.rangeAtIndex(i)
+                    if(objcString.length > range.length+range.location)
+                    {
+                        let cssPropComp = objcString.substringWithRange(result.rangeAtIndex(i)).componentsSeparatedByString(":")
+                        if(cssPropComp.count == 2)
+                        {
+                            attr[cssPropComp[0]] = cssPropComp[1]
+                        }
+                        
+                    }
+                }
+                if attr.count > 0
+                {
+                    resultDict[objcString.substringWithRange(result.rangeAtIndex(1))] = attr
+                }
+
+            }
+
+        }
+        
+        return resultDict
+    }
+    
+    private func themeDictToString(theme: [String:[String:String]]) -> String
+    {
+        var resultString = ""
+        for (key, props) in theme {
+            resultString += key+"{"
+            for (cssProp, val) in props
+            {
+                resultString += "\(cssProp):\(val);"
+            }
+            resultString+="}"
+        }
+        return resultString
+    }
+    
     
 }
