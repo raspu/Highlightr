@@ -9,27 +9,18 @@
 import Foundation
 import JavaScriptCore
 
-#if os(iOS) || os(tvOS)
-    import UIKit
-    typealias RPColor = UIColor
-    typealias RPFont = UIFont
-#else
-    import Cocoa
-    typealias RPColor = NSColor
-    typealias RPFont = NSFont
-#endif
-
 
 public class Highlightr
 {
-    let jsContext : JSContext
-    let hljs = "window.hljs"
-    let bundle : NSBundle
+    private let jsContext : JSContext
+    private let hljs = "window.hljs"
+    private let bundle : NSBundle
+    private let htmlStart = "<"
+    private let spanStart = "span class=\""
+    private let spanStartClose = "\">"
+    private let spanEnd = "/span>"
     
-    let htmlStart = "<"
-    let spanStart = "span class=\""
-    let spanStartClose = "\">"
-    let spanEnd = "/span>"
+    private var theme : Theme!
     
     public init?()
     {
@@ -48,12 +39,11 @@ public class Highlightr
             return nil
         }
         
-        guard let defTheme = bundle.pathForResource("pojoaque.min", ofType: "css") else
+        guard setTheme("pojoaque") else
         {
             return nil
         }
-        theme = try! String.init(contentsOfFile: defTheme)
-        strippedTheme = self.strippedThemeToString(self.stripTheme(theme))
+        
     }
     
     /**
@@ -69,7 +59,9 @@ public class Highlightr
         {
             return false
         }
-        theme = try! String.init(contentsOfFile: defTheme)
+        let themeString = try! String.init(contentsOfFile: defTheme)
+        theme =  Theme(themeString: themeString)
+
         
         return true
     }
@@ -103,7 +95,7 @@ public class Highlightr
             returnString = processHTMLString(string)!
         }else
         {
-             string = "<style>"+strippedTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+             string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
              let opt = [
              NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
              NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
@@ -162,7 +154,7 @@ public class Highlightr
             }
             
             if scannedString != nil && scannedString!.length > 0 {
-                let attrScannedString = applyStyleToString(scannedString! as String, styleList: propStack)
+                let attrScannedString = theme.applyStyleToString(scannedString! as String, styleList: propStack)
                 resultString.appendAttributedString(attrScannedString)
             }
             
@@ -183,7 +175,7 @@ public class Highlightr
                 propStack.popLast()
             }else
             {
-                let attrScannedString = applyStyleToString("<", styleList: propStack)
+                let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
                 resultString.appendAttributedString(attrScannedString)
                 scanner.scanLocation += 1
             }
@@ -192,32 +184,6 @@ public class Highlightr
         }
 
         return resultString
-    }
-    
-    private func applyStyleToString(string: String, styleList: [String]) -> NSAttributedString
-    {
-        let returnString : NSAttributedString
-        if styleList.count > 0
-        {
-            let color : RPColor
-            if(styleList.count == 1)
-            {
-                color = RPColor.redColor()
-            }else if (styleList.count == 2)
-            {
-                color = RPColor.blueColor()
-            }else
-            {
-                color = RPColor.magentaColor()
-            }
-            returnString = NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:color])
-        }
-        else
-        {
-            returnString = NSAttributedString(string: string)
-        }
-        
-        return returnString
     }
     
 }

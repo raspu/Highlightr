@@ -7,22 +7,98 @@
 //
 
 import Foundation
-typealias RPThemeDict = [String:[String:AnyObject]]
 
-internal class Theme {
-    internal var theme : String
+#if os(iOS) || os(tvOS)
+    import UIKit
+    public typealias RPColor = UIColor
+    public typealias RPFont = UIFont
+    private typealias RPFontDescriptor = UIFontDescriptor
+    var RPFontDescriptorNameAttribute = UIFontDescriptorNameAttribute
+    var RPBoldTrait = UIFontDescriptorSymbolicTraits.TraitBold
+    var RPItalicTrait = UIFontDescriptorSymbolicTraits.TraitItalic
+#else
+    import Cocoa
+    public typealias RPColor = NSColor
+    public typealias RPFont = NSFont
+    private typealias RPFontDescriptor = NSFontDescriptor
+    private typealias RPFontDescriptorNameAttribute = NSFontNameAttribute
+    private typealias RPBoldTrait = NSFontBoldTrait
+    private typealias RPItalicTrait = NSFontItalicTrait
+
+#endif
+
+private typealias RPThemeDict = [String:[String:AnyObject]]
+private typealias RPThemeStringDict = [String:[String:String]]
+
+public class Theme {
+    internal let theme : String
+    internal var lightTheme : String!
+    
+    public var codeFont : RPFont!
+    public var boldCodeFont : UIFont!
+    public var italicCodeFont : UIFont!
+    
     private var themeDict : RPThemeDict!
+    private var strippedTheme : RPThemeStringDict!
     
     init(themeString: String)
     {
         theme = themeString
+        setCodeFont(RPFont(name: "Courier", size: 14)!)
+        strippedTheme = stripTheme(themeString)
+        lightTheme = strippedThemeToString(strippedTheme)
+        themeDict = strippedThemeToTheme(strippedTheme)
+        UIFontDescriptorSymbolicTraits.TraitBold
+    }
+    
+    /**
+     Changes the theme font
+     
+     - parameter font: UIFont (iOS or tvOS) or NSFont (OSX)
+     */
+    public func setCodeFont(font: RPFont)
+    {
+        codeFont = font
+        boldCodeFont = codeFont
+        italicCodeFont = codeFont
+        if(themeDict != nil)
+        {
+            themeDict = strippedThemeToTheme(strippedTheme)
+        }
+    }
+    
+    internal func applyStyleToString(string: String, styleList: [String]) -> NSAttributedString
+    {
+        let returnString : NSAttributedString
+        if styleList.count > 0
+        {
+            var attrs = [String:AnyObject]()
+            attrs[NSFontAttributeName] = codeFont
+            for style in styleList
+            {
+                if let themeStyle = themeDict[style]
+                {
+                    for (attrName, attrValue) in themeStyle
+                    {
+                        attrs.updateValue(attrValue, forKey: attrName)
+                    }
+                }
+            }
+            
+            returnString = NSAttributedString(string: string, attributes:attrs )
+        }
+        else
+        {
+            returnString = NSAttributedString(string: string, attributes:[NSFontAttributeName:codeFont] )
+        }
         
+        return returnString
     }
     
     private func stripTheme(themeString : String) -> [String:[String:String]]
     {
         let objcString = (themeString as NSString)
-        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+)|(?:font-style:[a-zA-Z0-9]+))?[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+|(?:font-style:[a-zA-Z0-9]+)))[^\\}]*?\\})", options:[.CaseInsensitive])
+        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:background-color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+)|(?:font-style:[a-zA-Z0-9]+))?[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:background-color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+|(?:font-style:[a-zA-Z0-9]+)))[^\\}]*?\\})", options:[.CaseInsensitive])
         
         let results = cssRegex.matchesInString(themeString,
                                                options: [.ReportCompletion],
@@ -78,7 +154,7 @@ internal class Theme {
         return returnDict
     }
     
-    private func strippedThemeToString(theme: [String:[String:String]]) -> String
+    private func strippedThemeToString(theme: RPThemeStringDict) -> String
     {
         var resultString = ""
         for (key, props) in theme {
@@ -92,9 +168,9 @@ internal class Theme {
         return resultString
     }
     
-    private func strippedThemeToTheme(theme: [String:[String:String]]) -> RPThemeDict
+    private func strippedThemeToTheme(theme: RPThemeStringDict) -> RPThemeDict
     {
-        var theme = RPThemeDict()
+        var returnTheme = RPThemeDict()
         for (className, props) in theme
         {
             var keyProps = [String:AnyObject]()
@@ -103,24 +179,52 @@ internal class Theme {
                 switch key
                 {
                 case "color":
-                    keyProps[key] = colorWithHexString(prop as! String)
+                    keyProps[attributeForCSSKey(key)] = colorWithHexString(prop as! String)
                     break
                 case "font-style":
-                    
+                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop as! String)
                     break
                 case "font-weight":
-                    
+                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop as! String)
                     break
                 default:
                     break
                 }
             }
-            theme[className] = keyProps
+            returnTheme[className.stringByReplacingOccurrencesOfString(".", withString: "")] = keyProps
         }
-        return theme
+        return returnTheme
     }
     
-    private func colorWithHexString (hex:String) -> RPColor {
+    private func fontForCSSStyle(fontStyle:String) -> RPFont
+    {
+        switch fontStyle
+        {
+            case "bold", "bolder", "600", "700", "800", "900":
+                return boldCodeFont
+            case "italic", "oblique":
+                return italicCodeFont
+            default:
+                return codeFont
+        }
+    }
+    
+    private func attributeForCSSKey(key: String) -> String
+    {
+        switch key {
+        case "color":
+            return NSForegroundColorAttributeName
+        case "font-weight":
+            return NSFontAttributeName
+        case "font-style":
+            return NSFontAttributeName
+        default:
+            return NSFontAttributeName
+        }
+    }
+    
+    private func colorWithHexString (hex:String) -> RPColor
+    {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
         if (cString.hasPrefix("#")) {
