@@ -144,7 +144,7 @@ public class Highlightr
         scanner.charactersToBeSkipped = nil
         var scannedString = NSString?()
         let resultString = NSMutableAttributedString(string: "")
-        var propStack = [String]()
+        var propStack = ["hljs"]
         
         while !scanner.atEnd {
             if scanner.scanUpToString(htmlStart, intoString: &scannedString) {

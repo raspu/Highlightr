@@ -35,8 +35,8 @@ public class Theme {
     internal var lightTheme : String!
     
     public var codeFont : RPFont!
-    public var boldCodeFont : UIFont!
-    public var italicCodeFont : UIFont!
+    public var boldCodeFont : RPFont!
+    public var italicCodeFont : RPFont!
     
     private var themeDict : RPThemeDict!
     private var strippedTheme : RPThemeStringDict!
@@ -59,8 +59,8 @@ public class Theme {
     public func setCodeFont(font: RPFont)
     {
         codeFont = font
-        boldCodeFont = codeFont
-        italicCodeFont = codeFont
+        boldCodeFont = RPFont(name: "Courier-Bold", size: 14)!
+        italicCodeFont = RPFont(name: "Courier-Oblique", size: 14)!
         if(themeDict != nil)
         {
             themeDict = strippedThemeToTheme(strippedTheme)
