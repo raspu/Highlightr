@@ -9,6 +9,15 @@
 import Foundation
 import JavaScriptCore
 
+#if os(iOS) || os(tvOS)
+    import UIKit
+    typealias RPColor = UIColor
+    typealias RPFont = UIFont
+#else
+    import Cocoa
+    typealias RPColor = NSColor
+    typealias RPFont = NSFont
+#endif
 
 
 public class Highlightr
@@ -16,8 +25,11 @@ public class Highlightr
     let jsContext : JSContext
     let hljs = "window.hljs"
     let bundle : NSBundle
-    var theme : String
-    var strippedTheme : String!
+    
+    let htmlStart = "<"
+    let spanStart = "span class=\""
+    let spanStartClose = "\">"
+    let spanEnd = "/span>"
     
     public init?()
     {
@@ -41,7 +53,7 @@ public class Highlightr
             return nil
         }
         theme = try! String.init(contentsOfFile: defTheme)
-        strippedTheme = self.themeDictToString(self.stripTheme(theme))
+        strippedTheme = self.strippedThemeToString(self.stripTheme(theme))
     }
     
     /**
@@ -70,7 +82,7 @@ public class Highlightr
      
      - returns: NSAttributedString with the detected code highlighted.
      */
-    public func highlight(languageName: String, code: String) -> NSAttributedString?
+    public func highlight(languageName: String, code: String, fastRender: Bool) -> NSAttributedString?
     {
         var fixedCode = code.stringByReplacingOccurrencesOfString("\\",withString: "\\\\");
         fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\'",withString: "\\\'");
@@ -85,15 +97,24 @@ public class Highlightr
             return nil
         }
         
-        string = "<style>"+strippedTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
-        let opt = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-        ]
+        let returnString : NSAttributedString
+        if(fastRender)
+        {
+            returnString = processHTMLString(string)!
+        }else
+        {
+             string = "<style>"+strippedTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+             let opt = [
+             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+             NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
+             ]
+            
+             let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
+             returnString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
 
-        let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
-        let attrString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
-        return attrString
+        }
+        
+        return returnString
     }
     
     /**
@@ -125,58 +146,78 @@ public class Highlightr
     }
     
     //Private & Internal
-    private func stripTheme(themeString : String) -> [String:[String:String]]
+    private func processHTMLString(string: String) -> NSAttributedString?
     {
-        let objcString = (themeString as NSString)
-        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+)|(?:font-style:[a-zA-Z0-9]+))?[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+|(?:font-style:[a-zA-Z0-9]+)))[^\\}]*?\\})", options:[.CaseInsensitive])
-
-        let results = cssRegex.matchesInString(themeString,
-                                 options: [.ReportCompletion],
-                                 range: NSMakeRange(0, objcString.length))
+        let scanner = NSScanner(string: string)
+        scanner.charactersToBeSkipped = nil
+        var scannedString = NSString?()
+        let resultString = NSMutableAttributedString(string: "")
+        var propStack = [String]()
         
-        var resultDict = [String:[String:String]]()
-        
-        for result in results {
-            if(result.numberOfRanges > 1)
-            {
-                var attr = [String:String]()
-                for i in 2...result.numberOfRanges-1 {
-                    let range = result.rangeAtIndex(i)
-                    if(objcString.length > range.length+range.location)
-                    {
-                        let cssPropComp = objcString.substringWithRange(result.rangeAtIndex(i)).componentsSeparatedByString(":")
-                        if(cssPropComp.count == 2)
-                        {
-                            attr[cssPropComp[0]] = cssPropComp[1]
-                        }
-                        
-                    }
+        while !scanner.atEnd {
+            if scanner.scanUpToString(htmlStart, intoString: &scannedString) {
+                if scanner.atEnd {
+                    continue
                 }
-                if attr.count > 0
-                {
-                    resultDict[objcString.substringWithRange(result.rangeAtIndex(1))] = attr
-                }
-
             }
-
-        }
-        
-        return resultDict
-    }
-    
-    private func themeDictToString(theme: [String:[String:String]]) -> String
-    {
-        var resultString = ""
-        for (key, props) in theme {
-            resultString += key+"{"
-            for (cssProp, val) in props
+            
+            if scannedString != nil && scannedString!.length > 0 {
+                let attrScannedString = applyStyleToString(scannedString! as String, styleList: propStack)
+                resultString.appendAttributedString(attrScannedString)
+            }
+            
+            scanner.scanLocation += 1
+            
+            let string = scanner.string as NSString
+            let nextChar = string.substringWithRange(NSMakeRange(scanner.scanLocation, 1))
+            if(nextChar == "s")
             {
-                resultString += "\(cssProp):\(val);"
+                scanner.scanLocation += spanStart.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                scanner.scanUpToString(spanStartClose, intoString:&scannedString)
+                scanner.scanLocation += spanStartClose.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                propStack.append(scannedString! as String)
             }
-            resultString+="}"
+            else if(nextChar == "/")
+            {
+                scanner.scanLocation += spanEnd.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                propStack.popLast()
+            }else
+            {
+                let attrScannedString = applyStyleToString("<", styleList: propStack)
+                resultString.appendAttributedString(attrScannedString)
+                scanner.scanLocation += 1
+            }
+            
+            scannedString = nil
         }
+
         return resultString
     }
     
+    private func applyStyleToString(string: String, styleList: [String]) -> NSAttributedString
+    {
+        let returnString : NSAttributedString
+        if styleList.count > 0
+        {
+            let color : RPColor
+            if(styleList.count == 1)
+            {
+                color = RPColor.redColor()
+            }else if (styleList.count == 2)
+            {
+                color = RPColor.blueColor()
+            }else
+            {
+                color = RPColor.magentaColor()
+            }
+            returnString = NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:color])
+        }
+        else
+        {
+            returnString = NSAttributedString(string: string)
+        }
+        
+        return returnString
+    }
     
 }

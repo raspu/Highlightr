@@ -23,17 +23,20 @@ class ViewController: UIViewController {
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
         var text : NSAttributedString
         let methodStart = NSDate()
-        text = hig.highlight("swift", code: code)!
-        /*for _ in 0 ..< 100
+        text = hig.highlight("swift", code: code, fastRender: true)!
+        for _ in 0 ..< 100
         {
-            text = hig.highlight("swift", code: code)!
-        }*/
+            let start = NSDate()
+            text = hig.highlight("swift", code: code, fastRender: true)!
+            let end = NSDate()
+            let time = Float(end.timeIntervalSinceDate(start));
+            NSLog("Current :\(time)")
+
+
+        }
         let methodFinish = NSDate()
         let executionTime = Float(methodFinish.timeIntervalSinceDate(methodStart))/100.0;
         NSLog("AVG:\(executionTime)")
-        
-        //print(hig.availableThemes())
-        //print(hig.supportedLanguages())
         
         textStorage = CodeAttributedString()
         textStorage.language = "swift"
