@@ -49,16 +49,15 @@ public class CodeAttributedString : NSTextStorage
             {
                 let string = (self.string as NSString)
                 let editedRange = self.editedRange
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     var range = string.paragraphRangeForRange(editedRange)
                     var line = string.substringWithRange(range)
                     let tmpStrg = self.highlightr?.highlight(language, code: line, fastRender: true)
                     tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
                         var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
                         fixedRange.length = (fixedRange.location + fixedRange.length < string.length) ? fixedRange.length : string.length-fixedRange.location
-                        self.stringStorage.addAttributes(attrs, range: fixedRange)
+                        fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
+                        self.addAttributes(attrs, range: fixedRange)
                     })
-                })
             }
             
         }

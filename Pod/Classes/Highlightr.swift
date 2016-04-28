@@ -19,6 +19,8 @@ public class Highlightr
     private let spanStart = "span class=\""
     private let spanStartClose = "\">"
     private let spanEnd = "/span>"
+    private let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .CaseInsensitive)
+
     
     private var theme : Theme!
     
@@ -146,16 +148,24 @@ public class Highlightr
         let resultString = NSMutableAttributedString(string: "")
         var propStack = ["hljs"]
         
-        while !scanner.atEnd {
-            if scanner.scanUpToString(htmlStart, intoString: &scannedString) {
-                if scanner.atEnd {
-                    continue
+        while !scanner.atEnd
+        {
+            var ended = false
+            if scanner.scanUpToString(htmlStart, intoString: &scannedString)
+            {
+                if scanner.atEnd
+                {
+                    ended = true
                 }
             }
             
             if scannedString != nil && scannedString!.length > 0 {
                 let attrScannedString = theme.applyStyleToString(scannedString! as String, styleList: propStack)
                 resultString.appendAttributedString(attrScannedString)
+                if ended
+                {
+                    continue
+                }
             }
             
             scanner.scanLocation += 1
@@ -182,6 +192,19 @@ public class Highlightr
             
             scannedString = nil
         }
+        
+        //When we only need the highlighting attribures, we may use this to optimize the unescaping.
+        /*let results = htmlEscape.matchesInString(resultString.string,
+                                               options: [.ReportCompletion],
+                                               range: NSMakeRange(0, resultString.string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        var locOffset = 0
+        for result in results
+        {
+            let fixedRange = NSMakeRange(result.range.location-locOffset, result.range.length)
+            resultString.replaceCharactersInRange(fixedRange, withString: "#")
+            locOffset = result.range.length;
+
+        }*/
 
         return resultString
     }

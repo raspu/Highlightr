@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         layoutManager.addTextContainer(textContainer)
         
         textView = UITextView(frame: view.bounds, textContainer: textContainer)
-        textView.backgroundColor = UIColor.darkGrayColor()
+        textView.backgroundColor = UIColor.blackColor()
         textView.autocorrectionType = UITextAutocorrectionType.No
         textView.autocapitalizationType = UITextAutocapitalizationType.None
         textView.textColor = UIColor(white: 0.8, alpha: 1.0)

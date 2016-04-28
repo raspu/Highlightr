@@ -70,6 +70,7 @@ public class Theme {
     internal func applyStyleToString(string: String, styleList: [String]) -> NSAttributedString
     {
         let returnString : NSAttributedString
+        
         if styleList.count > 0
         {
             var attrs = [String:AnyObject]()
@@ -98,7 +99,7 @@ public class Theme {
     private func stripTheme(themeString : String) -> [String:[String:String]]
     {
         let objcString = (themeString as NSString)
-        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:background-color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+)|(?:font-style:[a-zA-Z0-9]+))?[^\\}]*?((?:color:[a-zA-Z0-9:#]+)|(?:background-color:[a-zA-Z0-9:#]+)|(?:font-weight:[a-zA-Z0-9]+|(?:font-style:[a-zA-Z0-9]+)))[^\\}]*?\\})", options:[.CaseInsensitive])
+        let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{([^\\}]*?)\\})", options:[.CaseInsensitive])
         
         let results = cssRegex.matchesInString(themeString,
                                                options: [.ReportCompletion],
@@ -107,24 +108,21 @@ public class Theme {
         var resultDict = [String:[String:String]]()
         
         for result in results {
-            if(result.numberOfRanges > 1)
+            if(result.numberOfRanges == 3)
             {
-                var attr = [String:String]()
-                for i in 2...result.numberOfRanges-1 {
-                    let range = result.rangeAtIndex(i)
-                    if(objcString.length > range.length+range.location)
+                var attributes = [String:String]()
+                let cssPairs = objcString.substringWithRange(result.rangeAtIndex(2)).componentsSeparatedByString(";")
+                for pair in cssPairs {
+                    let cssPropComp = pair.componentsSeparatedByString(":")
+                    if(cssPropComp.count == 2)
                     {
-                        let cssPropComp = objcString.substringWithRange(result.rangeAtIndex(i)).componentsSeparatedByString(":")
-                        if(cssPropComp.count == 2)
-                        {
-                            attr[cssPropComp[0]] = cssPropComp[1]
-                        }
-                        
+                        attributes[cssPropComp[0]] = cssPropComp[1]
                     }
+
                 }
-                if attr.count > 0
+                if attributes.count > 0
                 {
-                    resultDict[objcString.substringWithRange(result.rangeAtIndex(1))] = attr
+                    resultDict[objcString.substringWithRange(result.rangeAtIndex(1))] = attributes
                 }
                 
             }
@@ -191,7 +189,10 @@ public class Theme {
                     break
                 }
             }
-            returnTheme[className.stringByReplacingOccurrencesOfString(".", withString: "")] = keyProps
+            if keyProps.count > 0
+            {
+                returnTheme[className.stringByReplacingOccurrencesOfString(".", withString: "")] = keyProps
+            }
         }
         return returnTheme
     }
