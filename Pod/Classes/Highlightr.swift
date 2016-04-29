@@ -193,18 +193,22 @@ public class Highlightr
             scannedString = nil
         }
         
-        //When we only need the highlighting attribures, we may use this to optimize the unescaping.
-        /*let results = htmlEscape.matchesInString(resultString.string,
+        let results = htmlEscape.matchesInString(resultString.string,
                                                options: [.ReportCompletion],
                                                range: NSMakeRange(0, resultString.string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
         var locOffset = 0
         for result in results
         {
             let fixedRange = NSMakeRange(result.range.location-locOffset, result.range.length)
-            resultString.replaceCharactersInRange(fixedRange, withString: "#")
-            locOffset = result.range.length;
+            let entity = (resultString.string as NSString).substringWithRange(fixedRange)
+            if let decodedEntity = HTMLUtils.decode(entity)
+            {
+                resultString.replaceCharactersInRange(fixedRange, withString: String(decodedEntity))
+                locOffset += result.range.length-1;
+            }
+            
 
-        }*/
+        }
 
         return resultString
     }

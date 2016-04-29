@@ -299,6 +299,7 @@
 		8C8EB858B7B61021081AA7EDCE3D34EF /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 3973F89F7C13EAD4855CFC68BCC8511E /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C92D25D1CCD251C003FC0A2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C92D25C1CCD251C003FC0A2 /* Theme.swift */; };
 		8C9F547245CF936E875B7028EF320F6C /* elixir.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AEFAF17879B0D6B3A54572990B29936F /* elixir.min.js */; };
+		8CDCF4021CD414DA0048B6B8 /* HTMLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCF4011CD414DA0048B6B8 /* HTMLUtils.swift */; };
 		8D0D8CDB7C23673AD5C1FAAED97D564C /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2001C2E0EAC4C5898BF2610F019A171E /* monokai.min.css */; };
 		8D4C3A47AC2017751BB618EFBDA1F99F /* vbscript.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6BF513D2CFEB415557C0C06132437 /* vbscript.min.js */; };
 		8DA7F2FC499A14408A734BEA011E6707 /* htmlbars.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 9C5845D2C5F266242630609C2D6D00ED /* htmlbars.min.js */; };
@@ -768,6 +769,7 @@
 		8C2F63C01CC6D94700D428E8 /* CodeAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeAttributedString.swift; sourceTree = "<group>"; };
 		8C3BF6EEB8EBBF58269C5B2DE7E68EBE /* solarized-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = "solarized-light.min.css"; sourceTree = "<group>"; };
 		8C92D25C1CCD251C003FC0A2 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		8CDCF4011CD414DA0048B6B8 /* HTMLUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLUtils.swift; sourceTree = "<group>"; };
 		8D924A98F0691CB7100035FC7C2958D3 /* Async.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Async.swift; path = Sources/Nimble/Utils/Async.swift; sourceTree = "<group>"; };
 		8ED85DFD58F13E73CC6080D18D5C1E10 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		8EE5DB72110FF4FE8D16C90A617EFD92 /* EndWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EndWith.swift; path = Sources/Nimble/Matchers/EndWith.swift; sourceTree = "<group>"; };
@@ -1011,6 +1013,7 @@
 				7C2330E1E2E95FE4A5001659D8EFAFE3 /* Highlightr.swift */,
 				8C2F63C01CC6D94700D428E8 /* CodeAttributedString.swift */,
 				8C92D25C1CCD251C003FC0A2 /* Theme.swift */,
+				8CDCF4011CD414DA0048B6B8 /* HTMLUtils.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2200,6 +2203,7 @@
 				32C82A8F2EAE50F6DDF627EBDE148232 /* julia.min.js in Sources */,
 				97CF8CDF9C33FB75636E1F9BF5439D8C /* kimbie.dark.min.css in Sources */,
 				5F9165C95B125D6EBA31E71005FC3865 /* kimbie.light.min.css in Sources */,
+				8CDCF4021CD414DA0048B6B8 /* HTMLUtils.swift in Sources */,
 				B323072FD99D3F6FEC0FB8ABA7A26859 /* kotlin.min.js in Sources */,
 				99747FD4389640BD9EA02D79CA1DE455 /* lasso.min.js in Sources */,
 				E03A7DCCF009E0BF0451A6F71A072B5C /* less.min.js in Sources */,
