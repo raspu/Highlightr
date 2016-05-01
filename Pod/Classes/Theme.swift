@@ -41,6 +41,9 @@ public class Theme {
     private var themeDict : RPThemeDict!
     private var strippedTheme : RPThemeStringDict!
     
+        /// Default background color for the current theme.
+    public var themeBackgroundColor : UIColor!
+    
     init(themeString: String)
     {
         theme = themeString
@@ -48,19 +51,50 @@ public class Theme {
         strippedTheme = stripTheme(themeString)
         lightTheme = strippedThemeToString(strippedTheme)
         themeDict = strippedThemeToTheme(strippedTheme)
-        UIFontDescriptorSymbolicTraits.TraitBold
+        if let bkgColorHex = strippedTheme[".hljs"]?["background"]
+        {
+            let range = bkgColorHex.rangeOfString("#")
+            let str = bkgColorHex.substringFromIndex((range?.startIndex)!)
+            themeBackgroundColor = colorWithHexString(str)
+        }else
+        {
+            themeBackgroundColor = UIColor.whiteColor()
+        }
     }
     
     /**
-     Changes the theme font
+     Changes the theme font.
      
      - parameter font: UIFont (iOS or tvOS) or NSFont (OSX)
      */
     public func setCodeFont(font: RPFont)
     {
         codeFont = font
-        boldCodeFont = RPFont(name: "Courier-Bold", size: 14)!
-        italicCodeFont = RPFont(name: "Courier-Oblique", size: 14)!
+        
+        #if os(iOS) || os(tvOS)
+        let boldDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFamilyAttribute:font.familyName,
+                                                                UIFontDescriptorFaceAttribute:"Bold"])
+        let italicDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFamilyAttribute:font.familyName,
+                                                                 UIFontDescriptorFaceAttribute:"Italic"])
+        let obliqueDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFamilyAttribute:font.familyName,
+                                                                  UIFontDescriptorFaceAttribute:"Oblique"])
+        #else
+        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+                                                                NSFontFaceAttribute:"Bold"])
+        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+                                                                NSFontFaceAttribute:"Italic"])
+        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+                                                                NSFontFaceAttribute:"Oblique"])
+        #endif
+        
+        boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
+        italicCodeFont = RPFont(descriptor: italicDescriptor, size: font.pointSize)
+        if(italicCodeFont.familyName != font.familyName)
+        {
+            italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
+        }
+            
+
         if(themeDict != nil)
         {
             themeDict = strippedThemeToTheme(strippedTheme)

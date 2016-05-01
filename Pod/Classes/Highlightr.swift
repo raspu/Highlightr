@@ -112,7 +112,7 @@ public class Highlightr
     }
     
     /**
-     Returns a list of all the themes available.
+     Returns a list of all the available themes.
      
      - returns: Array of Strings
      */
