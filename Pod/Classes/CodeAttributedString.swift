@@ -13,7 +13,13 @@ public class CodeAttributedString : NSTextStorage
     let stringStorage = NSMutableAttributedString(string: "")
 
     public let highlightr = Highlightr()
-    public var language : String?
+    public var language : String? {
+        didSet {
+            highlight(NSMakeRange(0, stringStorage.length))
+        }
+    }
+
+    
         /// Use this property to update the theme.
     public var theme : String? {
         didSet {
