@@ -1,8 +1,8 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$CONFIGURATION_BUILD_DIR/Highlightr"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$CONFIGURATION_BUILD_DIR/ActionSheetPicker-3.0" "$CONFIGURATION_BUILD_DIR/Highlightr"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Highlightr/Highlightr.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Highlightr"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Highlightr/Highlightr.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "ActionSheetPicker_3_0" -framework "Highlightr"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_ROOT = ${SRCROOT}/Pods

@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'Highlightr_Example' do
   pod 'Highlightr', :path => '../'
+  pod 'ActionSheetPicker-3.0'
 end
 
 target 'Highlightr_Tests' do

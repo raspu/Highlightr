@@ -53,9 +53,19 @@ public class Theme {
         themeDict = strippedThemeToTheme(strippedTheme)
         if let bkgColorHex = strippedTheme[".hljs"]?["background"]
         {
-            let range = bkgColorHex.rangeOfString("#")
-            let str = bkgColorHex.substringFromIndex((range?.startIndex)!)
-            themeBackgroundColor = colorWithHexString(str)
+
+            if(bkgColorHex == "white")
+            {
+                themeBackgroundColor = RPColor(white: 1, alpha: 1)
+            }else if(bkgColorHex == "black")
+            {
+                themeBackgroundColor = RPColor(white: 0, alpha: 1)
+            }else
+            {
+                let range = bkgColorHex.rangeOfString("#")
+                let str = bkgColorHex.substringFromIndex((range?.startIndex)!)
+                themeBackgroundColor = colorWithHexString(str)
+            }
         }else
         {
             themeBackgroundColor = UIColor.whiteColor()

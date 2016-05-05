@@ -12,6 +12,9 @@ import JavaScriptCore
 
 public class Highlightr
 {
+    /// Returns the current Theme.
+    public var theme : Theme!
+    
     private let jsContext : JSContext
     private let hljs = "window.hljs"
     private let bundle : NSBundle
@@ -20,9 +23,6 @@ public class Highlightr
     private let spanStartClose = "\">"
     private let spanEnd = "/span>"
     private let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .CaseInsensitive)
-
-    
-    private var theme : Theme!
     
     public init?()
     {
@@ -195,7 +195,7 @@ public class Highlightr
         
         let results = htmlEscape.matchesInString(resultString.string,
                                                options: [.ReportCompletion],
-                                               range: NSMakeRange(0, resultString.string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+                                               range: NSMakeRange(0, resultString.string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)-1))
         var locOffset = 0
         for result in results
         {

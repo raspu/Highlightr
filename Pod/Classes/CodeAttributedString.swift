@@ -11,13 +11,15 @@ import Foundation
 public class CodeAttributedString : NSTextStorage
 {
     let stringStorage = NSMutableAttributedString(string: "")
-    let highlightr = Highlightr()
-    
+
+    public let highlightr = Highlightr()
     public var language : String?
+        /// Use this property to update the theme.
     public var theme : String? {
         didSet {
             if let theme = theme {
                 highlightr?.setTheme(theme)
+                highlight(NSMakeRange(0, string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)-1))
             }
         }
     }
@@ -34,7 +36,7 @@ public class CodeAttributedString : NSTextStorage
     
     public override func replaceCharactersInRange(range: NSRange, withString str: String) {
         stringStorage.replaceCharactersInRange(range, withString: str)
-        self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) - range.length)
+        self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) - range.length - 1)
     }
     
     public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
@@ -48,19 +50,34 @@ public class CodeAttributedString : NSTextStorage
             if self.editedMask.contains(.EditedCharacters)
             {
                 let string = (self.string as NSString)
-                let editedRange = self.editedRange
-                    var range = string.paragraphRangeForRange(editedRange)
-                    var line = string.substringWithRange(range)
-                    let tmpStrg = self.highlightr?.highlight(language, code: line, fastRender: true)
-                    tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
-                        var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
-                        fixedRange.length = (fixedRange.location + fixedRange.length < string.length) ? fixedRange.length : string.length-fixedRange.location
-                        fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
-                        self.addAttributes(attrs, range: fixedRange)
-                    })
+                var range = string.paragraphRangeForRange(editedRange)
+                highlight(range)
             }
             
         }
+    }
+
+    
+    func highlight(range: NSRange)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let string = (self.string as NSString)
+            var line = string.substringWithRange(range)
+            let tmpStrg = self.highlightr?.highlight(self.language!, code: line, fastRender: true)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.beginEditing()
+                tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
+                    var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
+                    fixedRange.length = (fixedRange.location + fixedRange.length < string.length) ? fixedRange.length : string.length-fixedRange.location
+                    fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
+                    self.stringStorage.setAttributes(attrs, range: fixedRange)
+                })
+                self.endEditing()
+                self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
+            })
+            
+        }
+        
     }
     
     
