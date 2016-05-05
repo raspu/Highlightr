@@ -272,25 +272,49 @@ public class Theme {
     {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
-        if (cString.hasPrefix("#")) {
+        if (cString.hasPrefix("#"))
+        {
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if (cString.characters.count != 6) {
+        if (cString.characters.count != 6 && cString.characters.count != 3 )
+        {
             return RPColor.grayColor()
         }
         
-        let rString = (cString as NSString).substringToIndex(2)
-        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        NSScanner(string: rString).scanHexInt(&r)
-        NSScanner(string: gString).scanHexInt(&g)
-        NSScanner(string: bString).scanHexInt(&b)
+        var divisor : CGFloat
         
+        if (cString.characters.count == 6 )
+        {
         
-        return RPColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
+            let rString = (cString as NSString).substringToIndex(2)
+            let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
+            let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+            
+            NSScanner(string: rString).scanHexInt(&r)
+            NSScanner(string: gString).scanHexInt(&g)
+            NSScanner(string: bString).scanHexInt(&b)
+            
+            divisor = 255.0
+            
+        }else
+        {
+            let rString = (cString as NSString).substringToIndex(1)
+            let gString = ((cString as NSString).substringFromIndex(1) as NSString).substringToIndex(1)
+            let bString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(1)
+            
+            NSScanner(string: rString).scanHexInt(&r)
+            NSScanner(string: gString).scanHexInt(&g)
+            NSScanner(string: bString).scanHexInt(&b)
+            
+            divisor = 15.0
+        }
+        
+        print("\(hex) => \(r) - \(g) - \(b)")
+        return RPColor(red: CGFloat(r) / divisor, green: CGFloat(g) / divisor, blue: CGFloat(b) / divisor, alpha: CGFloat(1))        
+        
     }
     
 
