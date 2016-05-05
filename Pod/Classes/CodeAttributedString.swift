@@ -19,7 +19,7 @@ public class CodeAttributedString : NSTextStorage
         didSet {
             if let theme = theme {
                 highlightr?.setTheme(theme)
-                highlight(NSMakeRange(0, string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)-1))
+                highlight(NSMakeRange(0, stringStorage.length))
             }
         }
     }
@@ -36,7 +36,7 @@ public class CodeAttributedString : NSTextStorage
     
     public override func replaceCharactersInRange(range: NSRange, withString str: String) {
         stringStorage.replaceCharactersInRange(range, withString: str)
-        self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: str.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) - range.length - 1)
+        self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
     }
     
     public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {

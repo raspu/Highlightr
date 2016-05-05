@@ -174,14 +174,14 @@ public class Highlightr
             let nextChar = string.substringWithRange(NSMakeRange(scanner.scanLocation, 1))
             if(nextChar == "s")
             {
-                scanner.scanLocation += spanStart.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                scanner.scanLocation += (spanStart as NSString).length
                 scanner.scanUpToString(spanStartClose, intoString:&scannedString)
-                scanner.scanLocation += spanStartClose.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                scanner.scanLocation += (spanStartClose as NSString).length
                 propStack.append(scannedString! as String)
             }
             else if(nextChar == "/")
             {
-                scanner.scanLocation += spanEnd.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                scanner.scanLocation += (spanEnd as NSString).length
                 propStack.popLast()
             }else
             {
@@ -195,7 +195,7 @@ public class Highlightr
         
         let results = htmlEscape.matchesInString(resultString.string,
                                                options: [.ReportCompletion],
-                                               range: NSMakeRange(0, resultString.string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)-1))
+                                               range: NSMakeRange(0, resultString.length))
         var locOffset = 0
         for result in results
         {
