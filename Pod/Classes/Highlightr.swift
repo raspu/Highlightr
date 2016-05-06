@@ -73,6 +73,7 @@ public class Highlightr
      
      - parameter languageName:   Language name or alias
      - parameter code:           Code to highlight
+     - parameter fastRender:     If *true* will use the custom made html parser rather than Apple's solution.
      
      - returns: NSAttributedString with the detected code highlighted.
      */

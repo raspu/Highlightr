@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## Highlightr
 
-Copyright (c) 2016 Illanes, Juan Pablo <jpillanes@comscore.com>
+Copyright (c) 2016 Illanes, Juan Pablo <jpillaness+highlightr@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

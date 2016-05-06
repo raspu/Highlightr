@@ -1,15 +1,40 @@
 # Highlightr
 
-[![CI Status](http://img.shields.io/travis/Illanes, Juan Pablo/Highlightr.svg?style=flat)](https://travis-ci.org/Illanes, Juan Pablo/Highlightr)
-[![Version](https://img.shields.io/cocoapods/v/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
-[![License](https://img.shields.io/cocoapods/l/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
-[![Platform](https://img.shields.io/cocoapods/p/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 
-Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports 152 languages and comes with 72 styles. 
+[IMG](http://cocoapods.org/pods/Highlightr)
+[IMG](http://cocoapods.org/pods/Highlightr)
+[IMG](http://cocoapods.org/pods/Highlightr)
 
-Takes your lame code (String) and returns an NSAttributtedString with proper syntax highlighting.
+Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [152 languages and comes with 72 styles](https://highlightjs.org/static/demo/). 
+
+Takes your lame string with code and returns an NSAttributtedString with proper syntax highlighting.
 
 The current version is under development but is functional.
+
+## Usage
+Highlightr provides two way of highlighting: 
+
+### Highlightr
+This is the main class, you can use it to convert strings with code into NSAttributted strings.
+´´´Swift
+        let highlightr = Highlightr()
+	    highlightr.setTheme("paraiso-dark")
+	    let code = "let a = 1"
+        let highlightedCode = highlightr.highlight("swift", code: code, fastRender: true)
+´´´
+### CodeAttributedString
+A sublcass of NSTextStorage, you can use it to highlight text on real time. 
+´´´Swift
+		let textStorage = CodeAttributedString()
+		textStorage.language = "Swift"
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+
+        let textContainer = NSTextContainer(size: view.bounds.size)
+        layoutManager.addTextContainer(textContainer)
+        
+        let textView = UITextView(frame: yourFrame, textContainer: textContainer)
+´´´
 
 ## JavaScript?
 

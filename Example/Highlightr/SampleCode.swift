@@ -2,7 +2,7 @@
 //  SampleCode.swift
 //  Highlightr
 //
-//  Created by Illanes, Juan Pablo on 5/5/16.
+//  Created by Illanes, J.P. on 5/5/16.
 //
 
 import UIKit
