@@ -1,9 +1,9 @@
 # Highlightr
 
 
-[IMG](http://cocoapods.org/pods/Highlightr)
-[IMG](http://cocoapods.org/pods/Highlightr)
-[IMG](http://cocoapods.org/pods/Highlightr)
+[![Version](https://img.shields.io/cocoapods/v/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
+[![License](https://img.shields.io/cocoapods/l/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
+[![Platform](https://img.shields.io/cocoapods/p/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 
 Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [152 languages and comes with 72 styles](https://highlightjs.org/static/demo/). 
 
