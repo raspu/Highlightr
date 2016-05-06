@@ -8,17 +8,17 @@
 
 Pod::Spec.new do |s|
   s.name             = "Highlightr"
-  s.version          = "0.1.0"
-  s.summary          = "Hightlight your code strings."
+  s.version          = "0.8.0"
+  s.summary          = "iOS & OSX Syntax Highlighter."
 
   s.description      = <<-DESC
-                Takes a NSString with code and returns NSAttributtedString with highlighted code.
+                    Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses highlight.js as it core, supports 152 languages and comes with 72 styles.
                        DESC
 
   s.homepage         = "https://github.com/raspu/Highlightr"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.screenshots     = "raw.githubusercontent.com/raspu/Highlightr/master/themes.gif", "raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
   s.license          = 'MIT'
-  s.author           = { "Illanes, Juan Pablo" => "jpillaness@gmail.com" }
+  s.author           = { "J.P. Illanes" => "jpillaness@gmail.com" }
   s.source           = { :git => "https://github.com/raspu/Highlightr.git", :tag => s.version.to_s, :submodules => true}
 
   s.osx.deployment_target = '10.9'
@@ -26,8 +26,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*.{swift}', 
-
+  s.source_files = 'Pod/Classes/**/*.{swift}'
 
   s.resources  = 'Pod/Assets/**/*.{css,js}'
 
@@ -38,7 +37,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
    s.frameworks = 'UIKit', 'WebKit'
-  # s.dependency 'DTCoreText', '~> 1.6'
 end
 
 
