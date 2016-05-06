@@ -12,18 +12,10 @@ import Foundation
     import UIKit
     public typealias RPColor = UIColor
     public typealias RPFont = UIFont
-    private typealias RPFontDescriptor = UIFontDescriptor
-    var RPFontDescriptorNameAttribute = UIFontDescriptorNameAttribute
-    var RPBoldTrait = UIFontDescriptorSymbolicTraits.TraitBold
-    var RPItalicTrait = UIFontDescriptorSymbolicTraits.TraitItalic
 #else
-    import Cocoa
+    import AppKit
     public typealias RPColor = NSColor
     public typealias RPFont = NSFont
-    private typealias RPFontDescriptor = NSFontDescriptor
-    private typealias RPFontDescriptorNameAttribute = NSFontNameAttribute
-    private typealias RPBoldTrait = NSFontBoldTrait
-    private typealias RPItalicTrait = NSFontItalicTrait
 
 #endif
 
@@ -42,7 +34,7 @@ public class Theme {
     private var strippedTheme : RPThemeStringDict!
     
         /// Default background color for the current theme.
-    public var themeBackgroundColor : UIColor!
+    public var themeBackgroundColor : RPColor!
     
     init(themeString: String)
     {
@@ -68,7 +60,7 @@ public class Theme {
             }
         }else
         {
-            themeBackgroundColor = UIColor.whiteColor()
+            themeBackgroundColor = RPColor.whiteColor()
         }
     }
     
@@ -89,11 +81,11 @@ public class Theme {
         let obliqueDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFamilyAttribute:font.familyName,
                                                                   UIFontDescriptorFaceAttribute:"Oblique"])
         #else
-        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
                                                                 NSFontFaceAttribute:"Bold"])
-        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
                                                                 NSFontFaceAttribute:"Italic"])
-        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName,
+        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
                                                                 NSFontFaceAttribute:"Oblique"])
         #endif
         
