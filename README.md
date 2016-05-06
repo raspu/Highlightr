@@ -15,26 +15,26 @@ The current version is under development but is functional.
 Highlightr provides two way of highlighting: 
 
 ### Highlightr
-This is the main class, you can use it to convert strings with code into NSAttributted strings.
-´´´Swift
-        let highlightr = Highlightr()
-	    highlightr.setTheme("paraiso-dark")
-	    let code = "let a = 1"
-        let highlightedCode = highlightr.highlight("swift", code: code, fastRender: true)
-´´´
+This is the main class, you can use it to convert code strings into NSAttributted strings.
+```Swift
+	let highlightr = Highlightr()
+	highlightr.setTheme("paraiso-dark")
+	let code = "let a = 1"
+	let highlightedCode = highlightr.highlight("swift", code: code, fastRender: true)
+```
 ### CodeAttributedString
 A sublcass of NSTextStorage, you can use it to highlight text on real time. 
-´´´Swift
-		let textStorage = CodeAttributedString()
-		textStorage.language = "Swift"
-        let layoutManager = NSLayoutManager()
-        textStorage.addLayoutManager(layoutManager)
-
-        let textContainer = NSTextContainer(size: view.bounds.size)
-        layoutManager.addTextContainer(textContainer)
-        
-        let textView = UITextView(frame: yourFrame, textContainer: textContainer)
-´´´
+```Swift
+	let textStorage = CodeAttributedString()
+	textStorage.language = "Swift"
+	let layoutManager = NSLayoutManager()
+	textStorage.addLayoutManager(layoutManager)
+	
+	let textContainer = NSTextContainer(size: view.bounds.size)
+	layoutManager.addTextContainer(textContainer)
+	
+	let textView = UITextView(frame: yourFrame, textContainer: textContainer)
+```
 
 ## JavaScript?
 
