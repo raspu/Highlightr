@@ -21,9 +21,12 @@ class SampleCode: UIViewController
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var viewPlaceholder: UIView!
     var textView : UITextView!
+    @IBOutlet var textToolbar: UIToolbar!
     
     @IBOutlet weak var languageName: UILabel!
     @IBOutlet weak var themeName: UILabel!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var highlightr : Highlightr!
     let textStorage = CodeAttributedString()
@@ -33,6 +36,7 @@ class SampleCode: UIViewController
     {
         super.viewDidLoad()
         
+        activityIndicator.hidden = true
         languageName.text = "Swift"
         themeName.text = "Pojoaque"
         
@@ -48,6 +52,7 @@ class SampleCode: UIViewController
         textView.autocorrectionType = UITextAutocorrectionType.No
         textView.autocapitalizationType = UITextAutocapitalizationType.None
         textView.textColor = UIColor(white: 0.8, alpha: 1.0)
+        textView.inputAccessoryView = textToolbar
         viewPlaceholder.addSubview(textView)
         
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
@@ -85,10 +90,40 @@ class SampleCode: UIViewController
 
     @IBAction func performanceTest(sender: AnyObject)
     {
+        let code = textStorage.string
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+        {
+            let start = NSDate()
+            for _ in 0...100
+            {
+                self.highlightr.highlight(self.languageName.text!, code: code, fastRender: true)
+            }
+            let end = NSDate()
+            let time = Float(end.timeIntervalSinceDate(start));
+            
+            let avg = String(format:"%0.4f", time/100)
+            let total = String(format:"%0.3f", time)
+            
+            let alert = UIAlertController(title: "Performance test", message: "This code was highlighted 100 times. \n It took an average of \(avg) seconds to process each time,\n with a total of \(total) seconds", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alert.addAction(okAction)
+            
+            dispatch_async(dispatch_get_main_queue(),
+            {
+                self.activityIndicator.hidden = true
+                self.activityIndicator.stopAnimating()
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        
     }
     
     @IBAction func pickTheme(sender: AnyObject)
     {
+        hideKeyboard(nil)
         let themes = highlightr.availableThemes()
         let indexOrNil = themes.indexOf(themeName.text!.lowercaseString)
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
@@ -106,6 +141,11 @@ class SampleCode: UIViewController
                                                     cancelBlock: nil,
                                                     origin: toolBar)
         
+    }
+    
+    @IBAction func hideKeyboard(sender: AnyObject?)
+    {
+        textView.resignFirstResponder()
     }
     
     func updateColors()

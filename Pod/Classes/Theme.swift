@@ -312,7 +312,6 @@ public class Theme {
             divisor = 15.0
         }
         
-        print("\(hex) => \(r) - \(g) - \(b)")
         return RPColor(red: CGFloat(r) / divisor, green: CGFloat(g) / divisor, blue: CGFloat(b) / divisor, alpha: CGFloat(1))        
         
     }
