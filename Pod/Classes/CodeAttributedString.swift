@@ -2,7 +2,7 @@
 //  CodeAttributedString.swift
 //  Pods
 //
-//  Created by Illanes, Juan Pablo on 4/19/16.
+//  Created by Illanes, J.P. on 4/19/16.
 //
 //
 

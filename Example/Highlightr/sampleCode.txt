@@ -3,7 +3,6 @@
 //  Highlightr
 //
 //  Created by Illanes, Juan Pablo on 5/5/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
 import UIKit
