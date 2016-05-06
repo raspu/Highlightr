@@ -11,6 +11,10 @@ Takes your lame string with code and returns an NSAttributtedString with proper 
 
 The current version is under development but is functional.
 
+![Sample Gif A](https://raw.githubusercontent.com/raspu/Highlightr/master/themes.gif)
+![Sample Gif B](https://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif)
+
+
 ## Usage
 Highlightr provides two way of highlighting: 
 
