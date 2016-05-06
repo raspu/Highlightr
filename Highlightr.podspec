@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/raspu/Highlightr"
-  s.screenshots     = "raw.githubusercontent.com/raspu/Highlightr/master/themes.gif", "raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
+s.screenshots     = "http://raw.githubusercontent.com/raspu/Highlightr/master/themes.gif", "http://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
   s.license          = 'MIT'
   s.author           = { "J.P. Illanes" => "jpillaness@gmail.com" }
   s.source           = { :git => "https://github.com/raspu/Highlightr.git", :tag => s.version.to_s, :submodules => true}

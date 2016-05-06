@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F543374A933AF78546783AC623588791'
+               BlueprintIdentifier = 'C780829F1BE8460024C00C4F299F75E6'
                BlueprintName = 'Highlightr'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Highlightr.framework'>

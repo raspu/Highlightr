@@ -1,16 +1,20 @@
 {
   "name": "Highlightr",
-  "version": "0.1.0",
-  "summary": "Hightlight your code strings.",
-  "description": "Takes a NSString with code and returns NSAttributtedString with highlighted code.",
+  "version": "0.8.0",
+  "summary": "iOS & OSX Syntax Highlighter.",
+  "description": "Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses highlight.js as it core, supports 152 languages and comes with 72 styles.",
   "homepage": "https://github.com/raspu/Highlightr",
+  "screenshots": [
+    "http://raw.githubusercontent.com/raspu/Highlightr/master/themes.gif",
+    "http://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
+  ],
   "license": "MIT",
   "authors": {
-    "Illanes, Juan Pablo": "jpillaness@gmail.com"
+    "J.P. Illanes": "jpillaness@gmail.com"
   },
   "source": {
     "git": "https://github.com/raspu/Highlightr.git",
-    "tag": "0.1.0",
+    "tag": "0.8.0",
     "submodules": true
   },
   "platforms": {
@@ -18,11 +22,8 @@
     "ios": "8.0"
   },
   "requires_arc": true,
+  "source_files": "Pod/Classes/**/*.{swift}",
   "resources": "Pod/Assets/**/*.{css,js}",
-  "source_files": [
-    "Pod/Classes/**/*.{swift}",
-    "Pod/Assets/**/*.{css,js}"
-  ],
   "frameworks": [
     "UIKit",
     "WebKit"

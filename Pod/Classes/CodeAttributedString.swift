@@ -52,11 +52,11 @@ public class CodeAttributedString : NSTextStorage
     
     public override func processEditing() {
         super.processEditing()
-        if let language = language {
+        if language != nil {
             if self.editedMask.contains(.EditedCharacters)
             {
                 let string = (self.string as NSString)
-                var range = string.paragraphRangeForRange(editedRange)
+                let range = string.paragraphRangeForRange(editedRange)
                 highlight(range)
             }
             
@@ -68,7 +68,7 @@ public class CodeAttributedString : NSTextStorage
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let string = (self.string as NSString)
-            var line = string.substringWithRange(range)
+            let line = string.substringWithRange(range)
             let tmpStrg = self.highlightr?.highlight(self.language!, code: line, fastRender: true)
             dispatch_async(dispatch_get_main_queue(), {
                 self.beginEditing()

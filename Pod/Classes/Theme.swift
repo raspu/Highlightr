@@ -221,13 +221,13 @@ public class Theme {
                 switch key
                 {
                 case "color":
-                    keyProps[attributeForCSSKey(key)] = colorWithHexString(prop as! String)
+                    keyProps[attributeForCSSKey(key)] = colorWithHexString(prop)
                     break
                 case "font-style":
-                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop as! String)
+                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop)
                     break
                 case "font-weight":
-                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop as! String)
+                    keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop)
                     break
                 default:
                     break
