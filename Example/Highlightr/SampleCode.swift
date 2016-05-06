@@ -127,7 +127,7 @@ class SampleCode: UIViewController
         let indexOrNil = themes.indexOf(themeName.text!.lowercaseString)
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
         
-        ActionSheetStringPicker.showPickerWithTitle("Pick a Language",
+        ActionSheetStringPicker.showPickerWithTitle("Pick a Theme",
                                                     rows: themes,
                                                     initialSelection: index,
                                                     doneBlock:
