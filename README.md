@@ -7,7 +7,7 @@
 
 Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [152 languages and comes with 72 styles](https://highlightjs.org/static/demo/). 
 
-Takes your lame string with code and returns an NSAttributtedString with proper syntax highlighting.
+Takes your lame string with code and returns a NSAttributtedString with proper syntax highlighting.
 
 The current version is under development but is functional.
 
@@ -16,10 +16,10 @@ The current version is under development but is functional.
 
 
 ## Usage
-Highlightr provides two way of highlighting: 
+Highlightr provides two main classes: 
 
 ### Highlightr
-This is the main class, you can use it to convert code strings into NSAttributted strings.
+This is the main endpoint, you can use it to convert code strings into NSAttributted strings.
 ```Swift
 	let highlightr = Highlightr()
 	highlightr.setTheme("paraiso-dark")
