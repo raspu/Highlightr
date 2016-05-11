@@ -53,3 +53,4 @@ It comes with a custom made HTML parser for creating NSAttributtedStrings, is pr
 ## License
 
 Highlightr is available under the MIT license. See the LICENSE file for more info.
+Highlight.js is available under the BSD license. You can find the [license file here](https://github.com/isagalaev/highlight.js/blob/master/LICENSE). 
