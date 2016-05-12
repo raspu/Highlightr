@@ -59,7 +59,6 @@ public class CodeAttributedString : NSTextStorage
                 let range = string.paragraphRangeForRange(editedRange)
                 highlight(range)
             }
-            
         }
     }
 

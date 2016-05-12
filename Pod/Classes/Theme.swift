@@ -95,11 +95,19 @@ public class Theme {
         
         boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
         italicCodeFont = RPFont(descriptor: italicDescriptor, size: font.pointSize)
+        
         if(italicCodeFont == nil || italicCodeFont.familyName != font.familyName)
         {
             italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
+        } else if(italicCodeFont == nil )
+        {
+            italicCodeFont = font
         }
-            
+        
+        if(boldCodeFont == nil)
+        {
+            boldCodeFont = font
+        }
 
         if(themeDict != nil)
         {
