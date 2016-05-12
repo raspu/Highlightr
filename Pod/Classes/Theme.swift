@@ -43,9 +43,13 @@ public class Theme {
         strippedTheme = stripTheme(themeString)
         lightTheme = strippedThemeToString(strippedTheme)
         themeDict = strippedThemeToTheme(strippedTheme)
-        if let bkgColorHex = strippedTheme[".hljs"]?["background"]
+        var bkgColorHex = strippedTheme[".hljs"]?["background"]
+        if(bkgColorHex == nil)
         {
-
+            bkgColorHex = strippedTheme[".hljs"]?["background-color"]
+        }
+        if let bkgColorHex = bkgColorHex
+        {
             if(bkgColorHex == "white")
             {
                 themeBackgroundColor = RPColor(white: 1, alpha: 1)
@@ -195,7 +199,10 @@ public class Theme {
             resultString += key+"{"
             for (cssProp, val) in props
             {
-                resultString += "\(cssProp):\(val);"
+                if(key != ".hljs" || (cssProp.lowercaseString != "background-color" && cssProp.lowercaseString != "background"))
+                {
+                    resultString += "\(cssProp):\(val);"
+                }
             }
             resultString+="}"
         }
@@ -221,13 +228,17 @@ public class Theme {
                 case "font-weight":
                     keyProps[attributeForCSSKey(key)] = fontForCSSStyle(prop)
                     break
+                case "background-color":
+                    keyProps[attributeForCSSKey(key)] = colorWithHexString(prop)
+                    break
                 default:
                     break
                 }
             }
             if keyProps.count > 0
             {
-                returnTheme[className.stringByReplacingOccurrencesOfString(".", withString: "")] = keyProps
+                let key = className.stringByReplacingOccurrencesOfString(".", withString: "")
+                returnTheme[key] = keyProps
             }
         }
         return returnTheme
@@ -255,6 +266,8 @@ public class Theme {
             return NSFontAttributeName
         case "font-style":
             return NSFontAttributeName
+        case "background-color":
+            return NSBackgroundColorAttributeName
         default:
             return NSFontAttributeName
         }
@@ -267,6 +280,23 @@ public class Theme {
         if (cString.hasPrefix("#"))
         {
             cString = (cString as NSString).substringFromIndex(1)
+        }
+        else
+        {
+            switch cString {
+            case "white":
+                return RPColor(white: 1, alpha: 1)
+            case "black":
+                return RPColor(white: 0, alpha: 1)
+            case "red":
+                return RPColor(red: 1, green: 0, blue: 0, alpha: 1)
+            case "green":
+                return RPColor(red: 0, green: 1, blue: 0, alpha: 1)
+            case "blue":
+                return RPColor(red: 0, green: 0, blue: 1, alpha: 1)
+            default:
+                return RPColor.grayColor()
+            }
         }
         
         if (cString.characters.count != 6 && cString.characters.count != 3 )
