@@ -13,6 +13,7 @@ The current version is under development but is functional.
 
 ![Sample Gif A](https://raw.githubusercontent.com/raspu/Highlightr/master/themes.gif)
 ![Sample Gif B](https://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif)
+![Sample Gif C](https://raw.githubusercontent.com/raspu/Highlightr/master/langs.gif)
 
 
 ## Usage
