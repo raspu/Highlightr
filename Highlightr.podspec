@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Highlightr"
-  s.version          = "0.8.0"
+  s.version          = "0.9.0"
   s.summary          = "iOS & OSX Syntax Highlighter."
 
   s.description      = <<-DESC
@@ -16,7 +16,8 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/raspu/Highlightr"
-s.screenshots     = "http://raw.githubusercontent.com/raspu/Highlightr/master/themes.gif", "http://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
+  s.screenshots     = "http://raw.githubusercontent.com/raspu/Highlightr/master/mix2.gif",
+                        "http://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif"
   s.license          = 'MIT'
   s.author           = { "J.P. Illanes" => "jpillaness@gmail.com" }
   s.source           = { :git => "https://github.com/raspu/Highlightr.git", :tag => s.version.to_s, :submodules => true}
@@ -30,13 +31,8 @@ s.screenshots     = "http://raw.githubusercontent.com/raspu/Highlightr/master/th
 
   s.resources  = 'Pod/Assets/**/*.{css,js}'
 
-  #s.preserve_paths = 'Pod/Assets/Highlighter/**'
-  #s.resource_bundles = {
-  # 'Highlightr' => ['Pod/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-   s.frameworks = 'UIKit', 'WebKit'
+  s.ios.frameworks = 'UIKit'
+  s.osx.frameworks = 'AppKit'
 end
 
 

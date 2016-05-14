@@ -6,6 +6,10 @@ target 'Highlightr_Example' do
   pod 'ActionSheetPicker-3.0'
 end
 
+target 'Highlightr_OSX_Example' do
+    pod 'Highlightr', :path => '../'
+end
+
 target 'Highlightr_Tests' do
   pod 'Highlightr', :path => '../'
 
