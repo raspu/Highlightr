@@ -65,11 +65,23 @@ public class CodeAttributedString : NSTextStorage
     
     func highlight(range: NSRange)
     {
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let string = (self.string as NSString)
             let line = string.substringWithRange(range)
             let tmpStrg = self.highlightr?.highlight(self.language!, code: line, fastRender: true)
             dispatch_async(dispatch_get_main_queue(), {
+                //Checks to see if this highlighting is still valid.
+                if((range.location + range.length) > self.stringStorage.length)
+                {
+                    return;
+                }
+                
+                if(tmpStrg?.string != self.stringStorage.attributedSubstringFromRange(range).string)
+                {
+                    return;
+                }
+                
                 self.beginEditing()
                 tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
                     var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
