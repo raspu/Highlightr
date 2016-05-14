@@ -65,10 +65,9 @@ public class CodeAttributedString : NSTextStorage
     
     func highlight(range: NSRange)
     {
-        
+        let string = (self.string as NSString)
+        let line = string.substringWithRange(range)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let string = (self.string as NSString)
-            let line = string.substringWithRange(range)
             let tmpStrg = self.highlightr?.highlight(self.language!, code: line, fastRender: true)
             dispatch_async(dispatch_get_main_queue(), {
                 //Checks to see if this highlighting is still valid.
