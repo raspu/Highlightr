@@ -81,6 +81,10 @@ class SampleCode: UIViewController
                 let language = value! as! String
                 self.textStorage.language = language
                 self.languageName.text = language.capitalizedString
+                let snippetPath = NSBundle.mainBundle().pathForResource("default", ofType: "txt", inDirectory: "Samples/\(language)", forLocalization: nil)
+                let snippet = try! String(contentsOfFile: snippetPath!)
+                self.textView.text = snippet
+                
             },
                                                     cancelBlock: nil,
                                                     origin: toolBar)
