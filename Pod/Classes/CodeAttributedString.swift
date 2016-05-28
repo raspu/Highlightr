@@ -8,12 +8,33 @@
 
 import Foundation
 
+@objc public protocol HighlightDelegate {
+    /**
+     If this method returns *false*, the highlighting process will be skipped for this range.
+     
+     - parameter range: NSRange
+     
+     - returns: Bool
+     */
+    optional func shouldHighlight(range:NSRange) -> Bool
+    /**
+     Called after a range of the string was highlighted, if there was an error **success** will be *false*.
+     
+     - parameter range:   NSRange
+     - parameter success: Bool
+     */
+    optional func didHighlight(range:NSRange, success: Bool)
+}
+
 public class CodeAttributedString : NSTextStorage
 {
     let stringStorage = NSMutableAttributedString(string: "")
 
         /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
     public let highlightr = Highlightr()!
+    
+        /// This object will be notified before and after the highlighting.
+    public var highlightDelegate : HighlightDelegate?
 
         ///Language syntax to use for highlighting.
     public var language : String?
@@ -91,6 +112,17 @@ public class CodeAttributedString : NSTextStorage
         {
             return;
         }
+        
+        if let highlightDelegate = highlightDelegate
+        {
+            var shouldHighlight : Bool? = highlightDelegate.shouldHighlight?(range)
+            if(shouldHighlight != nil && !shouldHighlight!)
+            {
+                return;
+            }
+        }
+
+        
         let string = (self.string as NSString)
         let line = string.substringWithRange(range)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -99,11 +131,13 @@ public class CodeAttributedString : NSTextStorage
                 //Checks to see if this highlighting is still valid.
                 if((range.location + range.length) > self.stringStorage.length)
                 {
+                    self.highlightDelegate?.didHighlight?(range, success: false)
                     return;
                 }
                 
                 if(tmpStrg?.string != self.stringStorage.attributedSubstringFromRange(range).string)
                 {
+                    self.highlightDelegate?.didHighlight?(range, success: false)
                     return;
                 }
                 
@@ -116,6 +150,7 @@ public class CodeAttributedString : NSTextStorage
                 })
                 self.endEditing()
                 self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
+                self.highlightDelegate?.didHighlight?(range, success: true)
             })
             
         }
