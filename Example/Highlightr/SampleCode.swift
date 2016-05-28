@@ -137,7 +137,7 @@ class SampleCode: UIViewController
                                                     doneBlock:
             { picker, index, value in
                 let theme = value! as! String
-                self.textStorage.theme = theme
+                self.textStorage.highlightr.setTheme(theme)
                 self.themeName.text = theme.capitalizedString
                 self.updateColors()
             },

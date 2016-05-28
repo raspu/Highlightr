@@ -9,7 +9,7 @@
 import Foundation
 import JavaScriptCore
 
-
+/// Utility class for generating a highlighted NSAttributedString from a String.
 public class Highlightr
 {
     /// Returns the current Theme.
@@ -24,6 +24,11 @@ public class Highlightr
     private let spanEnd = "/span>"
     private let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .CaseInsensitive)
     
+    /**
+     Default init method, generates a JSContext instance and the default Theme.
+     
+     - returns: Highlightr instance.
+     */
     public init?()
     {
         jsContext = JSContext()

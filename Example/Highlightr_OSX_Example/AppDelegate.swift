@@ -21,8 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         textStorage.language = "Swift"
-        textStorage.theme = "Pojoaque"
-        textStorage.highlightr?.theme.codeFont = NSFont(name: "Courier", size: 12)
+        textStorage.highlightr.setTheme("Pojoaque")
+        textStorage.highlightr.theme.codeFont = NSFont(name: "Courier", size: 12)
         
         let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
         textStorage.setAttributedString(NSAttributedString(string: code))
@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         textView = NSTextView(frame: (window.contentView?.bounds)!, textContainer: textContainer)
         textView.autoresizingMask = [.ViewWidthSizable,.ViewHeightSizable]
         textView.translatesAutoresizingMaskIntoConstraints = true
-        textView.backgroundColor = (textStorage.highlightr?.theme.themeBackgroundColor)!
+        textView.backgroundColor = (textStorage.highlightr.theme.themeBackgroundColor)!
         textView.insertionPointColor = NSColor.whiteColor()
         window.contentView?.addSubview(textView)
         

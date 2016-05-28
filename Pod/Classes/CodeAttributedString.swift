@@ -12,45 +12,67 @@ public class CodeAttributedString : NSTextStorage
 {
     let stringStorage = NSMutableAttributedString(string: "")
 
-    public let highlightr = Highlightr()
-    public var language : String? {
+        /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
+    public let highlightr = Highlightr()!
+
+        ///Language syntax to use for highlighting.
+    public var language : String?
+    {
         didSet {
             highlight(NSMakeRange(0, stringStorage.length))
         }
     }
-
     
-        /// Use this property to update the theme.
-    public var theme : String? {
-        didSet {
-            if let theme = theme {
-                highlightr?.setTheme(theme)
-                highlight(NSMakeRange(0, stringStorage.length))
-            }
-        }
-    }
-    
-    public override var string: String {
+        /// Returns a standard String based on the current one.
+    public override var string: String
+    {
         get {
             return stringStorage.string
         }
     }
     
-    public override func attributesAtIndex(location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
+    /**
+     Returns the attributes for the character at a given index.
+     
+     - parameter location: Int
+     - parameter range:    NSRangePointer
+     
+     - returns: Attributes
+     */
+    public override func attributesAtIndex(location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject]
+    {
         return stringStorage.attributesAtIndex(location, effectiveRange: range)
     }
     
-    public override func replaceCharactersInRange(range: NSRange, withString str: String) {
+    /**
+     Replaces the characters at the given range with the provided string.
+     
+     - parameter range: NSRange
+     - parameter str:   String
+     */
+    public override func replaceCharactersInRange(range: NSRange, withString str: String)
+    {
         stringStorage.replaceCharactersInRange(range, withString: str)
         self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
     }
     
-    public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
+    /**
+     Sets the attributes for the characters in the specified range to the specified attributes.
+     
+     - parameter attrs: [String : AnyObject]
+     - parameter range: NSRange
+     */
+    public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange)
+    {
         stringStorage.setAttributes(attrs, range: range)
         self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
     }
     
-    public override func processEditing() {
+    /**
+     Called internally everytime the string was modified.
+     */
+    public override func processEditing()
+    {
         super.processEditing()
         if language != nil {
             if self.editedMask.contains(.EditedCharacters)
@@ -65,10 +87,14 @@ public class CodeAttributedString : NSTextStorage
     
     func highlight(range: NSRange)
     {
+        if(language == nil)
+        {
+            return;
+        }
         let string = (self.string as NSString)
         let line = string.substringWithRange(range)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let tmpStrg = self.highlightr?.highlight(self.language!, code: line, fastRender: true)
+            let tmpStrg = self.highlightr.highlight(self.language!, code: line, fastRender: true)
             dispatch_async(dispatch_get_main_queue(), {
                 //Checks to see if this highlighting is still valid.
                 if((range.location + range.length) > self.stringStorage.length)
