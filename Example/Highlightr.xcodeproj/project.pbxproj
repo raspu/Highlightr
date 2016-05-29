@@ -13,6 +13,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8C0B8C341CBB03AF00338143 /* sampleCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B8C331CBB03AF00338143 /* sampleCode.txt */; };
+		8C653BDF1CFB677100A8CEFF /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C653BDE1CFB677100A8CEFF /* CHANGELOG.md */; };
 		8C9564211CE78B8900C0C7FA /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 8C9564201CE78B7500C0C7FA /* Samples */; };
 		8C9564291CE79E5200C0C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9564281CE79E5200C0C7FA /* AppDelegate.swift */; };
 		8C95642B1CE79E5200C0C7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C95642A1CE79E5200C0C7FA /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		719ED2C056FED45508B76D17 /* Highlightr.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Highlightr.podspec; path = ../Highlightr.podspec; sourceTree = "<group>"; };
 		81B00C74F80645E546387ECF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8C0B8C331CBB03AF00338143 /* sampleCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleCode.txt; sourceTree = "<group>"; };
+		8C653BDE1CFB677100A8CEFF /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		8C9564201CE78B7500C0C7FA /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		8C9564261CE79E5200C0C7FA /* Highlightr_OSX_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Highlightr_OSX_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9564281CE79E5200C0C7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				719ED2C056FED45508B76D17 /* Highlightr.podspec */,
 				57EE881054C2891F380DCAF5 /* README.md */,
 				81B00C74F80645E546387ECF /* LICENSE */,
+				8C653BDE1CFB677100A8CEFF /* CHANGELOG.md */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CAC85751CDBBA930079CEC2 /* SampleCode.swift in Sources */,
+				8C653BDF1CFB677100A8CEFF /* CHANGELOG.md in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
