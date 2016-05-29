@@ -115,7 +115,7 @@ public class CodeAttributedString : NSTextStorage
         
         if let highlightDelegate = highlightDelegate
         {
-            var shouldHighlight : Bool? = highlightDelegate.shouldHighlight?(range)
+            let shouldHighlight : Bool? = highlightDelegate.shouldHighlight?(range)
             if(shouldHighlight != nil && !shouldHighlight!)
             {
                 return;
