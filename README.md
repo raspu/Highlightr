@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 [![Platform](https://img.shields.io/cocoapods/p/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 
-Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [152 languages and comes with 72 styles](https://highlightjs.org/static/demo/). 
+Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [162 languages and comes with 74 styles](https://highlightjs.org/static/demo/). 
 
 Takes your lame string with code and returns a NSAttributtedString with proper syntax highlighting.
 
