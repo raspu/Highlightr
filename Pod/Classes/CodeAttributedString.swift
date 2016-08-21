@@ -8,7 +8,8 @@
 
 import Foundation
 
-@objc public protocol HighlightDelegate {
+@objc public protocol HighlightDelegate
+{
     /**
      If this method returns *false*, the highlighting process will be skipped for this range.
      
@@ -36,10 +37,23 @@ public class CodeAttributedString : NSTextStorage
         /// This object will be notified before and after the highlighting.
     public var highlightDelegate : HighlightDelegate?
 
+    public override init()
+    {
+        super.init()
+        setUpListeners()
+    }
+    
+    required public init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setUpListeners()
+    }
+    
         ///Language syntax to use for highlighting.
     public var language : String?
     {
-        didSet {
+        didSet
+        {
             highlight(NSMakeRange(0, stringStorage.length))
         }
     }
@@ -47,7 +61,8 @@ public class CodeAttributedString : NSTextStorage
         /// Returns a standard String based on the current one.
     public override var string: String
     {
-        get {
+        get
+        {
             return stringStorage.string
         }
     }
@@ -105,7 +120,6 @@ public class CodeAttributedString : NSTextStorage
         }
     }
 
-    
     func highlight(range: NSRange)
     {
         if(language == nil)
@@ -125,9 +139,11 @@ public class CodeAttributedString : NSTextStorage
         
         let string = (self.string as NSString)
         let line = string.substringWithRange(range)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        {
             let tmpStrg = self.highlightr.highlight(self.language!, code: line, fastRender: true)
-            dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue(),
+            {
                 //Checks to see if this highlighting is still valid.
                 if((range.location + range.length) > self.stringStorage.length)
                 {
@@ -155,6 +171,14 @@ public class CodeAttributedString : NSTextStorage
             
         }
         
+    }
+    
+    func setupListeners()
+    {
+        highlightr.themeChanged =
+            { _ in
+                    self.highlight(NSMakeRange(0, self.stringStorage.length))
+            }
     }
     
     

@@ -14,6 +14,14 @@ public class Highlightr
 {
     /// Returns the current Theme.
     public var theme : Theme!
+    {
+        didSet
+        {
+            themeChanged?(theme)
+        }
+    }
+    /// This block will be called every time the theme changes.
+    public var themeChanged : (Theme -> Void)?
     
     private let jsContext : JSContext
     private let hljs = "window.hljs"
