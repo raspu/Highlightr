@@ -20,6 +20,7 @@ public class Highlightr
             themeChanged?(theme)
         }
     }
+    
     /// This block will be called every time the theme changes.
     public var themeChanged : (Theme -> Void)?
     

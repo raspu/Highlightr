@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Highlighting Delegate
 @objc public protocol HighlightDelegate
 {
     /**
@@ -18,6 +19,7 @@ import Foundation
      - returns: Bool
      */
     optional func shouldHighlight(range:NSRange) -> Bool
+    
     /**
      Called after a range of the string was highlighted, if there was an error **success** will be *false*.
      
@@ -27,29 +29,32 @@ import Foundation
     optional func didHighlight(range:NSRange, success: Bool)
 }
 
+/// NSTextStorage subclass. Can be used to dynamically highlight code.
 public class CodeAttributedString : NSTextStorage
 {
     let stringStorage = NSMutableAttributedString(string: "")
 
-        /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
+    /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
     public let highlightr = Highlightr()!
     
-        /// This object will be notified before and after the highlighting.
+    /// This object will be notified before and after the highlighting.
     public var highlightDelegate : HighlightDelegate?
 
+    /// Initialize the CodeAttributedString
     public override init()
     {
         super.init()
-        setUpListeners()
+        setupListeners()
     }
     
+    /// Initialize the CodeAttributedString
     required public init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        setUpListeners()
+        setupListeners()
     }
     
-        ///Language syntax to use for highlighting.
+    /// Language syntax to use for highlighting.
     public var language : String?
     {
         didSet
@@ -58,7 +63,7 @@ public class CodeAttributedString : NSTextStorage
         }
     }
     
-        /// Returns a standard String based on the current one.
+    /// Returns a standard String based on the current one.
     public override var string: String
     {
         get
@@ -93,7 +98,7 @@ public class CodeAttributedString : NSTextStorage
     }
     
     /**
-     Sets the attributes for the characters in the specified range to the specified attributes.
+     Sets the attributes for the characters in the specified range to the given attributes.
      
      - parameter attrs: [String : AnyObject]
      - parameter range: NSRange
@@ -105,7 +110,7 @@ public class CodeAttributedString : NSTextStorage
     }
     
     /**
-     Called internally everytime the string was modified.
+     Called internally everytime the string is modified.
      */
     public override func processEditing()
     {

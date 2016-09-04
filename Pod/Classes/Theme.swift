@@ -22,6 +22,7 @@ import Foundation
 private typealias RPThemeDict = [String:[String:AnyObject]]
 private typealias RPThemeStringDict = [String:[String:String]]
 
+/// Theme parser, can be used to configure the theme parameters. 
 public class Theme {
     internal let theme : String
     internal var lightTheme : String!
