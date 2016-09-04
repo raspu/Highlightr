@@ -54,6 +54,15 @@ public class CodeAttributedString : NSTextStorage
         setupListeners()
     }
     
+    #if os(OSX)
+    /// Initialize the CodeAttributedString
+    required public init?(pasteboardPropertyList propertyList: AnyObject, ofType type: String)
+    {
+        super.init(pasteboardPropertyList: propertyList, ofType: type)
+        setupListeners()
+    }
+    #endif
+    
     /// Language syntax to use for highlighting.
     public var language : String?
     {
