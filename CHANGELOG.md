@@ -1,3 +1,12 @@
+0.9.3 Release notes (2016-09-04)
+=============================================================
+
+### Enhancements
+
+* highlight.js updated to version 9.6.0.
+* Added callback that notifies changes of the theme.
+* Changing the theme updates the currenlty highlighted code (CodeAttributedString)
+
 0.9.2 Release notes (2016-07-07)
 =============================================================
 
