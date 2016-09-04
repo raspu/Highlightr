@@ -152,7 +152,6 @@
 		452017FA8369F14FD462C88846BAC9F2 /* htmlbars.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 684E1A84C37A7968A8B932341827EFAB /* htmlbars.min.js */; };
 		458C5F3C72C9D0F1030A098A36A2DE36 /* zenburn.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 911F770C94DA843B0DAC0B345E823D11 /* zenburn.min.css */; };
 		45BE56AF9DF36BF2539E1F302FD3E573 /* cal.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 88AD754CAD6E3368C9463F8CA24FE9B2 /* cal.min.js */; };
-		45BE8C5942F0839DA827388150897C75 /* darkula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 9C88B2F78EF52042C4758FFE22D181F4 /* darkula.min.css */; };
 		46F43E5400C079C4664093118A78A5F3 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD8BBEE7240088A5608DB2F11646AB /* Example.swift */; };
 		47BA29F3ADF0959718BEC0253A046248 /* autohotkey.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 58ED9B6F735E9300770E79478FDC5AEB /* autohotkey.min.js */; };
 		47CBCE8837CE75AE1B7484A63CE387ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1447C76238D22C481A8EC0FF24B0626 /* Foundation.framework */; };
@@ -228,7 +227,6 @@
 		64539BE196D1741570018FFF86F14133 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71573FF75E38B12CDB003E94132625E2 /* MatcherFunc.swift */; };
 		648D13603DEBE972D300147546ACE330 /* atelier-plateau-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E2B2B4AF50BC0E5B5EE167FFE8E463F /* atelier-plateau-dark.min.css */; };
 		64A72B8771FCD19B7D0BFDA45F334615 /* atelier-savanna-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8ABC294985E599379255E0461E5F9 /* atelier-savanna-dark.min.css */; };
-		659F47BC330B198625CFFCEF7ECA38E9 /* darkula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 9C88B2F78EF52042C4758FFE22D181F4 /* darkula.min.css */; };
 		65E5F68F806055AF4C385EA935117E8C /* processing.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5853FC834204CF6A3DEF47DCA57E62C0 /* processing.min.js */; };
 		66546C6EE306808B7F335774F9C09500 /* mathematica.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F79D2CD9988B302E1AE9660A86A711E /* mathematica.min.js */; };
 		66978373CACC9243EF990AEF12A12A40 /* q.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F44F1FD3E91F78F87011C684DAC47205 /* q.min.js */; };
@@ -317,6 +315,18 @@
 		8B8B7DB814AA84A466F9B9FA97B81C19 /* css.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1742B765C49BB7041E29D2324B4CAC7D /* css.min.js */; };
 		8BCD0A81302EA8E269888AB73D8F10C1 /* java.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 15DDBD654D0A0C593803D0AF596FF426 /* java.min.js */; };
 		8C7B343D47AA678A769DAB391EEFF314 /* tomorrow-night-bright.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5694A66DD08265103931FBE77AA8F /* tomorrow-night-bright.min.css */; };
+		8C9CD6E51D7CADF100EF3DE8 /* atom-one-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6DD1D7CA9F300EF3DE8 /* atom-one-dark.min.css */; };
+		8C9CD6E61D7CADF100EF3DE8 /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6DE1D7CA9F300EF3DE8 /* atom-one-light.min.css */; };
+		8C9CD6E71D7CADF100EF3DE8 /* darkula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E31D7CAD6B00EF3DE8 /* darkula.min.css */; };
+		8C9CD6E81D7CADF100EF3DE8 /* darcula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E41D7CADC500EF3DE8 /* darcula.min.css */; };
+		8C9CD6E91D7CADF100EF3DE8 /* ocean.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E01D7CA9F300EF3DE8 /* ocean.min.css */; };
+		8C9CD6EA1D7CADF100EF3DE8 /* purebasic.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E11D7CA9F300EF3DE8 /* purebasic.min.css */; };
+		8C9CD6EB1D7CADF100EF3DE8 /* atom-one-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6DD1D7CA9F300EF3DE8 /* atom-one-dark.min.css */; };
+		8C9CD6EC1D7CADF100EF3DE8 /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6DE1D7CA9F300EF3DE8 /* atom-one-light.min.css */; };
+		8C9CD6ED1D7CADF100EF3DE8 /* darkula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E31D7CAD6B00EF3DE8 /* darkula.min.css */; };
+		8C9CD6EE1D7CADF100EF3DE8 /* darcula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E41D7CADC500EF3DE8 /* darcula.min.css */; };
+		8C9CD6EF1D7CADF100EF3DE8 /* ocean.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E01D7CA9F300EF3DE8 /* ocean.min.css */; };
+		8C9CD6F01D7CADF100EF3DE8 /* purebasic.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CD6E11D7CA9F300EF3DE8 /* purebasic.min.css */; };
 		8CC7D467F165B2A0AF01148B07DA3749 /* basic.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 338990F986EB972C5C38A746140ED1E3 /* basic.min.js */; };
 		8CE8AE59C2D6D5F62250846C4B2F6562 /* q.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F44F1FD3E91F78F87011C684DAC47205 /* q.min.js */; };
 		8D59DCA902A3691D5E0A860BA219487C /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 969EB916DEEF2CD08C3BC796D39D5830 /* monokai.min.css */; };
@@ -867,6 +877,12 @@
 		8A3E4E89DE710F1109B136AB1BB6533A /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
 		8BCC4F2D33B3C946EB7E2CB03222DAAA /* CurrentTestCaseTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CurrentTestCaseTracker.m; path = Sources/Nimble/objc/CurrentTestCaseTracker.m; sourceTree = "<group>"; };
 		8C4A4958C907F884C3A76632DC3A6BED /* arduino-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = "arduino-light.min.css"; sourceTree = "<group>"; };
+		8C9CD6DD1D7CA9F300EF3DE8 /* atom-one-dark.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atom-one-dark.min.css"; sourceTree = "<group>"; };
+		8C9CD6DE1D7CA9F300EF3DE8 /* atom-one-light.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "atom-one-light.min.css"; sourceTree = "<group>"; };
+		8C9CD6E01D7CA9F300EF3DE8 /* ocean.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ocean.min.css; sourceTree = "<group>"; };
+		8C9CD6E11D7CA9F300EF3DE8 /* purebasic.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = purebasic.min.css; sourceTree = "<group>"; };
+		8C9CD6E31D7CAD6B00EF3DE8 /* darkula.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = darkula.min.css; sourceTree = "<group>"; };
+		8C9CD6E41D7CADC500EF3DE8 /* darcula.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = darcula.min.css; sourceTree = "<group>"; };
 		8CA5AC2EEB52B8B7AB25F015100C1E2A /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Sources/Quick/QuickSpec.h; sourceTree = "<group>"; };
 		8EB5E05094EF065560B12F0D16DA330D /* atelier-estuary-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = "atelier-estuary-light.min.css"; sourceTree = "<group>"; };
 		8F668E2839188F7D9ED47282C21D8DFF /* xcode.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = xcode.min.css; sourceTree = "<group>"; };
@@ -889,7 +905,6 @@
 		9B6F210DEC7830DC92EC23D8BD5388D9 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
 		9B74E5EA3D171478C960834B7C80D1D7 /* kimbie.dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = kimbie.dark.min.css; sourceTree = "<group>"; };
 		9C6B1DF1AFB774300F5413C5056E68AD /* HooksPhase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HooksPhase.swift; path = Sources/Quick/Hooks/HooksPhase.swift; sourceTree = "<group>"; };
-		9C88B2F78EF52042C4758FFE22D181F4 /* darkula.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = darkula.min.css; sourceTree = "<group>"; };
 		9D83B87C59D92FB024A71709146AD1F0 /* Nimble.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nimble.xcconfig; sourceTree = "<group>"; };
 		9E557D842F5CC08BE293D0433307B96A /* perl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = perl.min.js; sourceTree = "<group>"; };
 		9E8D114C383DD519179BE61E5C1DFE98 /* codepen-embed.min.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = "codepen-embed.min.css"; sourceTree = "<group>"; };
@@ -1119,6 +1134,12 @@
 		0DC6C7DBF4AD270BD985608C31E9E5CF /* styles */ = {
 			isa = PBXGroup;
 			children = (
+				8C9CD6DD1D7CA9F300EF3DE8 /* atom-one-dark.min.css */,
+				8C9CD6DE1D7CA9F300EF3DE8 /* atom-one-light.min.css */,
+				8C9CD6E31D7CAD6B00EF3DE8 /* darkula.min.css */,
+				8C9CD6E41D7CADC500EF3DE8 /* darcula.min.css */,
+				8C9CD6E01D7CA9F300EF3DE8 /* ocean.min.css */,
+				8C9CD6E11D7CA9F300EF3DE8 /* purebasic.min.css */,
 				F1E3276EB73A46251954B4563EE05129 /* agate.min.css */,
 				9FFFDC04656C1D70CF1F62020D6F16FB /* androidstudio.min.css */,
 				8C4A4958C907F884C3A76632DC3A6BED /* arduino-light.min.css */,
@@ -1148,7 +1169,6 @@
 				9E8D114C383DD519179BE61E5C1DFE98 /* codepen-embed.min.css */,
 				6AE6E68FF035C1E6BDC61E76DAA70A68 /* color-brewer.min.css */,
 				840C1D54C6DD8E08E83E1AD1B08F67B4 /* dark.min.css */,
-				9C88B2F78EF52042C4758FFE22D181F4 /* darkula.min.css */,
 				1A66FD191CCAD17756B85B8FB2EB6375 /* default.min.css */,
 				8A0E5E43DA33B14BE1E41AFB2FB6A092 /* docco.min.css */,
 				30D06DF2E44C1D9F66F7BA860B18D9DA /* dracula.min.css */,
@@ -2059,6 +2079,7 @@
 				7ADAB120323CB820C435DF88AD4091FC /* capnproto.min.js in Resources */,
 				30138A33E1AE2F9A9CED01998E247739 /* ceylon.min.js in Resources */,
 				193C79D5478D81F4CA6E33D8228F3F7F /* clojure-repl.min.js in Resources */,
+				8C9CD6EA1D7CADF100EF3DE8 /* purebasic.min.css in Resources */,
 				D589AF5E7592945DD9555DC64EE20003 /* clojure.min.js in Resources */,
 				3BB518E2A4B396706049659120DFA1C6 /* cmake.min.js in Resources */,
 				98A506B4889DE2A250C1926663E0DD47 /* codepen-embed.min.css in Resources */,
@@ -2073,7 +2094,6 @@
 				8B8B7DB814AA84A466F9B9FA97B81C19 /* css.min.js in Resources */,
 				2B95BDB11EF00CB25B2E336AC5272592 /* d.min.js in Resources */,
 				EE37A5D1BBD7638627D69D3E0DA7DCDC /* dark.min.css in Resources */,
-				659F47BC330B198625CFFCEF7ECA38E9 /* darkula.min.css in Resources */,
 				D9F26FF3C72844CF4CAF26B600B667E8 /* dart.min.js in Resources */,
 				C3B1D5CDF406E1CBD8F33796BC751755 /* default.min.css in Resources */,
 				54EC8F21A84DABFD9FF32C77C283C9DA /* delphi.min.js in Resources */,
@@ -2138,6 +2158,7 @@
 				79B2AC9D27BB553BF791A728A52DD112 /* lisp.min.js in Resources */,
 				6772381DCFEFA703F1DEF5ABB5BC1B37 /* livecodeserver.min.js in Resources */,
 				906409A355B651F060FAD809740A24C8 /* livescript.min.js in Resources */,
+				8C9CD6E61D7CADF100EF3DE8 /* atom-one-light.min.css in Resources */,
 				BDB8E21E332C5D37CB899FA76D611158 /* lua.min.js in Resources */,
 				7A31391F8540978FF3412CF13010965D /* magula.min.css in Resources */,
 				A550CDDA39A0CFC2AD0220167642E515 /* makefile.min.js in Resources */,
@@ -2181,13 +2202,16 @@
 				8CE8AE59C2D6D5F62250846C4B2F6562 /* q.min.js in Resources */,
 				428838236A3FDC6DBF89D8ECE9AEF752 /* qml.min.js in Resources */,
 				975738803D5FF7408DCA21AA03CF772E /* qtcreator_dark.min.css in Resources */,
+				8C9CD6E81D7CADF100EF3DE8 /* darcula.min.css in Resources */,
 				0B443095E374A342D631834ABE779052 /* qtcreator_light.min.css in Resources */,
 				849EBE4A662905C7A8D922F6185B36DF /* r.min.js in Resources */,
 				7E72282ACF0A2CFBD9F9F6E03B5A9B5E /* railscasts.min.css in Resources */,
 				F922716A02204BF8F18638A6BC75C9AA /* rainbow.min.css in Resources */,
 				4D9611F1251D72C7FB15ED32D3A8C9A7 /* rib.min.js in Resources */,
 				D0079E085BA7930252E668CC4A187662 /* roboconf.min.js in Resources */,
+				8C9CD6E71D7CADF100EF3DE8 /* darkula.min.css in Resources */,
 				44F93ADAB6127C917FDE546353816CEC /* rsl.min.js in Resources */,
+				8C9CD6E51D7CADF100EF3DE8 /* atom-one-dark.min.css in Resources */,
 				CDB2F5533C45F7A9AEF06819553D6375 /* ruby.min.js in Resources */,
 				CD4FC3B534A43C70DCEE2FFA75BEAFBC /* ruleslanguage.min.js in Resources */,
 				E27941725BC118BC8D5F6A51115B0DBE /* rust.min.js in Resources */,
@@ -2235,6 +2259,7 @@
 				63AD83646440A61291B2461B4FB626C1 /* xml.min.js in Resources */,
 				A100739BF128826A7EF848A48FF619E6 /* xquery.min.js in Resources */,
 				094566BE1BE2129C3DDBFBA9B5E0CFF4 /* xt256.min.css in Resources */,
+				8C9CD6E91D7CADF100EF3DE8 /* ocean.min.css in Resources */,
 				CEDDDD98EDFA10559F3457E0CB3B1FFD /* yaml.min.js in Resources */,
 				C9FCE144D9C2BD1FEC34CB6474C3384C /* zenburn.min.css in Resources */,
 				3FF8FAD1DCF19F539351DF1097E1E0D8 /* zephir.min.js in Resources */,
@@ -2291,6 +2316,7 @@
 				5BABF12721DEA06DFD0B335F2E613330 /* capnproto.min.js in Resources */,
 				1CC7420FE3C8D7F5928FD26D1351882E /* ceylon.min.js in Resources */,
 				89C7128CAB0E9E9A94826ECE899C3486 /* clojure-repl.min.js in Resources */,
+				8C9CD6F01D7CADF100EF3DE8 /* purebasic.min.css in Resources */,
 				CFD29EE7DC2FB5E501E6CD8945609239 /* clojure.min.js in Resources */,
 				387AB9571ED720648E6C98BFDBA0F91D /* cmake.min.js in Resources */,
 				7222C75913F46206BDCDBDC6A8BDE356 /* codepen-embed.min.css in Resources */,
@@ -2305,7 +2331,6 @@
 				CE3F5D941B8CFDC6D78E06F9ECC43BD7 /* css.min.js in Resources */,
 				323E7AB5074842B971E5016A192E5562 /* d.min.js in Resources */,
 				172101C327DCE5A728973670DEF68A8C /* dark.min.css in Resources */,
-				45BE8C5942F0839DA827388150897C75 /* darkula.min.css in Resources */,
 				A6D441C9908D68FE601BF1581E6112A8 /* dart.min.js in Resources */,
 				E19E359ADB67524BF62352486E99277E /* default.min.css in Resources */,
 				DC830DA23CED3E753DF0C8CA7E50C6F8 /* delphi.min.js in Resources */,
@@ -2370,6 +2395,7 @@
 				332EA98CAD1E28FE6483909CB2320B70 /* lisp.min.js in Resources */,
 				2FC1F5505F1230455006DF954CBC559C /* livecodeserver.min.js in Resources */,
 				D4CAF5E5CD0482405058F233F90E13B4 /* livescript.min.js in Resources */,
+				8C9CD6EC1D7CADF100EF3DE8 /* atom-one-light.min.css in Resources */,
 				B868D25127FA3307F5EDE1F4CBC48035 /* lua.min.js in Resources */,
 				EA194728EF36BF16A91ECA800D55B81D /* magula.min.css in Resources */,
 				D474FCAF2A8B708754D4D80EE2E245F7 /* makefile.min.js in Resources */,
@@ -2413,13 +2439,16 @@
 				66978373CACC9243EF990AEF12A12A40 /* q.min.js in Resources */,
 				809A0BB248E7446F705BF0C5CE6D9A8A /* qml.min.js in Resources */,
 				DF75766C115B20CD6531826F30983587 /* qtcreator_dark.min.css in Resources */,
+				8C9CD6EE1D7CADF100EF3DE8 /* darcula.min.css in Resources */,
 				3FC07D06DF40D204C2A13BAC6D53D960 /* qtcreator_light.min.css in Resources */,
 				C30F515786988C025A4E46BE8CA8E0AD /* r.min.js in Resources */,
 				449EE486BBACF917435D311BD713071B /* railscasts.min.css in Resources */,
 				2F5887C96660D9FE815B3C6F77AD3D19 /* rainbow.min.css in Resources */,
 				630604638B01F7DC19CDB13D2B8DAD47 /* rib.min.js in Resources */,
 				E48380A23B1D4D98B269C984F9BDD231 /* roboconf.min.js in Resources */,
+				8C9CD6ED1D7CADF100EF3DE8 /* darkula.min.css in Resources */,
 				D55088DF36EEC5DBD22E004A3A53315A /* rsl.min.js in Resources */,
+				8C9CD6EB1D7CADF100EF3DE8 /* atom-one-dark.min.css in Resources */,
 				277BB1CE3FCDA90E2B0EE575E83200D1 /* ruby.min.js in Resources */,
 				63189AE99A0142E782A525E4C9BDF235 /* ruleslanguage.min.js in Resources */,
 				C4EACECB428823E0951EAFAF1E5F98C8 /* rust.min.js in Resources */,
@@ -2467,6 +2496,7 @@
 				134B87E8BCDFD914DFB9235FBDC86289 /* xml.min.js in Resources */,
 				DA0C7F85E618AA49DD3AE77571FBA4E1 /* xquery.min.js in Resources */,
 				FBF618613EF6643BDC16ACBDC192890C /* xt256.min.css in Resources */,
+				8C9CD6EF1D7CADF100EF3DE8 /* ocean.min.css in Resources */,
 				3E227EE23A467EF0B4841EA70C9203B0 /* yaml.min.js in Resources */,
 				458C5F3C72C9D0F1030A098A36A2DE36 /* zenburn.min.css in Resources */,
 				B57B9BECAFD1D3DFDE517DB9BC2E1B94 /* zephir.min.js in Resources */,
