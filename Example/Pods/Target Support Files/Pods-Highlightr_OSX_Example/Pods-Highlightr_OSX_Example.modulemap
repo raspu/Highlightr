@@ -1,6 +1,0 @@
-framework module Pods_Highlightr_OSX_Example {
-  umbrella header "Pods-Highlightr_OSX_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
