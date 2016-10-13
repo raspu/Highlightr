@@ -96,13 +96,12 @@ class SampleCode: UIViewController
         let code = textStorage.string
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async
-        {
+
+        DispatchQueue.global(qos: .userInteractive).async {
             let start = Date()
             for _ in 0...100
             {
-                self.highlightr.highlight(self.languageName.text!, code: code, fastRender: true)
+                self.highlightr.highlight(code, as: self.languageName.text!)
             }
             let end = Date()
             let time = Float(end.timeIntervalSince(start));
@@ -136,7 +135,7 @@ class SampleCode: UIViewController
                                      doneBlock:
             { picker, index, value in
                 let theme = value! as! String
-                self.textStorage.highlightr.setTheme(theme)
+                self.textStorage.highlightr.setTheme(to: theme)
                 self.themeName.text = theme.capitalized
                 self.updateColors()
             },

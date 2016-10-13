@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         textStorage.language = "Swift"
-        textStorage.highlightr.setTheme("Pojoaque")
+        textStorage.highlightr.setTheme(to: "Pojoaque")
         textStorage.highlightr.theme.codeFont = NSFont(name: "Courier", size: 12)
         
         let code = try! String.init(contentsOfFile: Bundle.main.path(forResource: "sampleCode", ofType: "txt")!)

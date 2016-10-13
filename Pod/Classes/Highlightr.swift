@@ -55,7 +55,7 @@ open class Highlightr
             return nil
         }
         
-        guard setTheme("pojoaque") else
+        guard setTheme(to: "pojoaque") else
         {
             return nil
         }
@@ -65,11 +65,12 @@ open class Highlightr
     /**
      Set the theme to use for highlighting.
      
-     - parameter name: String, theme name.
+     - parameter to: Theme name
      
-     - returns: true if it was posible to set the given theme, false otherwise.
+     - returns: true if it was possible to set the given theme, false otherwise
      */
-    open func setTheme(_ name: String) -> Bool
+    @discardableResult
+    open func setTheme(to name: String) -> Bool
     {
         guard let defTheme = bundle.path(forResource: name+".min", ofType: "css") else
         {
@@ -85,13 +86,13 @@ open class Highlightr
     /**
      Takes a String and returns a NSAttributedString with the given language highlighted.
      
-     - parameter languageName:   Language name or alias
      - parameter code:           Code to highlight
-     - parameter fastRender:     If *true* will use the custom made html parser rather than Apple's solution.
+     - parameter languageName:   Language name or alias
+     - parameter fastRender:     Defaults to true - When *true* will use the custom made html parser rather than Apple's solution.
      
      - returns: NSAttributedString with the detected code highlighted.
      */
-    open func highlight(_ languageName: String, code: String, fastRender: Bool) -> NSAttributedString?
+    open func highlight(_ code: String, as languageName: String, fastRender: Bool = true) -> NSAttributedString?
     {
         var fixedCode = code.replacingOccurrences(of: "\\",with: "\\\\");
         fixedCode = fixedCode.replacingOccurrences(of: "\'",with: "\\\'");
@@ -197,7 +198,7 @@ open class Highlightr
             else if(nextChar == "/")
             {
                 scanner.scanLocation += (spanEnd as NSString).length
-                propStack.popLast()
+                propStack.removeLast()
             }else
             {
                 let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
