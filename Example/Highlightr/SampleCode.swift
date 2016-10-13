@@ -35,11 +35,11 @@ class SampleCode: UIViewController
     {
         super.viewDidLoad()
         
-        activityIndicator.hidden = true
+        activityIndicator.isHidden = true
         languageName.text = "Swift"
         themeName.text = "Pojoaque"
         
-        textStorage.language = languageName.text?.lowercaseString
+        textStorage.language = languageName.text?.lowercased()
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         
@@ -47,14 +47,14 @@ class SampleCode: UIViewController
         layoutManager.addTextContainer(textContainer)
         
         textView = UITextView(frame: viewPlaceholder.bounds, textContainer: textContainer)
-        textView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        textView.autocorrectionType = UITextAutocorrectionType.No
-        textView.autocapitalizationType = UITextAutocapitalizationType.None
+        textView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        textView.autocorrectionType = UITextAutocorrectionType.no
+        textView.autocapitalizationType = UITextAutocapitalizationType.none
         textView.textColor = UIColor(white: 0.8, alpha: 1.0)
         textView.inputAccessoryView = textToolbar
         viewPlaceholder.addSubview(textView)
         
-        let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
+        let code = try! String.init(contentsOfFile: Bundle.main.path(forResource: "sampleCode", ofType: "txt")!)
         textView.text = code
         
         highlightr = textStorage.highlightr
@@ -67,86 +67,85 @@ class SampleCode: UIViewController
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func pickLanguage(sender: AnyObject)
+    @IBAction func pickLanguage(_ sender: AnyObject)
     {
         let languages = highlightr.supportedLanguages()
-        let indexOrNil = languages.indexOf(languageName.text!.lowercaseString)
+        let indexOrNil = languages.index(of: languageName.text!.lowercased())
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
         
-        ActionSheetStringPicker.showPickerWithTitle("Pick a Language",
-                                                    rows: languages,
-                                                    initialSelection: index,
-                                                    doneBlock:
+        ActionSheetStringPicker.show(withTitle: "Pick a Language",
+                                     rows: languages,
+                                     initialSelection: index,
+                                     doneBlock:
             { picker, index, value in
                 let language = value! as! String
                 self.textStorage.language = language
-                self.languageName.text = language.capitalizedString
-                let snippetPath = NSBundle.mainBundle().pathForResource("default", ofType: "txt", inDirectory: "Samples/\(language)", forLocalization: nil)
+                self.languageName.text = language.capitalized
+                let snippetPath = Bundle.main.path(forResource: "default", ofType: "txt", inDirectory: "Samples/\(language)", forLocalization: nil)
                 let snippet = try! String(contentsOfFile: snippetPath!)
                 self.textView.text = snippet
                 
             },
-                                                    cancelBlock: nil,
+                                     cancel: nil,
                                                     origin: toolBar)
 
     }
 
-    @IBAction func performanceTest(sender: AnyObject)
+    @IBAction func performanceTest(_ sender: AnyObject)
     {
         let code = textStorage.string
-        activityIndicator.hidden = false
+        activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async
         {
-            let start = NSDate()
+            let start = Date()
             for _ in 0...100
             {
                 self.highlightr.highlight(self.languageName.text!, code: code, fastRender: true)
             }
-            let end = NSDate()
-            let time = Float(end.timeIntervalSinceDate(start));
+            let end = Date()
+            let time = Float(end.timeIntervalSince(start));
             
             let avg = String(format:"%0.4f", time/100)
             let total = String(format:"%0.3f", time)
             
-            let alert = UIAlertController(title: "Performance test", message: "This code was highlighted 100 times. \n It took an average of \(avg) seconds to process each time,\n with a total of \(total) seconds", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: "Performance test", message: "This code was highlighted 100 times. \n It took an average of \(avg) seconds to process each time,\n with a total of \(total) seconds", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(okAction)
             
-            dispatch_async(dispatch_get_main_queue(),
-            {
-                self.activityIndicator.hidden = true
+            DispatchQueue.main.async(execute: {
+                self.activityIndicator.isHidden = true
                 self.activityIndicator.stopAnimating()
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             })
         }
         
     }
     
-    @IBAction func pickTheme(sender: AnyObject)
+    @IBAction func pickTheme(_ sender: AnyObject)
     {
         hideKeyboard(nil)
         let themes = highlightr.availableThemes()
-        let indexOrNil = themes.indexOf(themeName.text!.lowercaseString)
+        let indexOrNil = themes.index(of: themeName.text!.lowercased())
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
         
-        ActionSheetStringPicker.showPickerWithTitle("Pick a Theme",
-                                                    rows: themes,
-                                                    initialSelection: index,
-                                                    doneBlock:
+        ActionSheetStringPicker.show(withTitle: "Pick a Theme",
+                                     rows: themes,
+                                     initialSelection: index,
+                                     doneBlock:
             { picker, index, value in
                 let theme = value! as! String
                 self.textStorage.highlightr.setTheme(theme)
-                self.themeName.text = theme.capitalizedString
+                self.themeName.text = theme.capitalized
                 self.updateColors()
             },
-                                                    cancelBlock: nil,
+                                     cancel: nil,
                                                     origin: toolBar)
         
     }
     
-    @IBAction func hideKeyboard(sender: AnyObject?)
+    @IBAction func hideKeyboard(_ sender: AnyObject?)
     {
         textView.resignFirstResponder()
     }
@@ -157,12 +156,12 @@ class SampleCode: UIViewController
         navBar.barTintColor = highlightr.theme.themeBackgroundColor
         navBar.tintColor = invertColor(navBar.barTintColor!)
         languageName.textColor = navBar.tintColor
-        themeName.textColor = navBar.tintColor.colorWithAlphaComponent(0.5)
+        themeName.textColor = navBar.tintColor.withAlphaComponent(0.5)
         toolBar.barTintColor = navBar.barTintColor
         toolBar.tintColor = navBar.tintColor
     }
     
-    func invertColor(color: UIColor) -> UIColor
+    func invertColor(_ color: UIColor) -> UIColor
     {
         var r:CGFloat = 0, g:CGFloat = 0, b:CGFloat = 0
         color.getRed(&r, green: &g, blue: &b, alpha: nil)

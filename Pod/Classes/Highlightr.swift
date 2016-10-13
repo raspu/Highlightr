@@ -10,10 +10,10 @@ import Foundation
 import JavaScriptCore
 
 /// Utility class for generating a highlighted NSAttributedString from a String.
-public class Highlightr
+open class Highlightr
 {
     /// Returns the current Theme.
-    public var theme : Theme!
+    open var theme : Theme!
     {
         didSet
         {
@@ -22,16 +22,16 @@ public class Highlightr
     }
     
     /// This block will be called every time the theme changes.
-    public var themeChanged : (Theme -> Void)?
+    open var themeChanged : ((Theme) -> Void)?
     
-    private let jsContext : JSContext
-    private let hljs = "window.hljs"
-    private let bundle : NSBundle
-    private let htmlStart = "<"
-    private let spanStart = "span class=\""
-    private let spanStartClose = "\">"
-    private let spanEnd = "/span>"
-    private let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .CaseInsensitive)
+    fileprivate let jsContext : JSContext
+    fileprivate let hljs = "window.hljs"
+    fileprivate let bundle : Bundle
+    fileprivate let htmlStart = "<"
+    fileprivate let spanStart = "span class=\""
+    fileprivate let spanStartClose = "\">"
+    fileprivate let spanEnd = "/span>"
+    fileprivate let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .caseInsensitive)
     
     /**
      Default init method, generates a JSContext instance and the default Theme.
@@ -42,15 +42,15 @@ public class Highlightr
     {
         jsContext = JSContext()
         jsContext.evaluateScript("var window = {};")
-        bundle = NSBundle(forClass: Highlightr.self)
-        guard let hgPath = bundle.pathForResource("highlight.min", ofType: "js") else
+        bundle = Bundle(for: Highlightr.self)
+        guard let hgPath = bundle.path(forResource: "highlight.min", ofType: "js") else
         {
             return nil
         }
         
         let hgJs = try! String.init(contentsOfFile: hgPath)
         let value = jsContext.evaluateScript(hgJs)
-        if !value.toBool()
+        if !(value?.toBool())!
         {
             return nil
         }
@@ -69,9 +69,9 @@ public class Highlightr
      
      - returns: true if it was posible to set the given theme, false otherwise.
      */
-    public func setTheme(name: String) -> Bool
+    open func setTheme(_ name: String) -> Bool
     {
-        guard let defTheme = bundle.pathForResource(name+".min", ofType: "css") else
+        guard let defTheme = bundle.path(forResource: name+".min", ofType: "css") else
         {
             return false
         }
@@ -91,13 +91,13 @@ public class Highlightr
      
      - returns: NSAttributedString with the detected code highlighted.
      */
-    public func highlight(languageName: String, code: String, fastRender: Bool) -> NSAttributedString?
+    open func highlight(_ languageName: String, code: String, fastRender: Bool) -> NSAttributedString?
     {
-        var fixedCode = code.stringByReplacingOccurrencesOfString("\\",withString: "\\\\");
-        fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\'",withString: "\\\'");
-        fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\"", withString:"\\\"");
-        fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\n", withString:"\\n");
-        fixedCode = fixedCode.stringByReplacingOccurrencesOfString("\r", withString:"");
+        var fixedCode = code.replacingOccurrences(of: "\\",with: "\\\\");
+        fixedCode = fixedCode.replacingOccurrences(of: "\'",with: "\\\'");
+        fixedCode = fixedCode.replacingOccurrences(of: "\"", with:"\\\"");
+        fixedCode = fixedCode.replacingOccurrences(of: "\n", with:"\\n");
+        fixedCode = fixedCode.replacingOccurrences(of: "\r", with:"");
 
         let command =  String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs,languageName, fixedCode)
         let res = jsContext.evaluateScript(command)
@@ -115,11 +115,11 @@ public class Highlightr
              string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
              let opt = [
              NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-             NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-             ]
+             NSCharacterEncodingDocumentAttribute: String.Encoding.utf8
+             ] as [String : Any]
             
-             let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
-             returnString = try! NSMutableAttributedString(data:data,options:opt as! [String:AnyObject],documentAttributes:nil)
+             let data = string.data(using: String.Encoding.utf8)!
+             returnString = try! NSMutableAttributedString(data:data,options:opt as [String:AnyObject],documentAttributes:nil)
 
         }
         
@@ -131,12 +131,12 @@ public class Highlightr
      
      - returns: Array of Strings
      */
-    public func availableThemes() -> [String]
+    open func availableThemes() -> [String]
     {
-        let paths = bundle.pathsForResourcesOfType("css", inDirectory: nil) as [NSString]
+        let paths = bundle.paths(forResourcesOfType: "css", inDirectory: nil) as [NSString]
         var result = [String]()
         for path in paths {
-            result.append(path.lastPathComponent.stringByReplacingOccurrencesOfString(".min.css", withString: ""))
+            result.append(path.lastPathComponent.replacingOccurrences(of: ".min.css", with: ""))
         }
         
         return result
@@ -147,28 +147,28 @@ public class Highlightr
      
      - returns: Array of Strings
      */
-    public func supportedLanguages() -> [String]
+    open func supportedLanguages() -> [String]
     {
         let command =  String.init(format: "%@.listLanguages();", hljs)
         let res = jsContext.evaluateScript(command)
-        return res.toArray() as! [String]
+        return res!.toArray() as! [String]
     }
     
     //Private & Internal
-    private func processHTMLString(string: String) -> NSAttributedString?
+    fileprivate func processHTMLString(_ string: String) -> NSAttributedString?
     {
-        let scanner = NSScanner(string: string)
+        let scanner = Scanner(string: string)
         scanner.charactersToBeSkipped = nil
-        var scannedString = NSString?()
+        var scannedString: NSString?
         let resultString = NSMutableAttributedString(string: "")
         var propStack = ["hljs"]
         
-        while !scanner.atEnd
+        while !scanner.isAtEnd
         {
             var ended = false
-            if scanner.scanUpToString(htmlStart, intoString: &scannedString)
+            if scanner.scanUpTo(htmlStart, into: &scannedString)
             {
-                if scanner.atEnd
+                if scanner.isAtEnd
                 {
                     ended = true
                 }
@@ -176,7 +176,7 @@ public class Highlightr
             
             if scannedString != nil && scannedString!.length > 0 {
                 let attrScannedString = theme.applyStyleToString(scannedString! as String, styleList: propStack)
-                resultString.appendAttributedString(attrScannedString)
+                resultString.append(attrScannedString)
                 if ended
                 {
                     continue
@@ -186,11 +186,11 @@ public class Highlightr
             scanner.scanLocation += 1
             
             let string = scanner.string as NSString
-            let nextChar = string.substringWithRange(NSMakeRange(scanner.scanLocation, 1))
+            let nextChar = string.substring(with: NSMakeRange(scanner.scanLocation, 1))
             if(nextChar == "s")
             {
                 scanner.scanLocation += (spanStart as NSString).length
-                scanner.scanUpToString(spanStartClose, intoString:&scannedString)
+                scanner.scanUpTo(spanStartClose, into:&scannedString)
                 scanner.scanLocation += (spanStartClose as NSString).length
                 propStack.append(scannedString! as String)
             }
@@ -201,24 +201,24 @@ public class Highlightr
             }else
             {
                 let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
-                resultString.appendAttributedString(attrScannedString)
+                resultString.append(attrScannedString)
                 scanner.scanLocation += 1
             }
             
             scannedString = nil
         }
         
-        let results = htmlEscape.matchesInString(resultString.string,
-                                               options: [.ReportCompletion],
+        let results = htmlEscape.matches(in: resultString.string,
+                                               options: [.reportCompletion],
                                                range: NSMakeRange(0, resultString.length))
         var locOffset = 0
         for result in results
         {
             let fixedRange = NSMakeRange(result.range.location-locOffset, result.range.length)
-            let entity = (resultString.string as NSString).substringWithRange(fixedRange)
+            let entity = (resultString.string as NSString).substring(with: fixedRange)
             if let decodedEntity = HTMLUtils.decode(entity)
             {
-                resultString.replaceCharactersInRange(fixedRange, withString: String(decodedEntity))
+                resultString.replaceCharacters(in: fixedRange, with: String(decodedEntity))
                 locOffset += result.range.length-1;
             }
             
