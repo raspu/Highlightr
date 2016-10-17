@@ -212,12 +212,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Highlightr_Example" */;
 			buildPhases = (
-				194E6616E2B2C562E0768547 /* 📦 Check Pods Manifest.lock */,
+				194E6616E2B2C562E0768547 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				91E58AC425EA774EFA9EE9EE /* 📦 Embed Pods Frameworks */,
-				AECC48C4F1DD6213B3CA864B /* 📦 Copy Pods Resources */,
+				91E58AC425EA774EFA9EE9EE /* [CP] Embed Pods Frameworks */,
+				AECC48C4F1DD6213B3CA864B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,12 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Highlightr_Tests" */;
 			buildPhases = (
-				6EA39D7A224960E6B92CD4B1 /* 📦 Check Pods Manifest.lock */,
+				6EA39D7A224960E6B92CD4B1 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				D0F57FA2414986D0047DC0A5 /* 📦 Embed Pods Frameworks */,
-				40572DFC46D18E413D6DD8AF /* 📦 Copy Pods Resources */,
+				D0F57FA2414986D0047DC0A5 /* [CP] Embed Pods Frameworks */,
+				40572DFC46D18E413D6DD8AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,12 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C9564301CE79E5200C0C7FA /* Build configuration list for PBXNativeTarget "Highlightr_OSX_Example" */;
 			buildPhases = (
-				BB0E219BEBA391640837556F /* 📦 Check Pods Manifest.lock */,
+				BB0E219BEBA391640837556F /* [CP] Check Pods Manifest.lock */,
 				8C9564221CE79E5200C0C7FA /* Sources */,
 				8C9564231CE79E5200C0C7FA /* Frameworks */,
 				8C9564241CE79E5200C0C7FA /* Resources */,
-				99E9E4A243E20636B6862D85 /* 📦 Embed Pods Frameworks */,
-				9762E35CFD423139795C0974 /* 📦 Copy Pods Resources */,
+				99E9E4A243E20636B6862D85 /* [CP] Embed Pods Frameworks */,
+				9762E35CFD423139795C0974 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,18 +276,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 					8C9564251CE79E5200C0C7FA = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -344,29 +347,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		194E6616E2B2C562E0768547 /* 📦 Check Pods Manifest.lock */ = {
+		194E6616E2B2C562E0768547 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		40572DFC46D18E413D6DD8AF /* 📦 Copy Pods Resources */ = {
+		40572DFC46D18E413D6DD8AF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,29 +377,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6EA39D7A224960E6B92CD4B1 /* 📦 Check Pods Manifest.lock */ = {
+		6EA39D7A224960E6B92CD4B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		91E58AC425EA774EFA9EE9EE /* 📦 Embed Pods Frameworks */ = {
+		91E58AC425EA774EFA9EE9EE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,14 +407,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9762E35CFD423139795C0974 /* 📦 Copy Pods Resources */ = {
+		9762E35CFD423139795C0974 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,14 +422,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99E9E4A243E20636B6862D85 /* 📦 Embed Pods Frameworks */ = {
+		99E9E4A243E20636B6862D85 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,14 +437,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AECC48C4F1DD6213B3CA864B /* 📦 Copy Pods Resources */ = {
+		AECC48C4F1DD6213B3CA864B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,29 +452,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BB0E219BEBA391640837556F /* 📦 Check Pods Manifest.lock */ = {
+		BB0E219BEBA391640837556F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D0F57FA2414986D0047DC0A5 /* 📦 Embed Pods Frameworks */ = {
+		D0F57FA2414986D0047DC0A5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,8 +554,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -596,8 +601,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -616,6 +623,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -624,6 +632,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CF75D031FDF606D266D5CFE /* Pods-Highlightr_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Highlightr/Info.plist;
@@ -631,6 +640,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -639,12 +649,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FACBE1ED06E5718AE417DCC0 /* Pods-Highlightr_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Highlightr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -653,6 +665,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9955747CECEEED28D898D63 /* Pods-Highlightr_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -665,6 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -672,6 +686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA6727177ADDFB0846D399B1 /* Pods-Highlightr_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -680,6 +695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -687,6 +703,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 418D37EA8EE5FE61CD1C6035 /* Pods-Highlightr_OSX_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -698,6 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raspu.Highlightr-OSX-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -705,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C52D7015E12B5CAA5D314E74 /* Pods-Highlightr_OSX_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -715,6 +734,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raspu.Highlightr-OSX-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

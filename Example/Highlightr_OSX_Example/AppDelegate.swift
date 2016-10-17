@@ -17,14 +17,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var textView : NSTextView!
     let textStorage = CodeAttributedString()
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         textStorage.language = "Swift"
-        textStorage.highlightr.setTheme("Pojoaque")
+        textStorage.highlightr.setTheme(to: "Pojoaque")
         textStorage.highlightr.theme.codeFont = NSFont(name: "Courier", size: 12)
         
-        let code = try! String.init(contentsOfFile: NSBundle.mainBundle().pathForResource("sampleCode", ofType: "txt")!)
+        let code = try! String.init(contentsOfFile: Bundle.main.path(forResource: "sampleCode", ofType: "txt")!)
         textStorage.setAttributedString(NSAttributedString(string: code))
         
         let layoutManager = NSLayoutManager()
@@ -35,15 +35,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         textView = NSTextView(frame: (window.contentView?.bounds)!, textContainer: textContainer)
-        textView.autoresizingMask = [.ViewWidthSizable,.ViewHeightSizable]
+        textView.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
         textView.translatesAutoresizingMaskIntoConstraints = true
         textView.backgroundColor = (textStorage.highlightr.theme.themeBackgroundColor)!
-        textView.insertionPointColor = NSColor.whiteColor()
+        textView.insertionPointColor = NSColor.white
         window.contentView?.addSubview(textView)
         
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 

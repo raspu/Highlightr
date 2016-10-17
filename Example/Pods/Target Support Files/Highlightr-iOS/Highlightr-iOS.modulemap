@@ -1,6 +1,0 @@
-framework module Highlightr {
-  umbrella header "Highlightr-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

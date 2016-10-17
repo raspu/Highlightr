@@ -18,7 +18,7 @@ import Foundation
      
      - returns: Bool
      */
-    optional func shouldHighlight(range:NSRange) -> Bool
+    @objc optional func shouldHighlight(_ range:NSRange) -> Bool
     
     /**
      Called after a range of the string was highlighted, if there was an error **success** will be *false*.
@@ -26,19 +26,19 @@ import Foundation
      - parameter range:   NSRange
      - parameter success: Bool
      */
-    optional func didHighlight(range:NSRange, success: Bool)
+    @objc optional func didHighlight(_ range:NSRange, success: Bool)
 }
 
 /// NSTextStorage subclass. Can be used to dynamically highlight code.
-public class CodeAttributedString : NSTextStorage
+open class CodeAttributedString : NSTextStorage
 {
     let stringStorage = NSMutableAttributedString(string: "")
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
-    public let highlightr = Highlightr()!
+    open let highlightr = Highlightr()!
     
     /// This object will be notified before and after the highlighting.
-    public var highlightDelegate : HighlightDelegate?
+    open var highlightDelegate : HighlightDelegate?
 
     /// Initialize the CodeAttributedString
     public override init()
@@ -56,7 +56,7 @@ public class CodeAttributedString : NSTextStorage
     
     #if os(OSX)
     /// Initialize the CodeAttributedString
-    required public init?(pasteboardPropertyList propertyList: AnyObject, ofType type: String)
+    required public init?(pasteboardPropertyList propertyList: Any, ofType type: String)
     {
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
@@ -64,7 +64,7 @@ public class CodeAttributedString : NSTextStorage
     #endif
     
     /// Language syntax to use for highlighting.
-    public var language : String?
+    open var language : String?
     {
         didSet
         {
@@ -73,7 +73,7 @@ public class CodeAttributedString : NSTextStorage
     }
     
     /// Returns a standard String based on the current one.
-    public override var string: String
+    open override var string: String
     {
         get
         {
@@ -89,9 +89,9 @@ public class CodeAttributedString : NSTextStorage
      
      - returns: Attributes
      */
-    public override func attributesAtIndex(location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject]
+    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [String : Any]
     {
-        return stringStorage.attributesAtIndex(location, effectiveRange: range)
+        return stringStorage.attributes(at: location, effectiveRange: range)
     }
     
     /**
@@ -100,10 +100,10 @@ public class CodeAttributedString : NSTextStorage
      - parameter range: NSRange
      - parameter str:   String
      */
-    public override func replaceCharactersInRange(range: NSRange, withString str: String)
+    open override func replaceCharacters(in range: NSRange, with str: String)
     {
-        stringStorage.replaceCharactersInRange(range, withString: str)
-        self.edited(NSTextStorageEditActions.EditedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
+        stringStorage.replaceCharacters(in: range, with: str)
+        self.edited(NSTextStorageEditActions.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
     }
     
     /**
@@ -112,29 +112,29 @@ public class CodeAttributedString : NSTextStorage
      - parameter attrs: [String : AnyObject]
      - parameter range: NSRange
      */
-    public override func setAttributes(attrs: [String : AnyObject]?, range: NSRange)
+    open override func setAttributes(_ attrs: [String : Any]?, range: NSRange)
     {
         stringStorage.setAttributes(attrs, range: range)
-        self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
+        self.edited(NSTextStorageEditActions.editedAttributes, range: range, changeInLength: 0)
     }
     
     /**
      Called internally everytime the string is modified.
      */
-    public override func processEditing()
+    open override func processEditing()
     {
         super.processEditing()
         if language != nil {
-            if self.editedMask.contains(.EditedCharacters)
+            if self.editedMask.contains(.editedCharacters)
             {
                 let string = (self.string as NSString)
-                let range = string.paragraphRangeForRange(editedRange)
+                let range = string.paragraphRange(for: editedRange)
                 highlight(range)
             }
         }
     }
 
-    func highlight(range: NSRange)
+    func highlight(_ range: NSRange)
     {
         if(language == nil)
         {
@@ -152,12 +152,11 @@ public class CodeAttributedString : NSTextStorage
 
         
         let string = (self.string as NSString)
-        let line = string.substringWithRange(range)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        let line = string.substring(with: range)
+        DispatchQueue.global().async
         {
-            let tmpStrg = self.highlightr.highlight(self.language!, code: line, fastRender: true)
-            dispatch_async(dispatch_get_main_queue(),
-            {
+            let tmpStrg = self.highlightr.highlight(line, as: self.language!)
+            DispatchQueue.main.async(execute: {
                 //Checks to see if this highlighting is still valid.
                 if((range.location + range.length) > self.stringStorage.length)
                 {
@@ -165,21 +164,21 @@ public class CodeAttributedString : NSTextStorage
                     return;
                 }
                 
-                if(tmpStrg?.string != self.stringStorage.attributedSubstringFromRange(range).string)
+                if(tmpStrg?.string != self.stringStorage.attributedSubstring(from: range).string)
                 {
                     self.highlightDelegate?.didHighlight?(range, success: false)
                     return;
                 }
                 
                 self.beginEditing()
-                tmpStrg?.enumerateAttributesInRange(NSMakeRange(0, (tmpStrg?.length)!), options: [], usingBlock: { (attrs, locRange, stop) in
+                tmpStrg?.enumerateAttributes(in: NSMakeRange(0, (tmpStrg?.length)!), options: [], using: { (attrs, locRange, stop) in
                     var fixedRange = NSMakeRange(range.location+locRange.location, locRange.length)
                     fixedRange.length = (fixedRange.location + fixedRange.length < string.length) ? fixedRange.length : string.length-fixedRange.location
                     fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
                     self.stringStorage.setAttributes(attrs, range: fixedRange)
                 })
                 self.endEditing()
-                self.edited(NSTextStorageEditActions.EditedAttributes, range: range, changeInLength: 0)
+                self.edited(NSTextStorageEditActions.editedAttributes, range: range, changeInLength: 0)
                 self.highlightDelegate?.didHighlight?(range, success: true)
             })
             

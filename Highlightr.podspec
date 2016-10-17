@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = "Highlightr"
-  s.version          = "0.9.3"
-  s.summary          = "iOS & OSX Syntax Highlighter."
+  s.version          = "1.0.0"
+  s.summary          = "iOS & macOS Syntax Highlighter."
 
   s.description      = <<-DESC
-                    Highlightr is an iOS & OSX syntax highlighter built with Swift. It uses highlight.js as it core, supports 152 languages and comes with 72 styles.
+                    Highlightr is an iOS & macOS syntax highlighter built with Swift. It uses highlight.js as it core, supports 166 languages and comes with 77 styles.
                        DESC
 
   s.homepage         = "http://github.com/raspu/Highlightr"

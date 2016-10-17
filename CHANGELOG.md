@@ -1,3 +1,13 @@
+1.0.0 Release notes (2016-10-13)
+=============================================================
+
+### Breaking changes
+
+* Updated to Swift 3 and xCode 8 compatibility
+* Adopted Swift 3 API Design Guidelines
+    - `highlightr.highlight("swift", code: code, fastRender: true)` -> `highlightr.highlight(code, as: "swift")` *`fastRender` is now optional and defaults to true*
+    - `highlightr.setTheme("paraiso-dark")` -> `highlightr.setTheme(to: "paraiso-dark")`
+
 0.9.3 Release notes (2016-09-04)
 =============================================================
 
@@ -28,4 +38,4 @@
 
 ### Bugfixes
 
-* Possible crash in CodeAttributedString when no language is specified. 
+* Possible crash in CodeAttributedString when no language is specified.
