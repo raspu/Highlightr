@@ -9,8 +9,6 @@ Highlightr is an iOS & macOS syntax highlighter built with Swift. It uses [highl
 
 Takes your lame string with code and returns a NSAttributtedString with proper syntax highlighting.
 
-The current version is under development but is functional.
-
 ![Sample Gif A](https://raw.githubusercontent.com/raspu/Highlightr/master/mix2.gif)
 ![Sample Gif B](https://raw.githubusercontent.com/raspu/Highlightr/master/coding.gif)
 
