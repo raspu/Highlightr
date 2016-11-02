@@ -1,9 +1,13 @@
 1.0.0 Release notes (2016-10-13)
 =============================================================
 
+### Enhancements
+
+* highlight.js updated to version 9.8.0.
+* Updated to Swift 3 and Xcode 8 compatibility
+
 ### Breaking changes
 
-* Updated to Swift 3 and xCode 8 compatibility
 * Adopted Swift 3 API Design Guidelines
     - `highlightr.highlight("swift", code: code, fastRender: true)` -> `highlightr.highlight(code, as: "swift")` *`fastRender` is now optional and defaults to true*
     - `highlightr.setTheme("paraiso-dark")` -> `highlightr.setTheme(to: "paraiso-dark")`
