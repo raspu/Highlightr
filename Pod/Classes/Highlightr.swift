@@ -14,7 +14,7 @@ open class Highlightr
 {
     /// Returns the current Theme.
     open var theme : Theme!
-        {
+    {
         didSet
         {
             themeChanged?(theme)
@@ -78,34 +78,29 @@ open class Highlightr
         }
         let themeString = try! String.init(contentsOfFile: defTheme)
         theme =  Theme(themeString: themeString)
-        
+
         
         return true
     }
     
-    /// Takes a String and returns a NSAttributedString with the given language highlighted.
-    ///
-    /// - Parameters:
-    ///   - code: Code to highlight.
-    ///   - languageName: Language name or alias.
-    ///   - needsFastRender: Defaults to true - When *true* will use the custom made html parser rather than Apple's solution.
-    /// - Returns: NSAttributedString with the detected code highlighted.
-    open func highlight(_ code: String, language languageName: String? = nil, needsFastRender: Bool = true) -> NSAttributedString?
+    /**
+     Takes a String and returns a NSAttributedString with the given language highlighted.
+     
+     - parameter code:           Code to highlight
+     - parameter languageName:   Language name or alias
+     - parameter fastRender:     Defaults to true - When *true* will use the custom made html parser rather than Apple's solution.
+     
+     - returns: NSAttributedString with the detected code highlighted.
+     */
+    open func highlight(_ code: String, as languageName: String, fastRender: Bool = true) -> NSAttributedString?
     {
         var fixedCode = code.replacingOccurrences(of: "\\",with: "\\\\");
         fixedCode = fixedCode.replacingOccurrences(of: "\'",with: "\\\'");
         fixedCode = fixedCode.replacingOccurrences(of: "\"", with:"\\\"");
         fixedCode = fixedCode.replacingOccurrences(of: "\n", with:"\\n");
         fixedCode = fixedCode.replacingOccurrences(of: "\r", with:"");
-        
-        let command: String
-        if let languageName = languageName {
-            command = String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs, languageName, fixedCode)
-        } else {
-            // auto detection programming language
-            command = String.init(format: "%@.highlightAuto(\"%@\").value;", hljs, fixedCode)
-        }
-        
+
+        let command =  String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs,languageName, fixedCode)
         let res = jsContext.evaluateScript(command)
         guard var string = res!.toString() else
         {
@@ -113,19 +108,20 @@ open class Highlightr
         }
         
         let returnString : NSAttributedString
-        if(needsFastRender) {
+        if(fastRender)
+        {
             returnString = processHTMLString(string)!
         }else
         {
-            string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
-            let opt = [
-                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                NSCharacterEncodingDocumentAttribute: String.Encoding.utf8
-                ] as [String : Any]
+             string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+             let opt = [
+             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+             NSCharacterEncodingDocumentAttribute: String.Encoding.utf8
+             ] as [String : Any]
             
-            let data = string.data(using: String.Encoding.utf8)!
-            returnString = try! NSMutableAttributedString(data:data, options:opt, documentAttributes: nil)
-            
+             let data = string.data(using: String.Encoding.utf8)!
+             returnString = try! NSMutableAttributedString(data:data,options:opt as [String:AnyObject],documentAttributes:nil)
+
         }
         
         return returnString
@@ -214,8 +210,8 @@ open class Highlightr
         }
         
         let results = htmlEscape.matches(in: resultString.string,
-                                         options: [.reportCompletion],
-                                         range: NSMakeRange(0, resultString.length))
+                                               options: [.reportCompletion],
+                                               range: NSMakeRange(0, resultString.length))
         var locOffset = 0
         for result in results
         {
@@ -227,9 +223,9 @@ open class Highlightr
                 locOffset += result.range.length-1;
             }
             
-            
+
         }
-        
+
         return resultString
     }
     
