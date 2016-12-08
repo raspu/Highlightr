@@ -86,13 +86,13 @@ open class Highlightr
     /**
      Takes a String and returns a NSAttributedString with the given language highlighted.
      
-     - parameter code:           Code to highlight
-     - parameter languageName:   Language name or alias
+     - parameter code:           Code to highlight.
+     - parameter languageName:   Language name or alias. Set to `nil` to use auto detection.
      - parameter fastRender:     Defaults to true - When *true* will use the custom made html parser rather than Apple's solution.
      
      - returns: NSAttributedString with the detected code highlighted.
      */
-    open func highlight(_ code: String, as languageName: String, fastRender: Bool = true) -> NSAttributedString?
+    open func highlight(_ code: String, as languageName: String? = nil, fastRender: Bool = true) -> NSAttributedString?
     {
         var fixedCode = code.replacingOccurrences(of: "\\",with: "\\\\");
         fixedCode = fixedCode.replacingOccurrences(of: "\'",with: "\\\'");
@@ -100,7 +100,16 @@ open class Highlightr
         fixedCode = fixedCode.replacingOccurrences(of: "\n", with:"\\n");
         fixedCode = fixedCode.replacingOccurrences(of: "\r", with:"");
 
-        let command =  String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs,languageName, fixedCode)
+        let command: String
+        if let languageName = languageName
+        {
+            command = String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs, languageName, fixedCode)
+        }else
+        {
+            // language auto detection
+            command = String.init(format: "%@.highlightAuto(\"%@\").value;", hljs, fixedCode)
+        }
+        
         let res = jsContext.evaluateScript(command)
         guard var string = res!.toString() else
         {
