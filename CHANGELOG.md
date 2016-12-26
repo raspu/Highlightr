@@ -1,3 +1,11 @@
+1.1.0 Release notes (2016-11-02)
+=============================================================
+
+### Enhancements
+
+* highlight.js updated to version 9.9.0.
+* Added language automatic detection.
+
 1.0.0 Release notes (2016-11-02)
 =============================================================
 
