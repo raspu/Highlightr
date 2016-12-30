@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 [![Platform](https://img.shields.io/cocoapods/p/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 
-Highlightr is an iOS & macOS syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [168 languages and comes with 77 styles](https://highlightjs.org/static/demo/).
+Highlightr is an iOS & macOS syntax highlighter built with Swift. It uses [highlight.js](https://highlightjs.org/) as it core, supports [169 languages and comes with 77 styles](https://highlightjs.org/static/demo/).
 
 Takes your lame string with code and returns a NSAttributtedString with proper syntax highlighting.
 
@@ -22,7 +22,9 @@ This is the main endpoint, you can use it to convert code strings into NSAttribu
 	let highlightr = Highlightr()
 	highlightr.setTheme(to: "paraiso-dark")
 	let code = "let a = 1"
-	let highlightedCode = highlightr.highlight(code, as: "swift")
+	// You can omit the second parameter to use automatic language detection.
+	let highlightedCode = highlightr.highlight(code, as: "swift") 
+	
 ```
 ### CodeAttributedString
 A sublcass of NSTextStorage, you can use it to highlight text on real time.
