@@ -64,7 +64,7 @@ open class CodeAttributedString : NSTextStorage
     }
     #endif
     
-    /// Language syntax to use for highlighting.
+    /// Language syntax to use for highlighting. Providing nil will disable highlighting.
     open var language : String?
     {
         didSet
@@ -119,9 +119,7 @@ open class CodeAttributedString : NSTextStorage
         self.edited(NSTextStorageEditActions.editedAttributes, range: range, changeInLength: 0)
     }
     
-    /**
-     Called internally everytime the string is modified.
-     */
+    /// Called internally everytime the string is modified.
     open override func processEditing()
     {
         super.processEditing()

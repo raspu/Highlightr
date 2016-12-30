@@ -34,7 +34,7 @@ open class Highlightr
     fileprivate let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .caseInsensitive)
     
     /**
-     Default init method, generates a JSContext instance and the default Theme.
+     Default init method.
      
      - returns: Highlightr instance.
      */
