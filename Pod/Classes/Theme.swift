@@ -10,11 +10,15 @@ import Foundation
 
 #if os(iOS) || os(tvOS)
     import UIKit
+    /// Typealias for UIColor
     public typealias RPColor = UIColor
+    /// Typealias for UIFont
     public typealias RPFont = UIFont
 #else
     import AppKit
+    /// Typealias for NSColor
     public typealias RPColor = NSColor
+    /// Typealias for NSFont
     public typealias RPFont = NSFont
 
 #endif
@@ -27,16 +31,24 @@ open class Theme {
     internal let theme : String
     internal var lightTheme : String!
     
+    /// Regular font to be used by this theme
     open var codeFont : RPFont!
+    /// Bold font to be used by this theme
     open var boldCodeFont : RPFont!
+    /// Italic font to be used by this theme
     open var italicCodeFont : RPFont!
     
     fileprivate var themeDict : RPThemeDict!
     fileprivate var strippedTheme : RPThemeStringDict!
     
-        /// Default background color for the current theme.
+    /// Default background color for the current theme.
     open var themeBackgroundColor : RPColor!
     
+    /**
+     Initialize the theme with the given theme name.
+     
+     - parameter themeString: Theme to use.
+     */
     init(themeString: String)
     {
         theme = themeString
@@ -70,7 +82,7 @@ open class Theme {
     }
     
     /**
-     Changes the theme font.
+     Changes the theme font. This will try to automatically populate the codeFont, boldCodeFont and italicCodeFont properties based on the provided font.
      
      - parameter font: UIFont (iOS or tvOS) or NSFont (OSX)
      */

@@ -32,6 +32,7 @@ import Foundation
 /// NSTextStorage subclass. Can be used to dynamically highlight code.
 open class CodeAttributedString : NSTextStorage
 {
+    /// Internal Storage
     let stringStorage = NSMutableAttributedString(string: "")
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
