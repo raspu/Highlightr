@@ -209,4 +209,7 @@ extension CodeAttributedString {
     open var theme: Theme {
         return highlightr.theme
     }
+    open func update() {
+        self.highlight(NSMakeRange(0, self.stringStorage.length))
+    }
 }
