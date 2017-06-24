@@ -54,7 +54,14 @@ open class CodeAttributedString : NSTextStorage
         super.init(coder: aDecoder)
         setupListeners()
     }
-    
+
+	/// Initialize the CodeAttributedString
+	required public init(itemProviderData data: Data, typeIdentifier: String) throws
+	{
+		try super.init(itemProviderData: data, typeIdentifier: typeIdentifier)
+		setupListeners()
+	}
+
     #if os(OSX)
     /// Initialize the CodeAttributedString
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: String)
