@@ -123,13 +123,13 @@ open class Highlightr
         }else
         {
              string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
-             let opt = [
-             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-             NSCharacterEncodingDocumentAttribute: String.Encoding.utf8
-             ] as [String : Any]
+			let opt: [NSAttributedString.DocumentReadingOptionKey : Any] = [
+             .documentType: NSAttributedString.DocumentType.html,
+             .characterEncoding: String.Encoding.utf8
+             ]
             
              let data = string.data(using: String.Encoding.utf8)!
-             returnString = try! NSMutableAttributedString(data:data,options:opt as [String:AnyObject],documentAttributes:nil)
+             returnString = try! NSMutableAttributedString(data:data, options:opt, documentAttributes:nil)
 
         }
         
