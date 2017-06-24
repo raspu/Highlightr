@@ -62,6 +62,14 @@ open class CodeAttributedString : NSTextStorage
 		setupListeners()
 	}
 
+	/// Initialize the CodeAttributedString
+	public override init(attributedString attrStr: NSAttributedString)
+	{
+		super.init()
+		stringStorage.append(attrStr)
+		setupListeners()
+	}
+
     #if os(OSX)
     /// Initialize the CodeAttributedString
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: String)
