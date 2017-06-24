@@ -64,7 +64,7 @@ open class CodeAttributedString : NSTextStorage
     }
     #endif
     
-    /// Language syntax to use for highlighting. Providing nil will disable highlighting.
+    /// Language syntax to use for highlighting. Providing nil will use auto detection.
     open var language : String?
     {
         didSet
@@ -123,23 +123,16 @@ open class CodeAttributedString : NSTextStorage
     open override func processEditing()
     {
         super.processEditing()
-        if language != nil {
-            if self.editedMask.contains(.editedCharacters)
-            {
-                let string = (self.string as NSString)
-                let range = string.paragraphRange(for: editedRange)
-                highlight(range)
-            }
+        if self.editedMask.contains(.editedCharacters)
+        {
+            let string = (self.string as NSString)
+            let range = string.paragraphRange(for: editedRange)
+            highlight(range)
         }
     }
 
     func highlight(_ range: NSRange)
     {
-        if(language == nil)
-        {
-            return;
-        }
-        
         if let highlightDelegate = highlightDelegate
         {
             let shouldHighlight : Bool? = highlightDelegate.shouldHighlight?(range)
@@ -154,7 +147,7 @@ open class CodeAttributedString : NSTextStorage
         let line = string.substring(with: range)
         DispatchQueue.global().async
         {
-            let tmpStrg = self.highlightr.highlight(line, as: self.language!)
+            let tmpStrg = self.highlightr.highlight(line, as: self.language)
             DispatchQueue.main.async(execute: {
                 //Checks to see if this highlighting is still valid.
                 if((range.location + range.length) > self.stringStorage.length)
