@@ -72,7 +72,7 @@ open class Theme {
             }else
             {
                 let range = bkgColorHex.range(of: "#")
-                let str = bkgColorHex.substring(from: (range?.lowerBound)!)
+                let str = String(bkgColorHex[(range?.lowerBound)!...])
                 themeBackgroundColor = colorWithHexString(str)
             }
         }else
@@ -98,12 +98,12 @@ open class Theme {
         let obliqueDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family:font.familyName,
                                                                   UIFontDescriptor.AttributeName.face:"Oblique"])
         #else
-        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Bold"])
-        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Italic"])
-        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Oblique"])
+        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontDescriptor.AttributeName.family:font.familyName!,
+                                                               NSFontDescriptor.AttributeName.face:"Bold"])
+        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontDescriptor.AttributeName.family:font.familyName!,
+                                                                 NSFontDescriptor.AttributeName.face:"Italic"])
+        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontDescriptor.AttributeName.family:font.familyName!,
+                                                                  NSFontDescriptor.AttributeName.face:"Oblique"])
         #endif
         
         boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)

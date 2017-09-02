@@ -56,13 +56,6 @@ open class CodeAttributedString : NSTextStorage
     }
 
 	/// Initialize the CodeAttributedString
-	required public init(itemProviderData data: Data, typeIdentifier: String) throws
-	{
-		try super.init(itemProviderData: data, typeIdentifier: typeIdentifier)
-		setupListeners()
-	}
-
-	/// Initialize the CodeAttributedString
 	public override init(attributedString attrStr: NSAttributedString)
 	{
 		super.init()
@@ -72,7 +65,7 @@ open class CodeAttributedString : NSTextStorage
 
     #if os(OSX)
     /// Initialize the CodeAttributedString
-    required public init?(pasteboardPropertyList propertyList: Any, ofType type: String)
+    required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType)
     {
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
