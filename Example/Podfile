@@ -13,6 +13,6 @@ end
 target 'Highlightr_Tests' do
   pod 'Highlightr', :path => '../'
 
-  pod 'Quick', '~> 0.10'
-  pod 'Nimble', '~> 5.0'
+  pod 'Quick', '~> 1.2.0'
+  pod 'Nimble', '~> 7.0'
 end
