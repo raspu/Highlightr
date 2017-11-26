@@ -101,7 +101,7 @@ class SampleCode: UIViewController
             let start = Date()
             for _ in 0...100
             {
-                self.highlightr.highlight(code, as: self.languageName.text!)
+                _ = self.highlightr.highlight(code, as: self.languageName.text!)
             }
             let end = Date()
             let time = Float(end.timeIntervalSince(start));

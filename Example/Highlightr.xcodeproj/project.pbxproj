@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11F7A722B6C3C4F8F50B68BF /* Pods_Highlightr_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F5C3B46CE251C30498747 /* Pods_Highlightr_Tests.framework */; };
+		2353D3471FCB51C300DF8931 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353D3461FCB51C300DF8931 /* Tests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8C0B8C341CBB03AF00338143 /* sampleCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B8C331CBB03AF00338143 /* sampleCode.txt */; };
-		8C653BDF1CFB677100A8CEFF /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C653BDE1CFB677100A8CEFF /* CHANGELOG.md */; };
 		8C9564211CE78B8900C0C7FA /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 8C9564201CE78B7500C0C7FA /* Samples */; };
 		8C9564291CE79E5200C0C7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9564281CE79E5200C0C7FA /* AppDelegate.swift */; };
 		8C95642B1CE79E5200C0C7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C95642A1CE79E5200C0C7FA /* Assets.xcassets */; };
@@ -37,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		114F5C3B46CE251C30498747 /* Pods_Highlightr_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Highlightr_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2353D3461FCB51C300DF8931 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		3B7A7D349026B3DBD70E13B6 /* Pods_Highlightr_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Highlightr_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		418D37EA8EE5FE61CD1C6035 /* Pods-Highlightr_OSX_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_OSX_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4CF75D031FDF606D266D5CFE /* Pods-Highlightr_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +47,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Highlightr_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Highlightr_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		719ED2C056FED45508B76D17 /* Highlightr.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Highlightr.podspec; path = ../Highlightr.podspec; sourceTree = "<group>"; };
 		81B00C74F80645E546387ECF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8C0B8C331CBB03AF00338143 /* sampleCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleCode.txt; sourceTree = "<group>"; };
@@ -62,8 +60,6 @@
 		8CAC85731CDBBA930079CEC2 /* SampleCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCode.swift; sourceTree = "<group>"; };
 		8CAC85741CDBBA930079CEC2 /* SampleCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SampleCode.xib; sourceTree = "<group>"; };
 		C52D7015E12B5CAA5D314E74 /* Pods-Highlightr_OSX_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_OSX_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example.release.xcconfig"; sourceTree = "<group>"; };
-		CA6727177ADDFB0846D399B1 /* Pods-Highlightr_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E9955747CECEEED28D898D63 /* Pods-Highlightr_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F29BDC6C946FB3B281BAC72C /* Pods_Highlightr_OSX_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Highlightr_OSX_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACBE1ED06E5718AE417DCC0 /* Pods-Highlightr_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Highlightr_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F7A722B6C3C4F8F50B68BF /* Pods_Highlightr_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +141,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				2353D3461FCB51C300DF8931 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -187,8 +182,6 @@
 			children = (
 				4CF75D031FDF606D266D5CFE /* Pods-Highlightr_Example.debug.xcconfig */,
 				FACBE1ED06E5718AE417DCC0 /* Pods-Highlightr_Example.release.xcconfig */,
-				E9955747CECEEED28D898D63 /* Pods-Highlightr_Tests.debug.xcconfig */,
-				CA6727177ADDFB0846D399B1 /* Pods-Highlightr_Tests.release.xcconfig */,
 				418D37EA8EE5FE61CD1C6035 /* Pods-Highlightr_OSX_Example.debug.xcconfig */,
 				C52D7015E12B5CAA5D314E74 /* Pods-Highlightr_OSX_Example.release.xcconfig */,
 			);
@@ -232,12 +225,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Highlightr_Tests" */;
 			buildPhases = (
-				2E397393C8E3EF603A1B728A /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				D0F57FA2414986D0047DC0A5 /* [CP] Embed Pods Frameworks */,
-				40572DFC46D18E413D6DD8AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -281,11 +271,11 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 					8C9564251CE79E5200C0C7FA = {
@@ -363,39 +353,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E397393C8E3EF603A1B728A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Highlightr_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		40572DFC46D18E413D6DD8AF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78FCECE243C324F7C7B7F08C /* [CP] Check Pods Manifest.lock */ = {
@@ -484,28 +441,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D0F57FA2414986D0047DC0A5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Highlightr-iOS/Highlightr.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlightr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Tests/Pods-Highlightr_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -514,7 +449,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CAC85751CDBBA930079CEC2 /* SampleCode.swift in Sources */,
-				8C653BDF1CFB677100A8CEFF /* CHANGELOG.md in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,7 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				2353D3471FCB51C300DF8931 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +609,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -690,19 +624,15 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9955747CECEEED28D898D63 /* Pods-Highlightr_Tests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -711,23 +641,20 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA6727177ADDFB0846D399B1 /* Pods-Highlightr_Tests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
