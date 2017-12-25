@@ -24,14 +24,14 @@ open class Highlightr
     /// This block will be called every time the theme changes.
     open var themeChanged : ((Theme) -> Void)?
     
-    fileprivate let jsContext : JSContext
-    fileprivate let hljs = "window.hljs"
-    fileprivate let bundle : Bundle
-    fileprivate let htmlStart = "<"
-    fileprivate let spanStart = "span class=\""
-    fileprivate let spanStartClose = "\">"
-    fileprivate let spanEnd = "/span>"
-    fileprivate let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .caseInsensitive)
+    private let jsContext : JSContext
+    private let hljs = "window.hljs"
+    private let bundle : Bundle
+    private let htmlStart = "<"
+    private let spanStart = "span class=\""
+    private let spanStartClose = "\">"
+    private let spanEnd = "/span>"
+    private let htmlEscape = try! NSRegularExpression(pattern: "&#?[a-zA-Z0-9]+?;", options: .caseInsensitive)
     
     /**
      Default init method.
@@ -116,21 +116,22 @@ open class Highlightr
             return nil
         }
         
-        let returnString : NSAttributedString
+        var returnString : NSAttributedString?
         if(fastRender)
         {
             returnString = processHTMLString(string)!
         }else
         {
-             string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+            string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
             let opt: [NSAttributedString.DocumentReadingOptionKey : Any] = [
              .documentType: NSAttributedString.DocumentType.html,
-             .characterEncoding: String.Encoding.utf8
+             .characterEncoding: String.Encoding.utf8.rawValue
              ]
             
-             let data = string.data(using: String.Encoding.utf8)!
-             returnString = try! NSMutableAttributedString(data:data, options: opt, documentAttributes:nil)
-
+            let data = string.data(using: String.Encoding.utf8)!
+            safeMainSync {
+                returnString = try? NSMutableAttributedString(data:data, options: opt, documentAttributes:nil)
+            }
         }
         
         return returnString
@@ -165,7 +166,18 @@ open class Highlightr
     }
     
     //Private & Internal
-    fileprivate func processHTMLString(_ string: String) -> NSAttributedString?
+    /**
+     Execute block safely on main thread, execute block directly if current thread is main thread, otherwise execute block on main queue synchronously.
+     */
+    private func safeMainSync(_ block: @escaping ()->()) {
+        if Thread.isMainThread {
+            block()
+        } else {
+            DispatchQueue.main.sync { block() }
+        }
+    }
+    
+    private func processHTMLString(_ string: String) -> NSAttributedString?
     {
         let scanner = Scanner(string: string)
         scanner.charactersToBeSkipped = nil
