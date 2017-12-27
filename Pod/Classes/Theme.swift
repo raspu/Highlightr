@@ -98,12 +98,12 @@ open class Theme {
         let obliqueDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family:font.familyName,
                                                                   UIFontDescriptor.AttributeName.face:"Oblique"])
         #else
-        let boldDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Bold"])
-        let italicDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Italic"])
-        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [NSFontFamilyAttribute:font.familyName!,
-                                                                NSFontFaceAttribute:"Oblique"])
+        let boldDescriptor = NSFontDescriptor(fontAttributes: [.family:font.familyName!,
+                                                                   .face:"Bold"])
+        let italicDescriptor = NSFontDescriptor(fontAttributes: [.family:font.familyName!,
+                                                                     .face:"Italic"])
+        let obliqueDescriptor = NSFontDescriptor(fontAttributes: [.family:font.familyName!,
+                                                                      .face:"Oblique"])
         #endif
         
         boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
