@@ -94,6 +94,7 @@ class SampleCode: UIViewController
     @IBAction func performanceTest(_ sender: AnyObject)
     {
         let code = textStorage.string
+        let languageName = self.languageName.text
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
 
@@ -101,7 +102,7 @@ class SampleCode: UIViewController
             let start = Date()
             for _ in 0...100
             {
-                _ = self.highlightr.highlight(code, as: self.languageName.text!)
+                _ = self.highlightr.highlight(code, as: languageName)
             }
             let end = Date()
             let time = Float(end.timeIntervalSince(start));
