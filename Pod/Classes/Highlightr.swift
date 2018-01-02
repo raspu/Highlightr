@@ -129,7 +129,8 @@ open class Highlightr
              ]
             
             let data = string.data(using: String.Encoding.utf8)!
-            safeMainSync {
+            safeMainSync
+            {
                 returnString = try? NSMutableAttributedString(data:data, options: opt, documentAttributes:nil)
             }
         }
@@ -170,9 +171,11 @@ open class Highlightr
      Execute block safely on main thread, execute block directly if current thread is main thread, otherwise execute block on main queue synchronously.
      */
     private func safeMainSync(_ block: @escaping ()->()) {
-        if Thread.isMainThread {
+        if Thread.isMainThread
+        {
             block()
-        } else {
+        }else
+        {
             DispatchQueue.main.sync { block() }
         }
     }
