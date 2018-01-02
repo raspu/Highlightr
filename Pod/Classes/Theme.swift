@@ -38,8 +38,8 @@ open class Theme {
     /// Italic font to be used by this theme
     open var italicCodeFont : RPFont!
     
-    fileprivate var themeDict : RPThemeDict!
-    fileprivate var strippedTheme : RPThemeStringDict!
+    private var themeDict : RPThemeDict!
+    private var strippedTheme : RPThemeStringDict!
     
     /// Default background color for the current theme.
     open var themeBackgroundColor : RPColor!
@@ -157,7 +157,7 @@ open class Theme {
         return returnString
     }
     
-    fileprivate func stripTheme(_ themeString : String) -> [String:[String:String]]
+    private func stripTheme(_ themeString : String) -> [String:[String:String]]
     {
         let objcString = (themeString as NSString)
         let cssRegex = try! NSRegularExpression(pattern: "(?:(\\.[a-zA-Z0-9\\-_]*(?:[, ]\\.[a-zA-Z0-9\\-_]*)*)\\{([^\\}]*?)\\})", options:[.caseInsensitive])
@@ -213,7 +213,7 @@ open class Theme {
         return returnDict
     }
     
-    fileprivate func strippedThemeToString(_ theme: RPThemeStringDict) -> String
+    private func strippedThemeToString(_ theme: RPThemeStringDict) -> String
     {
         var resultString = ""
         for (key, props) in theme {
@@ -230,7 +230,7 @@ open class Theme {
         return resultString
     }
     
-    fileprivate func strippedThemeToTheme(_ theme: RPThemeStringDict) -> RPThemeDict
+    private func strippedThemeToTheme(_ theme: RPThemeStringDict) -> RPThemeDict
     {
         var returnTheme = RPThemeDict()
         for (className, props) in theme
@@ -265,7 +265,7 @@ open class Theme {
         return returnTheme
     }
     
-    fileprivate func fontForCSSStyle(_ fontStyle:String) -> RPFont
+    private func fontForCSSStyle(_ fontStyle:String) -> RPFont
     {
         switch fontStyle
         {
@@ -278,7 +278,7 @@ open class Theme {
         }
     }
     
-    fileprivate func attributeForCSSKey(_ key: String) -> NSAttributedStringKey
+    private func attributeForCSSKey(_ key: String) -> NSAttributedStringKey
     {
         switch key {
         case "color":
@@ -294,7 +294,7 @@ open class Theme {
         }
     }
     
-    fileprivate func colorWithHexString (_ hex:String) -> RPColor
+    private func colorWithHexString (_ hex:String) -> RPColor
     {
 
         var cString:String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
