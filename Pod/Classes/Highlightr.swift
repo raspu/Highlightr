@@ -170,7 +170,8 @@ open class Highlightr
     /**
      Execute block safely on main thread, execute block directly if current thread is main thread, otherwise execute block on main queue synchronously.
      */
-    private func safeMainSync(_ block: @escaping ()->()) {
+    private func safeMainSync(_ block: @escaping ()->())
+    {
         if Thread.isMainThread
         {
             block()
