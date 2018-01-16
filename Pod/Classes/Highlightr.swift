@@ -166,9 +166,8 @@ open class Highlightr
         return res!.toArray() as! [String]
     }
     
-    //Private & Internal
     /**
-     Execute block safely on main thread, execute block directly if current thread is main thread, otherwise execute block on main queue synchronously.
+     Execute the provided block in the main thread synchronously.
      */
     private func safeMainSync(_ block: @escaping ()->())
     {
