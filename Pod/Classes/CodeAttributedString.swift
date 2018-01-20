@@ -33,7 +33,7 @@ import Foundation
 open class CodeAttributedString : NSTextStorage
 {
     /// Internal Storage
-    let stringStorage = NSMutableAttributedString(string: "")
+    let stringStorage = NSTextStorage()
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
     open let highlightr = Highlightr()!
