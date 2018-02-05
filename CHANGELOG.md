@@ -1,3 +1,15 @@
+2.0.0 Release notes (2018-1-16)
+=============================================================
+
+### Enhancements
+
+* Ported to swift 4.
+* highlight.js updated to version 9.12.0.
+
+### Bugfixes
+
+* Possible crash in Highlightr when not using fast render .
+
 1.1.0 Release notes (2016-12-30)
 =============================================================
 

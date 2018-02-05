@@ -37,7 +37,7 @@ import Foundation
 open class CodeAttributedString : NSTextStorage
 {
     /// Internal Storage
-    let stringStorage = NSMutableAttributedString(string: "")
+    let stringStorage = NSTextStorage()
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
     open let highlightr = Highlightr()!
@@ -61,7 +61,7 @@ open class CodeAttributedString : NSTextStorage
     
     #if os(OSX)
     /// Initialize the CodeAttributedString
-    required public init?(pasteboardPropertyList propertyList: Any, ofType type: String)
+    required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType)
     {
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
@@ -94,7 +94,7 @@ open class CodeAttributedString : NSTextStorage
      
      - returns: Attributes
      */
-    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [String : Any]
+    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedStringKey : Any]
     {
         return stringStorage.attributes(at: location, effectiveRange: range)
     }
@@ -117,7 +117,7 @@ open class CodeAttributedString : NSTextStorage
      - parameter attrs: [String : AnyObject]
      - parameter range: NSRange
      */
-    open override func setAttributes(_ attrs: [String : Any]?, range: NSRange)
+    open override func setAttributes(_ attrs: [NSAttributedStringKey : Any]?, range: NSRange)
     {
         stringStorage.setAttributes(attrs, range: range)
         self.edited(NSTextStorageEditActions.editedAttributes, range: range, changeInLength: 0)

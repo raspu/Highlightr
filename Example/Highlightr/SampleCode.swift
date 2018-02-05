@@ -69,7 +69,7 @@ class SampleCode: UIViewController
     
     @IBAction func pickLanguage(_ sender: AnyObject)
     {
-        let languages = highlightr.supportedLanguages()
+        let languages = highlightr.supportedLanguages().sorted()
         let indexOrNil = languages.index(of: languageName.text!.lowercased())
         let index = (indexOrNil == nil) ? 0 : indexOrNil!
         
@@ -94,6 +94,7 @@ class SampleCode: UIViewController
     @IBAction func performanceTest(_ sender: AnyObject)
     {
         let code = textStorage.string
+        let languageName = self.languageName.text
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
 
@@ -101,7 +102,7 @@ class SampleCode: UIViewController
             let start = Date()
             for _ in 0...100
             {
-                self.highlightr.highlight(code, as: self.languageName.text!)
+                _ = self.highlightr.highlight(code, as: languageName)
             }
             let end = Date()
             let time = Float(end.timeIntervalSince(start));

@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         textView = NSTextView(frame: (window.contentView?.bounds)!, textContainer: textContainer)
-        textView.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+        textView.autoresizingMask = [.width,.height]
         textView.translatesAutoresizingMaskIntoConstraints = true
         textView.backgroundColor = (textStorage.highlightr.theme.themeBackgroundColor)!
         textView.insertionPointColor = NSColor.white
