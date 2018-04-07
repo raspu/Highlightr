@@ -1,3 +1,10 @@
+2.0.1 Release notes (2018-3-7)
+=============================================================
+
+### Bugfixes
+
+* Now is possible to use fonts without an italic variation.
+
 2.0.0 Release notes (2018-1-16)
 =============================================================
 
