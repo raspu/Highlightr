@@ -112,7 +112,8 @@ open class Theme {
         if(italicCodeFont == nil || italicCodeFont.familyName != font.familyName)
         {
             italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
-        } else if(italicCodeFont == nil )
+        }
+        if(italicCodeFont == nil)
         {
             italicCodeFont = font
         }
