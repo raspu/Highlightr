@@ -68,7 +68,7 @@ Run `carthage update` to build the framework and drag the built `Highlightr.fram
 Highlightr provides two main classes:
 
 ### Highlightr
-This is the main endpoint, you can use it to convert code strings into NSAttributted strings.
+This is the main endpoint, you can use it to convert code strings into NSAttributed strings.
 ```Swift
 	let highlightr = Highlightr()
 	highlightr.setTheme(to: "paraiso-dark")
