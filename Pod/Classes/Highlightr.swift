@@ -42,11 +42,11 @@ open class Highlightr
      
      - returns: Highlightr instance.
      */
-    public init?()
+    public init?(bundle: Bundle = Bundle(for: Highlightr.self))
     {
         jsContext = JSContext()
         jsContext.evaluateScript("var window = {};")
-        bundle = Bundle(for: Highlightr.self)
+        self.bundle = bundle
         guard let hgPath = bundle.path(forResource: "highlight.min", ofType: "js") else
         {
             return nil

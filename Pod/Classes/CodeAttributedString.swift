@@ -40,14 +40,15 @@ open class CodeAttributedString : NSTextStorage
     let stringStorage = NSTextStorage()
 
     /// Highlightr instace used internally for highlighting. Use this for configuring the theme.
-    open let highlightr = Highlightr()!
+    public let highlightr: Highlightr
     
     /// This object will be notified before and after the highlighting.
     open var highlightDelegate : HighlightDelegate?
 
     /// Initialize the CodeAttributedString
-    public override init()
+    public init(highlightr: Highlightr = Highlightr()!)
     {
+        self.highlightr = highlightr
         super.init()
         setupListeners()
     }
@@ -55,6 +56,7 @@ open class CodeAttributedString : NSTextStorage
     /// Initialize the CodeAttributedString
     required public init?(coder aDecoder: NSCoder)
     {
+        self.highlightr = Highlightr()!
         super.init(coder: aDecoder)
         setupListeners()
     }
