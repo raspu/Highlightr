@@ -77,6 +77,7 @@ open class CodeAttributedString : NSTextStorage
     /// Initialize the CodeAttributedString
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType)
     {
+        self.highlightr = Highlightr()!
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
     }
