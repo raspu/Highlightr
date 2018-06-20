@@ -31,8 +31,7 @@ open class Highlightr
     /// Defaults to `false` - when `true`, forces highlighting to finish even if illegal syntax is detected.
     open var ignoreIllegals = false
 
-    private let jsContext : JSContext
-    private let hljs = "window.hljs"
+    private let hljs: JSValue
 
     private let bundle : Bundle
     private let htmlStart = "<"
@@ -50,9 +49,12 @@ open class Highlightr
      */
     public init?(highlightPath: String? = nil)
     {
-        jsContext = JSContext()
-        jsContext.evaluateScript("var window = {};")
-        self.bundle = Bundle(for: Highlightr.self)
+        let jsContext = JSContext()!
+        let window = JSValue(newObjectIn: jsContext)
+        jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
+
+        let bundle = Bundle(for: Highlightr.self)
+        self.bundle = bundle
         guard let hgPath = highlightPath ?? bundle.path(forResource: "highlight.min", ofType: "js") else
         {
             return nil
@@ -60,10 +62,15 @@ open class Highlightr
         
         let hgJs = try! String.init(contentsOfFile: hgPath)
         let value = jsContext.evaluateScript(hgJs)
-        if !(value?.toBool())!
+        if value?.toBool() != true
         {
             return nil
         }
+        guard let hljs = window?.objectForKeyedSubscript("hljs") else
+        {
+            return nil
+        }
+        self.hljs = hljs
         
         guard setTheme(to: "pojoaque") else
         {
@@ -104,23 +111,17 @@ open class Highlightr
      */
     open func highlight(_ code: String, as languageName: String? = nil, fastRender: Bool = true) -> NSAttributedString?
     {
-        var fixedCode = code.replacingOccurrences(of: "\\",with: "\\\\");
-        fixedCode = fixedCode.replacingOccurrences(of: "\'",with: "\\\'");
-        fixedCode = fixedCode.replacingOccurrences(of: "\"", with:"\\\"");
-        fixedCode = fixedCode.replacingOccurrences(of: "\n", with:"\\n");
-        fixedCode = fixedCode.replacingOccurrences(of: "\r", with:"");
-
-        let command: String
+        let ret: JSValue
         if let languageName = languageName
         {
-            command = String.init(format: "%@.highlight(\"%@\",\"%@\",%@).value;", hljs, languageName, fixedCode, ignoreIllegals ? "true" : "false")
+            ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
         }else
         {
             // language auto detection
-            command = String.init(format: "%@.highlightAuto(\"%@\").value;", hljs, fixedCode)
+            ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
         }
 
-        let res = jsContext.evaluateScript(command)
+        let res = ret.objectForKeyedSubscript("value")
         guard var string = res!.toString() else
         {
             return nil
@@ -171,8 +172,7 @@ open class Highlightr
      */
     open func supportedLanguages() -> [String]
     {
-        let command =  String.init(format: "%@.listLanguages();", hljs)
-        let res = jsContext.evaluateScript(command)
+        let res = hljs.invokeMethod("listLanguages", withArguments: [])
         return res!.toArray() as! [String]
     }
     
