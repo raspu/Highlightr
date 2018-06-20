@@ -44,7 +44,7 @@ open class Highlightr
     /**
      Default init method.
 
-     - parameter highlighterPath: The path to `highlight.min.js`. Defaults to `Highlightr.framework/highlight.min.js`
+     - parameter highlightPath: The path to `highlight.min.js`. Defaults to `Highlightr.framework/highlight.min.js`
 
      - returns: Highlightr instance.
      */
