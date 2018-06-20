@@ -45,10 +45,22 @@ open class CodeAttributedString : NSTextStorage
     /// This object will be notified before and after the highlighting.
     open var highlightDelegate : HighlightDelegate?
 
-    /// Initialize the CodeAttributedString
+    /**
+     Initialize the CodeAttributedString
+
+     - parameter highlightr: The highlightr instance to use. Defaults to `Highlightr()`.
+
+     */
     public init(highlightr: Highlightr = Highlightr()!)
     {
         self.highlightr = highlightr
+        super.init()
+        setupListeners()
+    }
+
+    /// Initialize the CodeAttributedString
+    public override init() {
+        self.highlightr = Highlightr()!
         super.init()
         setupListeners()
     }

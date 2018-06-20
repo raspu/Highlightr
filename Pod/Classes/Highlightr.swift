@@ -27,9 +27,13 @@ open class Highlightr
     
     /// This block will be called every time the theme changes.
     open var themeChanged : ((Theme) -> Void)?
-    
+
+    /// Defaults to `false` - when `true`, forces highlighting to finish even if illegal syntax is detected.
+    open var ignoreIllegals = false
+
     private let jsContext : JSContext
     private let hljs = "window.hljs"
+
     private let bundle : Bundle
     private let htmlStart = "<"
     private let spanStart = "span class=\""
@@ -39,15 +43,17 @@ open class Highlightr
     
     /**
      Default init method.
-     
+
+     - parameter highlighterPath: The path to `highlight.min.js`. Defaults to `Highlightr.framework/highlight.min.js`
+
      - returns: Highlightr instance.
      */
-    public init?(bundle: Bundle = Bundle(for: Highlightr.self))
+    public init?(highlightPath: String? = nil)
     {
         jsContext = JSContext()
         jsContext.evaluateScript("var window = {};")
-        self.bundle = bundle
-        guard let hgPath = bundle.path(forResource: "highlight.min", ofType: "js") else
+        self.bundle = Bundle(for: Highlightr.self)
+        guard let hgPath = highlightPath ?? bundle.path(forResource: "highlight.min", ofType: "js") else
         {
             return nil
         }
@@ -107,13 +113,13 @@ open class Highlightr
         let command: String
         if let languageName = languageName
         {
-            command = String.init(format: "%@.highlight(\"%@\",\"%@\").value;", hljs, languageName, fixedCode)
+            command = String.init(format: "%@.highlight(\"%@\",\"%@\",%@).value;", hljs, languageName, fixedCode, ignoreIllegals ? "true" : "false")
         }else
         {
             // language auto detection
             command = String.init(format: "%@.highlightAuto(\"%@\").value;", hljs, fixedCode)
         }
-        
+
         let res = jsContext.evaluateScript(command)
         guard var string = res!.toString() else
         {
