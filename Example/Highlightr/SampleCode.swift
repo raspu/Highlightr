@@ -43,7 +43,7 @@ class SampleCode: UIViewController
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         
-        let textContainer = NSTextContainer(size: view.bounds.size)
+        let textContainer = NSTextContainer()
         layoutManager.addTextContainer(textContainer)
         
         textView = UITextView(frame: viewPlaceholder.bounds, textContainer: textContainer)
