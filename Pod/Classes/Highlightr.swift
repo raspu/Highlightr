@@ -87,14 +87,14 @@ open class Highlightr
      - returns: true if it was possible to set the given theme, false otherwise
      */
     @discardableResult
-    open func setTheme(to name: String) -> Bool
+    open func setTheme(to name: String, withFont font: RPFont  = RPFont(name: "Courier", size: 14)!) -> Bool
     {
         guard let defTheme = bundle.path(forResource: name+".min", ofType: "css") else
         {
             return false
         }
         let themeString = try! String.init(contentsOfFile: defTheme)
-        theme =  Theme(themeString: themeString)
+        theme =  Theme(themeString: themeString, font: font)
 
         
         return true
