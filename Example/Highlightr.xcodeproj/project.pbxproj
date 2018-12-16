@@ -210,7 +210,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				91E58AC425EA774EFA9EE9EE /* [CP] Embed Pods Frameworks */,
-				AECC48C4F1DD6213B3CA864B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,7 +247,6 @@
 				8C9564231CE79E5200C0C7FA /* Frameworks */,
 				8C9564241CE79E5200C0C7FA /* Resources */,
 				99E9E4A243E20636B6862D85 /* [CP] Embed Pods Frameworks */,
-				9762E35CFD423139795C0974 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,10 +269,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RV92JH4QP5;
 						LastSwiftMigration = 0910;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RV92JH4QP5;
 						LastSwiftMigration = 0910;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -393,21 +393,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9762E35CFD423139795C0974 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		99E9E4A243E20636B6862D85 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,21 +409,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_OSX_Example/Pods-Highlightr_OSX_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AECC48C4F1DD6213B3CA864B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Highlightr_Example/Pods-Highlightr_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -603,6 +573,7 @@
 			baseConfigurationReference = 4CF75D031FDF606D266D5CFE /* Pods-Highlightr_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RV92JH4QP5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Highlightr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -619,6 +590,7 @@
 			baseConfigurationReference = FACBE1ED06E5718AE417DCC0 /* Pods-Highlightr_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RV92JH4QP5;
 				INFOPLIST_FILE = Highlightr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -633,6 +605,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = RV92JH4QP5;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -650,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = RV92JH4QP5;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
