@@ -1,3 +1,17 @@
+2.1.0 Release notes (2018-3-7)
+=============================================================
+
+### Enhancements
+
+* Ported to swift 4.2.
+* highlight.js updated to version 9.13.1.
+* Added ability to specify a different highlight.min.js file than the one included. 
+
+### Bugfixes
+
+* Removed unneeded language files.
+
+
 2.0.1 Release notes (2018-3-7)
 =============================================================
 
