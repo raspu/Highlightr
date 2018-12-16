@@ -24,6 +24,8 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.11'
   s.ios.deployment_target = '8.0'
 
+  s.swift_version = '4.2'
+
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*.{swift}'
