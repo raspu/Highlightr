@@ -66,8 +66,6 @@
 		8CC1C71A1F3A636B0093293D /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6AF1F3A636B0093293D /* atom-one-light.min.css */; };
 		8CC1C71B1F3A636B0093293D /* brown-paper.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B01F3A636B0093293D /* brown-paper.min.css */; };
 		8CC1C71C1F3A636B0093293D /* brown-paper.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B01F3A636B0093293D /* brown-paper.min.css */; };
-		8CC1C71D1F3A636B0093293D /* brown-papersq.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B11F3A636B0093293D /* brown-papersq.png */; };
-		8CC1C71E1F3A636B0093293D /* brown-papersq.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B11F3A636B0093293D /* brown-papersq.png */; };
 		8CC1C71F1F3A636B0093293D /* codepen-embed.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B21F3A636B0093293D /* codepen-embed.min.css */; };
 		8CC1C7201F3A636B0093293D /* codepen-embed.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B21F3A636B0093293D /* codepen-embed.min.css */; };
 		8CC1C7211F3A636B0093293D /* color-brewer.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1C6B31F3A636B0093293D /* color-brewer.min.css */; };
@@ -216,7 +214,6 @@
 		8CC1C6AE1F3A636B0093293D /* atom-one-dark.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "atom-one-dark.min.css"; path = "Pod/Assets/styles/atom-one-dark.min.css"; sourceTree = SOURCE_ROOT; };
 		8CC1C6AF1F3A636B0093293D /* atom-one-light.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "atom-one-light.min.css"; path = "Pod/Assets/styles/atom-one-light.min.css"; sourceTree = SOURCE_ROOT; };
 		8CC1C6B01F3A636B0093293D /* brown-paper.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "brown-paper.min.css"; path = "Pod/Assets/styles/brown-paper.min.css"; sourceTree = SOURCE_ROOT; };
-		8CC1C6B11F3A636B0093293D /* brown-papersq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "brown-papersq.png"; path = "Pod/Assets/styles/brown-papersq.png"; sourceTree = SOURCE_ROOT; };
 		8CC1C6B21F3A636B0093293D /* codepen-embed.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "codepen-embed.min.css"; path = "Pod/Assets/styles/codepen-embed.min.css"; sourceTree = SOURCE_ROOT; };
 		8CC1C6B31F3A636B0093293D /* color-brewer.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "color-brewer.min.css"; path = "Pod/Assets/styles/color-brewer.min.css"; sourceTree = SOURCE_ROOT; };
 		8CC1C6B41F3A636B0093293D /* darcula.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = darcula.min.css; path = Pod/Assets/styles/darcula.min.css; sourceTree = SOURCE_ROOT; };
@@ -362,7 +359,6 @@
 				8CC1C6AE1F3A636B0093293D /* atom-one-dark.min.css */,
 				8CC1C6AF1F3A636B0093293D /* atom-one-light.min.css */,
 				8CC1C6B01F3A636B0093293D /* brown-paper.min.css */,
-				8CC1C6B11F3A636B0093293D /* brown-papersq.png */,
 				8CC1C6B21F3A636B0093293D /* codepen-embed.min.css */,
 				8CC1C6B31F3A636B0093293D /* color-brewer.min.css */,
 				8CC1C6B41F3A636B0093293D /* darcula.min.css */,
@@ -551,7 +547,6 @@
 				8CC1C7571F3A636B0093293D /* paraiso-dark.min.css in Resources */,
 				8CC1C6FD1F3A636B0093293D /* atelier-forest-light.min.css in Resources */,
 				8CC1C7631F3A636B0093293D /* railscasts.min.css in Resources */,
-				8CC1C71D1F3A636B0093293D /* brown-papersq.png in Resources */,
 				8CC1C7791F3A636B0093293D /* tomorrow.min.css in Resources */,
 				8CC1C73F1F3A636B0093293D /* hopscotch.min.css in Resources */,
 				8CC1C77D1F3A636B0093293D /* vs2015.min.css in Resources */,
@@ -639,7 +634,6 @@
 				8CC1C7581F3A636B0093293D /* paraiso-dark.min.css in Resources */,
 				8CC1C6FE1F3A636B0093293D /* atelier-forest-light.min.css in Resources */,
 				8CC1C7641F3A636B0093293D /* railscasts.min.css in Resources */,
-				8CC1C71E1F3A636B0093293D /* brown-papersq.png in Resources */,
 				8CC1C77A1F3A636B0093293D /* tomorrow.min.css in Resources */,
 				8CC1C7401F3A636B0093293D /* hopscotch.min.css in Resources */,
 				8CC1C77E1F3A636B0093293D /* vs2015.min.css in Resources */,
