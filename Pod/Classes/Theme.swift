@@ -49,7 +49,7 @@ open class Theme {
      
      - parameter themeString: Theme to use.
      */
-    init(themeString: String)
+    public init(themeString: String)
     {
         theme = themeString
         setCodeFont(RPFont(name: "Courier", size: 14)!)
