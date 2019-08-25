@@ -152,9 +152,9 @@ open class Theme {
         }
         else
         {
-            returnString = NSAttributedString(string: string, attributes:[AttributedStringKey.font:codeFont] )
+			returnString = NSAttributedString(string: string, attributes:[AttributedStringKey.font:codeFont as Any] )
         }
-        
+
         return returnString
     }
     
