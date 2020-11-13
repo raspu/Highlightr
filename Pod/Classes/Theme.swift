@@ -152,9 +152,9 @@ open class Theme {
         }
         else
         {
-            returnString = NSAttributedString(string: string, attributes:[AttributedStringKey.font:codeFont] )
+			returnString = NSAttributedString(string: string, attributes:[AttributedStringKey.font:codeFont as Any] )
         }
-        
+
         return returnString
     }
     
@@ -328,7 +328,7 @@ open class Theme {
         }
         
         
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        var r:UInt64 = 0, g:UInt64 = 0, b:UInt64 = 0;
         var divisor : CGFloat
         
         if (cString.count == 6 )
@@ -338,9 +338,9 @@ open class Theme {
             let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)
             let bString = ((cString as NSString).substring(from: 4) as NSString).substring(to: 2)
             
-            Scanner(string: rString).scanHexInt32(&r)
-            Scanner(string: gString).scanHexInt32(&g)
-            Scanner(string: bString).scanHexInt32(&b)
+            Scanner(string: rString).scanHexInt64(&r)
+            Scanner(string: gString).scanHexInt64(&g)
+            Scanner(string: bString).scanHexInt64(&b)
             
             divisor = 255.0
             
@@ -350,9 +350,9 @@ open class Theme {
             let gString = ((cString as NSString).substring(from: 1) as NSString).substring(to: 1)
             let bString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 1)
             
-            Scanner(string: rString).scanHexInt32(&r)
-            Scanner(string: gString).scanHexInt32(&g)
-            Scanner(string: bString).scanHexInt32(&b)
+            Scanner(string: rString).scanHexInt64(&r)
+            Scanner(string: gString).scanHexInt64(&g)
+            Scanner(string: bString).scanHexInt64(&b)
             
             divisor = 15.0
         }
