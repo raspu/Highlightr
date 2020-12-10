@@ -10,6 +10,8 @@ import Foundation
 
 #if os(OSX)
     import AppKit
+#elseif os(iOS)
+    import UIKit
 #endif
 
 /// Highlighting Delegate
