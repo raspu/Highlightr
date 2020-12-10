@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Highlightr"
-  s.version          = "2.0.0"
+  s.version          = "2.1.0"
   s.summary          = "iOS & macOS Syntax Highlighter."
 
   s.description      = <<-DESC
@@ -23,6 +23,8 @@ Pod::Spec.new do |s|
 
   s.osx.deployment_target = '10.11'
   s.ios.deployment_target = '8.0'
+
+  s.swift_version = '4.2'
 
   s.requires_arc = true
 
