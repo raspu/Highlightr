@@ -13,7 +13,8 @@ import Highlightr
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
-    
+
+    var scrollview : NSScrollView!
     var textView : NSTextView!
     let textStorage = CodeAttributedString()
 
@@ -30,16 +31,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         
-        let textContainer = NSTextContainer(size:(window.contentView?.bounds.size)!)
+        let textContainer = NSTextContainer()
         layoutManager.addTextContainer(textContainer)
-        
-        
+
+        // Setting Up the Scroll View
+        scrollview = NSScrollView(frame: (window.contentView?.bounds)!)
+        scrollview.borderType = .noBorder
+        scrollview.hasVerticalScroller = true
+        scrollview.hasHorizontalScroller = false
+        scrollview.autoresizingMask = [.width,.height]
+
+        let contentSize = scrollview.contentSize
+
         textView = NSTextView(frame: (window.contentView?.bounds)!, textContainer: textContainer)
-        textView.autoresizingMask = [.width,.height]
-        textView.translatesAutoresizingMaskIntoConstraints = true
+        textView.minSize = NSMakeSize(0.0, contentSize.height)
+        textView.maxSize = NSMakeSize(CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude)
+        textView.isVerticallyResizable = true
+        textView.isHorizontallyResizable = false
+        textView.autoresizingMask = [.width]
+        textView.textContainer!.containerSize = NSMakeSize(contentSize.width, CGFloat.greatestFiniteMagnitude)
+        textView.textContainer!.widthTracksTextView = true
         textView.backgroundColor = (textStorage.highlightr.theme.themeBackgroundColor)!
         textView.insertionPointColor = NSColor.white
-        window.contentView?.addSubview(textView)
+
+        scrollview.documentView = textView;
+        window.contentView?.addSubview(scrollview)
         
     }
 
