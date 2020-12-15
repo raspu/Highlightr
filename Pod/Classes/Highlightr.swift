@@ -205,15 +205,31 @@ open class Highlightr
         while !scanner.isAtEnd
         {
             var ended = false
-            if scanner.scanUpTo(htmlStart, into: &scannedString)
+            var didScanUpToHtmlStart = false
+            
+            if #available(iOS 13.0, OSX 10.15, *)
             {
-                if scanner.isAtEnd
+                if let string = scanner.scanUpToString(htmlStart)
                 {
-                    ended = true
+                    scannedString = string as NSString
+                    didScanUpToHtmlStart = true
+                }
+            }
+            else
+            {
+                if scanner.scanUpTo(htmlStart, into: &scannedString)
+                {
+                    didScanUpToHtmlStart = true
                 }
             }
             
-            if scannedString != nil && scannedString!.length > 0 {
+            if didScanUpToHtmlStart && scanner.isAtEnd
+            {
+                ended = true
+            }
+            
+            if scannedString != nil && scannedString!.length > 0
+            {
                 let attrScannedString = theme.applyStyleToString(scannedString! as String, styleList: propStack)
                 resultString.append(attrScannedString)
                 if ended
@@ -222,26 +238,63 @@ open class Highlightr
                 }
             }
             
-            scanner.scanLocation += 1
+            var nextChar: String
+            if #available(iOS 13.0, OSX 10.15, *)
+            {
+                scanner.currentIndex = scanner.string.index(after: scanner.currentIndex)
+                nextChar = String(scanner.string[scanner.currentIndex])
+            }
+            else
+            {
+                scanner.scanLocation += 1
+                let string = scanner.string as NSString
+                nextChar = string.substring(with: NSMakeRange(scanner.scanLocation, 1))
+            }
             
-            let string = scanner.string as NSString
-            let nextChar = string.substring(with: NSMakeRange(scanner.scanLocation, 1))
             if(nextChar == "s")
             {
-                scanner.scanLocation += (spanStart as NSString).length
-                scanner.scanUpTo(spanStartClose, into:&scannedString)
-                scanner.scanLocation += (spanStartClose as NSString).length
-                propStack.append(scannedString! as String)
+                if #available(iOS 13.0, OSX 10.15, *)
+                {
+                    scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanStart.count)
+                    if let string = scanner.scanUpToString(spanStartClose)
+                    {
+                        scannedString = string as NSString
+                    }
+                    scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanStartClose.count)
+                    propStack.append(scannedString! as String)
+                }
+                else
+                {
+                    scanner.scanLocation += (spanStart as NSString).length
+                    scanner.scanUpTo(spanStartClose, into:&scannedString)
+                    scanner.scanLocation += (spanStartClose as NSString).length
+                    propStack.append(scannedString! as String)
+                }
             }
             else if(nextChar == "/")
             {
-                scanner.scanLocation += (spanEnd as NSString).length
+                if #available(iOS 13.0, OSX 10.15, *)
+                {
+                    scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanEnd.count)
+                }
+                else
+                {
+                    scanner.scanLocation += (spanEnd as NSString).length
+                }
                 propStack.removeLast()
-            }else
+            }
+            else
             {
                 let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
                 resultString.append(attrScannedString)
-                scanner.scanLocation += 1
+                if #available(iOS 13.0, OSX 10.15, *)
+                {
+                    scanner.currentIndex = scanner.string.index(after: scanner.currentIndex)
+                }
+                else
+                {
+                    scanner.scanLocation += 1
+                }
             }
             
             scannedString = nil
