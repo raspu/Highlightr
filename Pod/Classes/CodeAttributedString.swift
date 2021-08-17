@@ -209,9 +209,10 @@ open class CodeAttributedString : NSTextStorage
     func setupListeners()
     {
         highlightr.themeChanged =
-            { _ in
+            { [weak self] _ in
+                    guard let self = self else { return }
                     self.highlight(NSMakeRange(0, self.stringStorage.length))
-            }
+        }
     }
     
     
