@@ -145,7 +145,7 @@ open class Theme {
                     style = "hljs-function-hljs-title"
                 }
 
-                if styleList.contains("hljs-title") && styleList.contains("hljs-class") {
+                if styleList.contains("hljs-title") && styleList.contains("hljs-class") && themeDict["hljs-class-hljs-title"] != nil {
                     style = "hljs-class-hljs-title"
                 }
 
