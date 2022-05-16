@@ -139,6 +139,16 @@ open class Theme {
             attrs[.font] = codeFont
             for style in styleList
             {
+                var style = style
+
+                if styleList.contains("hljs-title") && styleList.contains("hljs-function") && themeDict["hljs-function-hljs-title"] != nil {
+                    style = "hljs-function-hljs-title"
+                }
+
+                if styleList.contains("hljs-title") && styleList.contains("hljs-class") && themeDict["hljs-class-hljs-title"] != nil {
+                    style = "hljs-class-hljs-title"
+                }
+
                 if let themeStyle = themeDict[style] as? [AttributedStringKey: Any]
                 {
                     for (attrName, attrValue) in themeStyle
@@ -197,6 +207,15 @@ open class Theme {
         {
             let keyArray = keys.replacingOccurrences(of: " ", with: ",").components(separatedBy: ",")
             for key in keyArray {
+                var key = key
+                if keyArray.contains(".hljs-title") && keyArray.contains(".hljs-function") {
+                    key = "hljs-function-hljs-title"
+                }
+
+                if keyArray.contains(".hljs-title") && keyArray.contains(".hljs-class") {
+                    key = "hljs-class-hljs-title"
+                }
+
                 var props : [String:String]?
                 props = returnDict[key]
                 if props == nil {
