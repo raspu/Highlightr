@@ -112,7 +112,8 @@ open class Theme {
         if(italicCodeFont == nil || italicCodeFont.familyName != font.familyName)
         {
             italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
-        } else if(italicCodeFont == nil )
+        }
+        if(italicCodeFont == nil)
         {
             italicCodeFont = font
         }
@@ -134,11 +135,21 @@ open class Theme {
         
         if styleList.count > 0
         {
-            var attrs = [NSAttributedStringKey: Any]()
+            var attrs = [AttributedStringKey: Any]()
             attrs[.font] = codeFont
             for style in styleList
             {
-                if let themeStyle = themeDict[style] as? [NSAttributedStringKey: Any]
+                var style = style
+
+                if styleList.contains("hljs-title") && styleList.contains("hljs-function") && themeDict["hljs-function-hljs-title"] != nil {
+                    style = "hljs-function-hljs-title"
+                }
+
+                if styleList.contains("hljs-title") && styleList.contains("hljs-class") && themeDict["hljs-class-hljs-title"] != nil {
+                    style = "hljs-class-hljs-title"
+                }
+
+                if let themeStyle = themeDict[style] as? [AttributedStringKey: Any]
                 {
                     for (attrName, attrValue) in themeStyle
                     {
@@ -151,9 +162,9 @@ open class Theme {
         }
         else
         {
-            returnString = NSAttributedString(string: string, attributes:[NSAttributedStringKey.font:codeFont] )
+			returnString = NSAttributedString(string: string, attributes:[AttributedStringKey.font:codeFont as Any] )
         }
-        
+
         return returnString
     }
     
@@ -196,6 +207,15 @@ open class Theme {
         {
             let keyArray = keys.replacingOccurrences(of: " ", with: ",").components(separatedBy: ",")
             for key in keyArray {
+                var key = key
+                if keyArray.contains(".hljs-title") && keyArray.contains(".hljs-function") {
+                    key = "hljs-function-hljs-title"
+                }
+
+                if keyArray.contains(".hljs-title") && keyArray.contains(".hljs-class") {
+                    key = "hljs-class-hljs-title"
+                }
+
                 var props : [String:String]?
                 props = returnDict[key]
                 if props == nil {
@@ -235,7 +255,7 @@ open class Theme {
         var returnTheme = RPThemeDict()
         for (className, props) in theme
         {
-            var keyProps = [NSAttributedStringKey: AnyObject]()
+            var keyProps = [AttributedStringKey: AnyObject]()
             for (key, prop) in props
             {
                 switch key
@@ -278,7 +298,7 @@ open class Theme {
         }
     }
     
-    private func attributeForCSSKey(_ key: String) -> NSAttributedStringKey
+    private func attributeForCSSKey(_ key: String) -> AttributedStringKey
     {
         switch key {
         case "color":
@@ -327,7 +347,7 @@ open class Theme {
         }
         
         
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        var r:UInt64 = 0, g:UInt64 = 0, b:UInt64 = 0;
         var divisor : CGFloat
         
         if (cString.count == 6 )
@@ -337,9 +357,9 @@ open class Theme {
             let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)
             let bString = ((cString as NSString).substring(from: 4) as NSString).substring(to: 2)
             
-            Scanner(string: rString).scanHexInt32(&r)
-            Scanner(string: gString).scanHexInt32(&g)
-            Scanner(string: bString).scanHexInt32(&b)
+            Scanner(string: rString).scanHexInt64(&r)
+            Scanner(string: gString).scanHexInt64(&g)
+            Scanner(string: bString).scanHexInt64(&b)
             
             divisor = 255.0
             
@@ -349,9 +369,9 @@ open class Theme {
             let gString = ((cString as NSString).substring(from: 1) as NSString).substring(to: 1)
             let bString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 1)
             
-            Scanner(string: rString).scanHexInt32(&r)
-            Scanner(string: gString).scanHexInt32(&g)
-            Scanner(string: bString).scanHexInt32(&b)
+            Scanner(string: rString).scanHexInt64(&r)
+            Scanner(string: gString).scanHexInt64(&g)
+            Scanner(string: bString).scanHexInt64(&b)
             
             divisor = 15.0
         }
