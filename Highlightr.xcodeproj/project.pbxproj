@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EEF4479295228920020DBCA /* xcode-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 0EEF4478295228920020DBCA /* xcode-dark.min.css */; };
+		0EEF447A295228920020DBCA /* xcode-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 0EEF4478295228920020DBCA /* xcode-dark.min.css */; };
 		5662696320D94F9F00BEEE01 /* Shims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662696220D94F9F00BEEE01 /* Shims.swift */; };
 		5662696420D9508C00BEEE01 /* Shims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662696220D94F9F00BEEE01 /* Shims.swift */; };
 		8C2FB1C71F39118F00469D0D /* Highlightr.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C2FB1C51F39118F00469D0D /* Highlightr.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -182,6 +184,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EEF4478295228920020DBCA /* xcode-dark.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "xcode-dark.min.css"; path = "Pod/Assets/styles/xcode-dark.min.css"; sourceTree = SOURCE_ROOT; };
 		5662696220D94F9F00BEEE01 /* Shims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Shims.swift; path = Pod/Classes/Shims.swift; sourceTree = SOURCE_ROOT; };
 		8C2FB1C21F39118F00469D0D /* Highlightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Highlightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2FB1C51F39118F00469D0D /* Highlightr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Highlightr.h; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 				8CC1C6E01F3A636B0093293D /* vs.min.css */,
 				8CC1C6E11F3A636B0093293D /* vs2015.min.css */,
 				8CC1C6E21F3A636B0093293D /* xcode.min.css */,
+				0EEF4478295228920020DBCA /* xcode-dark.min.css */,
 				8CC1C6E31F3A636B0093293D /* xt256.min.css */,
 				8CC1C6E41F3A636B0093293D /* zenburn.min.css */,
 			);
@@ -604,6 +608,7 @@
 				8CC1C7071F3A636B0093293D /* atelier-plateau-dark.min.css in Resources */,
 				8CC1C76F1F3A636B0093293D /* sunburst.min.css in Resources */,
 				8CC1C72B1F3A636B0093293D /* docco.min.css in Resources */,
+				0EEF4479295228920020DBCA /* xcode-dark.min.css in Resources */,
 				8CC1C7471F3A636B0093293D /* kimbie.dark.min.css in Resources */,
 				8CC1C7291F3A636B0093293D /* default.min.css in Resources */,
 				8CC1C71B1F3A636B0093293D /* brown-paper.min.css in Resources */,
@@ -691,6 +696,7 @@
 				8CC1C7081F3A636B0093293D /* atelier-plateau-dark.min.css in Resources */,
 				8CC1C7701F3A636B0093293D /* sunburst.min.css in Resources */,
 				8CC1C72C1F3A636B0093293D /* docco.min.css in Resources */,
+				0EEF447A295228920020DBCA /* xcode-dark.min.css in Resources */,
 				8CC1C7481F3A636B0093293D /* kimbie.dark.min.css in Resources */,
 				8CC1C72A1F3A636B0093293D /* default.min.css in Resources */,
 				8CC1C71C1F3A636B0093293D /* brown-paper.min.css in Resources */,
