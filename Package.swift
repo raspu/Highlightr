@@ -115,6 +115,7 @@ let package = Package(
                 .copy("Assets/styles/vs.min.css"),
                 .copy("Assets/styles/vs2015.min.css"),
                 .copy("Assets/styles/xcode.min.css"),
+                .copy("Assets/styles/xcode-dark.min.css"),
                 .copy("Assets/styles/xt256.min.css"),
                 .copy("Assets/styles/zenburn.min.css"),
             ]
