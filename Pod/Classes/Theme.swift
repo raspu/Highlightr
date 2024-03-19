@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     import UIKit
     /// Typealias for UIColor
     public typealias RPColor = UIColor
@@ -90,7 +90,7 @@ open class Theme {
     {
         codeFont = font
         
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
         let boldDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family:font.familyName,
                                                                 UIFontDescriptor.AttributeName.face:"Bold"])
         let italicDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family:font.familyName,
