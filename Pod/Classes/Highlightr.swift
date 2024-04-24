@@ -52,6 +52,7 @@ open class Highlightr
         let jsContext = JSContext()!
         let window = JSValue(newObjectIn: jsContext)
         jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
+        
 
         #if SWIFT_PACKAGE
         let bundle = Bundle.module
@@ -59,7 +60,7 @@ open class Highlightr
         let bundle = Bundle(for: Highlightr.self)
         #endif
         self.bundle = bundle
-        guard let hgPath = highlightPath ?? bundle.path(forResource: "highlight.min", ofType: "js") else
+        guard let hgPath = highlightPath ?? bundle.path(forResource: "abap.min", ofType: "js") else
         {
             return nil
         }
