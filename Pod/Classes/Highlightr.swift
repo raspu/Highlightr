@@ -50,9 +50,12 @@ open class Highlightr
     public init?(highlightPath: String? = nil)
     {
         let jsContext = JSContext()!
-        let window = JSValue(newObjectIn: jsContext)
-        jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
+//        let window = JSValue(newObjectIn: jsContext)
+//        jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
         
+        jsContext.exceptionHandler = { context, exception in
+            print("Highlightr Exception:", exception?.toString() ?? "")
+        }
 
         #if SWIFT_PACKAGE
         let bundle = Bundle.module
@@ -65,16 +68,37 @@ open class Highlightr
             return nil
         }
         
+        guard let abapPath = bundle.path(forResource: "abap.min", ofType: "js") else
+        {
+            return nil
+        }
+        
+        guard let gleamPath = bundle.path(forResource: "gleam.min", ofType: "js") else
+        {
+            return nil
+        }
+        
         let hgJs = try! String.init(contentsOfFile: hgPath)
         let value = jsContext.evaluateScript(hgJs)
-        if value?.toBool() != true
-        {
-            return nil
+        
+        let abap = try! String(contentsOfFile: abapPath)
+        jsContext.evaluateScript(abap)
+        
+        let gleam = try! String(contentsOfFile: gleamPath)
+        jsContext.evaluateScript(gleam)
+        
+        
+        guard let hljs = jsContext.objectForKeyedSubscript("hljs") else { return nil }
+        
+        if let abapGrammar = jsContext.objectForKeyedSubscript("abapGrammar") {
+            hljs.invokeMethod("registerLanguage", withArguments: ["abap", abapGrammar])
         }
-        guard let hljs = window?.objectForKeyedSubscript("hljs") else
-        {
-            return nil
+        
+        if let gleamGrammar = jsContext.objectForKeyedSubscript("gleamGrammar") {
+            hljs.invokeMethod("registerLanguage", withArguments: ["gleam", gleamGrammar])
         }
+        
+        
         self.hljs = hljs
         
         guard setTheme(to: "pojoaque") else
