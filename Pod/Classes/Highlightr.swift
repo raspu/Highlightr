@@ -79,7 +79,7 @@ open class Highlightr
         }
         
         let hgJs = try! String.init(contentsOfFile: hgPath)
-        let value = jsContext.evaluateScript(hgJs)
+        jsContext.evaluateScript(hgJs)
         
         let abap = try! String(contentsOfFile: abapPath)
         jsContext.evaluateScript(abap)
