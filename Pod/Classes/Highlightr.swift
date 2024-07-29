@@ -111,9 +111,13 @@ open class Highlightr
         let ret: JSValue?
         if let languageName = languageName
         {
-            ret = hljs.invokeMethod("highlight", withArguments: [code, ["language": languageName, "ignoreIllegals": ignoreIllegals]])
-
-
+            let result: JSValue = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
+			 if result.isUndefined {
+				// If highlighting failed, use highlightAuto
+				ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
+			} else {
+				ret = result
+			}
         }else
         {
             // language auto detection
