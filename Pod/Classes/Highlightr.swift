@@ -49,7 +49,7 @@ open class Highlightr
      */
     public init?(highlightPath: String? = nil)
     {
-        let jsContext = JSContext()!
+        guard let jsContext = JSContext() else { return nil }
         let window = JSValue(newObjectIn: jsContext)
 
         #if SWIFT_PACKAGE
@@ -175,7 +175,7 @@ open class Highlightr
     open func supportedLanguages() -> [String]
     {
         let res = hljs.invokeMethod("listLanguages", withArguments: [])
-        return res!.toArray() as! [String]
+        return res?.toArray() as? [String] ?? []
     }
     
     /**
