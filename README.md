@@ -1,6 +1,5 @@
 # Highlightr
 
-
 [![Version](https://img.shields.io/cocoapods/v/Highlightr.svg?style=flat)](http://cocoapods.org/pods/Highlightr)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/Highlightr.svg)](http://cocoadocs.org/docsets/Highlightr/1.1.0/)
@@ -69,25 +68,25 @@ Highlightr provides two main classes:
 ### Highlightr
 This is the main endpoint, you can use it to convert code strings into NSAttributed strings.
 ```Swift
-	let highlightr = Highlightr()
-	highlightr.setTheme(to: "paraiso-dark")
-	let code = "let a = 1"
-	// You can omit the second parameter to use automatic language detection.
-	let highlightedCode = highlightr.highlight(code, as: "swift") 
-	
+let highlightr = Highlightr()
+highlightr.setTheme(to: "paraiso-dark")
+let code = "let a = 1"
+
+// You can omit the second parameter to use automatic language detection.
+let highlightedCode = highlightr.highlight(code, as: "swift") 
 ```
 ### CodeAttributedString
 A subclass of NSTextStorage, you can use it to highlight text on real time.
 ```Swift
-	let textStorage = CodeAttributedString()
-	textStorage.language = "Swift"
-	let layoutManager = NSLayoutManager()
-	textStorage.addLayoutManager(layoutManager)
+let textStorage = CodeAttributedString()
+textStorage.language = "Swift"
+let layoutManager = NSLayoutManager()
+textStorage.addLayoutManager(layoutManager)
 
-	let textContainer = NSTextContainer(size: view.bounds.size)
-	layoutManager.addTextContainer(textContainer)
+let textContainer = NSTextContainer(size: view.bounds.size)
+layoutManager.addTextContainer(textContainer)
 
-	let textView = UITextView(frame: yourFrame, textContainer: textContainer)
+let textView = UITextView(frame: yourFrame, textContainer: textContainer)
 ```
 
 ## JavaScript?
