@@ -1,0 +1,15 @@
+{
+  "originHash" : "c9f8f618427dbc614a85054cf1e2a3a225cdf02dfef4a06642dfe7db25764d10",
+  "pins" : [
+    {
+      "identity" : "actionsheetpicker-3.0",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/skywinder/ActionSheetPicker-3.0",
+      "state" : {
+        "revision" : "c2b96e53734454c6d30e3cee783f486dfc23efd2",
+        "version" : "2.7.5"
+      }
+    }
+  ],
+  "version" : 3
+}

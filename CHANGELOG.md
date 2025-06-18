@@ -1,3 +1,15 @@
+2.3.0 Release notes (2025-06-18)
+=============================================================
+
+### Changes
+
+* highlight.js updated to version 11.11.1
+* Removed Pod integration
+
+### Bugfixes
+
+* Made code more defensive
+
 2.1.0 Release notes (2018-3-7)
 =============================================================
 

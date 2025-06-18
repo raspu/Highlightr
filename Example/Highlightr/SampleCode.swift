@@ -7,7 +7,7 @@
 
 import UIKit
 import Highlightr
-import ActionSheetPicker_3_0
+import CoreActionSheetPicker
 
 enum pickerSource : Int {
     case theme = 0
