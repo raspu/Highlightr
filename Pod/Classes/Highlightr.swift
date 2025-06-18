@@ -51,7 +51,6 @@ open class Highlightr
     {
         let jsContext = JSContext()!
         let window = JSValue(newObjectIn: jsContext)
-        jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
 
         #if SWIFT_PACKAGE
         let bundle = Bundle.module
@@ -66,14 +65,8 @@ open class Highlightr
         
         let hgJs = try! String.init(contentsOfFile: hgPath)
         let value = jsContext.evaluateScript(hgJs)
-        if value?.toBool() != true
-        {
-            return nil
-        }
-        guard let hljs = window?.objectForKeyedSubscript("hljs") else
-        {
-            return nil
-        }
+        guard let hljs = jsContext.objectForKeyedSubscript("hljs") else { return nil }
+
         self.hljs = hljs
         
         guard setTheme(to: "pojoaque") else
@@ -115,18 +108,23 @@ open class Highlightr
      */
     open func highlight(_ code: String, as languageName: String? = nil, fastRender: Bool = true) -> NSAttributedString?
     {
-        let ret: JSValue
+        let ret: JSValue?
         if let languageName = languageName
         {
-            ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
+            let result: JSValue = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
+			 if result.isUndefined {
+				// If highlighting failed, use highlightAuto
+				ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
+			} else {
+				ret = result
+			}
         }else
         {
             // language auto detection
             ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
         }
 
-        let res = ret.objectForKeyedSubscript("value")
-        guard var string = res!.toString() else
+        guard let res = ret?.objectForKeyedSubscript("value"), var string = res.toString() else
         {
             return nil
         }
