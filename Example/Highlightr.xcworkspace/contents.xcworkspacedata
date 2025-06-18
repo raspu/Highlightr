@@ -4,7 +4,4 @@
    <FileRef
       location = "group:Highlightr.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
 </Workspace>
