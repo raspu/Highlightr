@@ -19,16 +19,16 @@ let package = Package(
         .target(
             name: "Highlightr",
             dependencies: [],
-            path: "Pod",
+            path: "src",
             exclude: [
-                "Assets/Highlighter/LICENSE",
+                "assets/highlighter/LICENSE",
             ],
             sources: [
-                "Classes",
+                "classes",
             ],
             resources: [
-                .process("Assets/Highlighter/highlight.min.js"),
-                .process("Assets/styles/.")
+                .process("assets/highlighter/highlight.min.js"),
+                .process("assets/styles/.")
             ]
         ),
     ]

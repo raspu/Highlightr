@@ -49,7 +49,7 @@ open class Highlightr
      */
     public init?(highlightPath: String? = nil)
     {
-        let jsContext = JSContext()!
+        guard let jsContext = JSContext() else { return nil }
         let window = JSValue(newObjectIn: jsContext)
 
         #if SWIFT_PACKAGE
@@ -63,7 +63,7 @@ open class Highlightr
             return nil
         }
         
-        let hgJs = try! String.init(contentsOfFile: hgPath)
+        guard let hgJs = try? String.init(contentsOfFile: hgPath) else { return nil }
         let value = jsContext.evaluateScript(hgJs)
         guard let hljs = jsContext.objectForKeyedSubscript("hljs") else { return nil }
 
@@ -90,7 +90,7 @@ open class Highlightr
         {
             return false
         }
-        let themeString = try! String.init(contentsOfFile: defTheme)
+        guard let themeString = try? String.init(contentsOfFile: defTheme) else { return false }
         theme =  Theme(themeString: themeString)
 
         
@@ -132,7 +132,7 @@ open class Highlightr
         var returnString : NSAttributedString?
         if(fastRender)
         {
-            returnString = processHTMLString(string)!
+            returnString = processHTMLString(string)
         }else
         {
             string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
@@ -141,7 +141,7 @@ open class Highlightr
              .characterEncoding: String.Encoding.utf8.rawValue
              ]
             
-            let data = string.data(using: String.Encoding.utf8)!
+            guard let data = string.data(using: String.Encoding.utf8) else { return nil }
             safeMainSync
             {
                 returnString = try? NSMutableAttributedString(data:data, options: opt, documentAttributes:nil)
@@ -175,7 +175,7 @@ open class Highlightr
     open func supportedLanguages() -> [String]
     {
         let res = hljs.invokeMethod("listLanguages", withArguments: [])
-        return res!.toArray() as! [String]
+        return (res?.toArray() as? [String]) ?? []
     }
     
     /**
