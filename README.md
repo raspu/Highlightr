@@ -18,50 +18,16 @@ Takes your lame string with code and returns a NSAttributtedString with proper s
 ### Requirements
 - iOS 8.0+
 - macOS 10.10+
+
+### SPM
+1. Click the **File** menu, select **Add Packages…**
+1. Enter `https://github.com/raspu/Highlightr/` into the *Search or Enter Package URL* search field
+1. Link **Highlightr** to your application target
+
+Finally, add `import MarkdownUI` to your source code.
  
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate Highlightr into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Highlightr'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate Highlightr into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "raspu/Highlightr"
-```
-
-Run `carthage update` to build the framework and drag the built `Highlightr.framework` into your Xcode project.Highlightr
+### CocoaPods & Carthage
+CocoaPods & Carthage are no longer supported.
 
 ## Usage
 Highlightr provides two main classes:
